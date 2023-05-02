@@ -1,0 +1,27 @@
+version: "3"
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: ./node/Dockerfile
+    tty: true
+    volumes:
+      - ./src:/app
+    ports:
+      - "3000:3000"
+    command: bash -c "yarn dev"
+  web:
+    image: nginx:alpine
+    ports:
+      - 8888:80
+    privileged: true
+    volumes:
+      - "./:/usr/share/nginx/html"
+    # If you want to run `yarn dev` at docker compose startup
+    # command: sh -c "yarn dev"
+  mysql:
+    image: mysql:latest
+    volumes:
+      - "./.data/db:/var/lib/mysql"
+    env_file: .env
+    

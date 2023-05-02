@@ -1,6 +1,6 @@
 version: "3"
 services:
-  app:
+  frontend:
     build:
       context: .
       dockerfile: ./node/Dockerfile
@@ -11,3 +11,9 @@ services:
       - "3000:3000"
     # If you want to run `yarn dev` at docker compose startup
     # command: sh -c "yarn dev"
+  mysql:
+    image: mysql:latest
+    volumes:
+      - "./.data/db:/var/lib/mysql"
+    env_file: .env
+    

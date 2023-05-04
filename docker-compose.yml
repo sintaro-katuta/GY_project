@@ -5,10 +5,12 @@ services:
       context: .
       dockerfile: ./node/Dockerfile
     tty: true
+    environment:
+      - WATCHPACK_POLLING=true
     volumes:
       - ./src:/app
     ports:
-      - "3000:3000"
+      - "3001:3001"
     command: bash -c "yarn dev"
   web:
     image: nginx:alpine

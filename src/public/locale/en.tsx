@@ -1,3 +1,4 @@
 export default {
-    HELLO: "hello"
+    HELLO: "hello",
+    CHANGE_LANGUAGE: "Change language"
 }

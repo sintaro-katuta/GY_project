@@ -1,4 +1,4 @@
-### Git clone
+### Git
 ```bash
 git clone https://github.com/sintaro-katuta/GY_project
 ```
@@ -8,11 +8,13 @@ git clone https://github.com/sintaro-katuta/GY_project
 # Dockerコンテナ起動
 docker-compose up -d
 
-# Next.js起動
-docker-compose exec frontend yarn dev
-
+ブラウザで
 http://localhost:3000/
 ```
+
+### それでも起動しなかったら
+ちょっとわかんないんでそれぞれでエラーで調べるか、私が見ます
+
 
 ### Dockerコマンド
 ```bash

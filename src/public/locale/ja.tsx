@@ -1,3 +1,4 @@
 export default {
-    HELLO: "こんにちわ"
+    HELLO: "こんにちわ",
+    CHANGE_LANGUAGE: "言語の変更"
 }

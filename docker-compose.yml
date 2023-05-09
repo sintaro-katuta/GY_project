@@ -11,6 +11,10 @@ services:
       - ./src:/app
     ports:
       - "3000:3000"
+    env_file: .env
+    # ネットワーク
+    networks:
+      - default
   web:
     image: nginx:alpine
     ports:
@@ -18,11 +22,33 @@ services:
     privileged: true
     volumes:
       - "./:/usr/share/nginx/html"
+    # ネットワーク
+    networks:
+      - default
     # If you want to run `yarn dev` at docker compose startup
     # command: sh -c "yarn dev"
   mysql:
     image: mysql:latest
+    ports:
+      - 3306:3306
     volumes:
-      - "./.data/db:/var/lib/mysql"
+      # 設定ファイルディレクトリにマウントする
+      - ./mysql/conf.d:/etc/mysql/conf.d
+      # DB初期化ディレクトリにマウントする
+      - ./mysql/init.d:/docker-entrypoint-initdb.d
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      TZ: "Asia/Tokyo"
+    command: --default-authentication-plugin=mysql_native_password
     env_file: .env
+    # ネットワーク
+    networks:
+      - default
+  # ネットワーク
+networks:
+  default:
+    driver: bridge
     

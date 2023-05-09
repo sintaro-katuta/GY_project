@@ -11,6 +11,7 @@ services:
       - ./src:/app
     ports:
       - "3000:3000"
+    command: "yarn add @mui/material @emotion/react @emotion/styled"
     env_file: .env
     # ネットワーク
     networks:

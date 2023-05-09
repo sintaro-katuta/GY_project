@@ -30,7 +30,7 @@ services:
   mysql:
     image: mysql:latest
     ports:
-      - 3306:3306
+      - 3307:3306
     volumes:
       # 設定ファイルディレクトリにマウントする
       - ./mysql/conf.d:/etc/mysql/conf.d

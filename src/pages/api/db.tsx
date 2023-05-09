@@ -11,7 +11,7 @@ export default async function handler(
 ) {
     const connection = await mysql.createConnection({
         host: 'mysql',
-        port: 3306,
+        port: 3307,
         database: process.env.MYSQL_DATABASE,
         user: process.env.MYSQL_USER,
         password: process.env.MYSQL_PASSWORD

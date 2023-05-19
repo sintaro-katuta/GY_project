@@ -7,19 +7,29 @@ export default function DrawerMenu(){
             <div>
                 <ul>
                     <li>
-                        <a href="/coment.tsx">口コミ</a>
+                        <Link href={"/comment"}>
+                            口コミ
+                        </Link>
                     </li>
                     <li>
-                        <a href="/post.tsx">投稿する</a>
+                        <Link href={"/post"}>
+                            投稿
+                        </Link>
                     </li>
                     <li>
-                        <a href="/account.tsx">アカウント</a>
+                        <Link href={"/account"}>
+                            アカウント
+                        </Link>
                     </li>
                     <li>
-                        <a href="/event.tsx">イベント・ニュース</a>
+                        <Link href={"/event"}>
+                            イベント
+                        </Link>
                     </li>
                     <li>
-                        <a href="/connect.tsx">つながる</a>
+                        <Link href={"/connect"}>
+                            つながる
+                        </Link>
                     </li>
                 </ul>
             </div>

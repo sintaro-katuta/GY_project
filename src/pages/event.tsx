@@ -1,5 +1,5 @@
-export default function comment(){
+export default function event(){
     return(
-        <h1>イベント</h1>
+        <h1>イベント・ニュース</h1>
     )
 }

@@ -6,6 +6,7 @@ export default function Index(){
     return(
         <div>
             <Header/>
+            <h1>b</h1>
         </div>
     )
 }

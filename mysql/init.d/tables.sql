@@ -12,6 +12,8 @@ CREATE TABLE users(
     PRIMARY KEY (id)
 );
 
+INSERT INTO users(id, user_name) values(1, 'John');
+
 DROP TABLE IF EXISTS hashtags;
 CREATE TABLE hashtags(
     id INT,
@@ -54,4 +56,3 @@ CREATE TABLE likes(
     PRIMARY KEY likes(user),
     FOREIGN KEY likes(user) REFERENCES users(id) ON DELETE CASCADE
 );
-

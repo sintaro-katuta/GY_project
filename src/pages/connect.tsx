@@ -1,5 +1,8 @@
-export default function connect(){
-    return(
-        <h1>クチコミ</h1>
+
+export default function Connect() {
+    return (
+        <div>
+            <h1>繋がる</h1>
+        </div>
     )
 }

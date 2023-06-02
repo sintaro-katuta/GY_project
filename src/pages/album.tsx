@@ -2,16 +2,12 @@
 import firebaseApp from '../lib/firebase.config';
 import Header from "../components/header";
 import { collection, doc, getDocs, getFirestore } from "firebase/firestore";
-import { getStorage, ref } from "firebase/storage";
 import { useState, useEffect } from 'react'
 import NextImage from 'next/image';
 
 export default function Album() {
     const db = getFirestore(firebaseApp)
     const [list, setList] = useState([]);
-    const storage = getStorage();
-    const imagesRef = ref(storage, 'images');
-    const spaceRef = ref(storage, 'images/space.jpg');
 
     useEffect(() => {
         const fetchData = async () => {

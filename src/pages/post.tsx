@@ -104,7 +104,7 @@ export default function Post() {
 
     return (
         <div>
-            <h1>投稿</h1>
+            <h1 onClick={() => console.log(currentUser)}>投稿</h1>
             <form>
                 <input type="file" multiple accept="image/jpeg, image/png, image/gif, video/mp4, video/avi, video/quicktime" onChange={(e) => addImage(e)} />
 

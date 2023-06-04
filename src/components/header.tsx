@@ -7,19 +7,20 @@ import Link from "next/link";
 import { getAuth, signOut } from "firebase/auth";
 
 export default function Header() {
+    const router = useRouter();
+    const paths = decodeURI(router.asPath).substring(1).split("/");
+    const roots = [""];
+    for (let i = 0; i < paths.length; i++) roots.push(roots[i] + "/" + paths[i]);
     // drawerがopenしているかどうかのstate
     const [drawerOpened, setDrawerOpened] = useState(false);
-    const router = useRouter()
     const auth = getAuth()
 
     const toPost = () => {
-        console.log(auth)
         router.push("/post")
     }
 
     const signout = async () => {
         signOut(auth)
-        console.log("aa")
     }
     return (
         <>
@@ -38,7 +39,15 @@ export default function Header() {
                     <DrawerMenu />
                 </Drawer> */}
 
-                <Link href={"http://localhost:8888"}>リゾートサイトへ</Link>
+                <Link href={"http://localhost:8888"}>リゾートサイトへ</Link><br />
+                <Link href="/">Top</Link>
+                {paths.map((x, i) => {
+                    return (
+                        <Link href={roots[i + 1]} key={i}>
+                            {">" + x}
+                        </Link>
+                    )
+                })}
                 <ul>
                     <li>
                         <Link href={"/memories"}>

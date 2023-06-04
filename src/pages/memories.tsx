@@ -1,18 +1,18 @@
 // Firebaseの初期化を行うためfirebaseAppをインポート
 import { firebaseApp, db } from '../lib/firebase.config';
 import Header from "../components/header";
-import { collection, doc, getDocs, getFirestore } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs, getFirestore } from "firebase/firestore";
 import { useState, useEffect } from 'react'
 import NextImage from 'next/image';
 
 
 export default function Memories() {
-    const db = getFirestore(firebaseApp)
     const [list, setList] = useState([])
     const [list2, setList2] = useState([])
+    const [user, setUser] = useState([])
 
     useEffect(() => {
-        const fetchData = async () => {
+        (async () => {
             const ref = collection(db, "posts")
             const snapShot = await getDocs(ref)
             const list = snapShot.docs.map((doc) => {
@@ -27,27 +27,42 @@ export default function Memories() {
                 item.id = doc2.id
                 return item
             })
+            let newUser: any[] = []
+            for (let i = 0; i < list.length; i++) {
+                const users = collection(db, "users")
+                const usersdoc = doc(users, list[i].user)
+                const docRef = getDoc(usersdoc)
+                docRef.then((value) => {
+                    if (value.exists()) {
+                        newUser.push(value.data())
+                    }
+                })
+            }
             setList(list)
             setList2(list2)
-        }
-        fetchData()
+            setUser(newUser)
+        })()
     }, [])
+
     return (
         <div>
             <Header />
-            <h1 onClick={() => console.log(list)}>みんなの思い出</h1>
+            <h1>みんなの思い出</h1>
             {list.map((item, i) => {
                 return (
                     <div key={i}>
-                        <h3>{item.user}</h3>
+                        <p>------------------------------</p>
+                        <p>{user[i]?.name}</p>
                         <p>{item.comment}</p>
-                        {list2.map((item2, j) => {
-                            if (item.id === item2.post_id) {
-                                return (
-                                    <NextImage key={j} alt={`画像${i}`} src={item2.image} width={120} height={120} />
-                                )
-                            }
-                        })}
+                        {
+                            list2.map((item2, j) => {
+                                if (item.id === item2.post_id) {
+                                    return (
+                                        <NextImage key={j} alt={`画像${i}`} src={item2.image} width={120} height={120} />
+                                    )
+                                }
+                            })
+                        }
                     </div>
                 )
             })}

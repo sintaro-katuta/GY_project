@@ -23,7 +23,7 @@ services:
       - 8888:80
     privileged: true
     volumes:
-      - "./site:/usr/share/nginx/html"
+      - "./:/usr/share/nginx/html"
     # ネットワーク
     networks:
       - default

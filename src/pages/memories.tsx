@@ -9,8 +9,7 @@ import NextImage from 'next/image';
 export default function Memories() {
     const [list, setList] = useState([])
     const [list2, setList2] = useState([])
-    const [user, setUser] = useState([null])
-    let newUser: any[] = []
+    const [user, setUser] = useState([])
 
     useEffect(() => {
         (async () => {
@@ -28,10 +27,10 @@ export default function Memories() {
                 item.id = doc2.id
                 return item
             })
-
+            let newUser: any[] = []
             for (let i = 0; i < list.length; i++) {
                 const users = collection(db, "users")
-                const usersdoc = await doc(users, list[i].user)
+                const usersdoc = doc(users, list[i].user)
                 const docRef = getDoc(usersdoc)
                 docRef.then((value) => {
                     if (value.exists()) {

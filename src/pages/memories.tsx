@@ -32,7 +32,6 @@ export default function Memories() {
 
             const users = collection(db, "users")
             for (let i = 0; i < newlist.length; i++) {
-                console.log(i, "回目:", newlist[i].user)
                 const usersdoc = doc(users, newlist[i].user)
                 const docRef = getDoc(usersdoc)
                 await docRef.then((value) => {
@@ -51,7 +50,6 @@ export default function Memories() {
     return (
         <div>
             <Header />
-            {console.log("list", list)}
             <h1>みんなの思い出</h1>
             {list.map((item, i) => {
                 return (

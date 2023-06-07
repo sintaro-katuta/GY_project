@@ -9,37 +9,41 @@ import NextImage from 'next/image';
 export default function Memories() {
     const [list, setList] = useState([])
     const [list2, setList2] = useState([])
+    const [list3, setList3] = useState([])
     const [user, setUser] = useState([])
+    let newUser: any[] = []
 
     useEffect(() => {
         (async () => {
             const ref = collection(db, "posts")
             const snapShot = await getDocs(ref)
-            const list = snapShot.docs.map((doc) => {
+            const newlist = snapShot.docs.map((doc) => {
                 const item = doc.data()
                 item.id = doc.id
                 return item
             })
             const ref2 = collection(db, "posts_images")
             const snapShot2 = await getDocs(ref2)
-            const list2 = snapShot2.docs.map((doc2) => {
+            const newlist2 = snapShot2.docs.map((doc2) => {
                 const item = doc2.data()
                 item.id = doc2.id
                 return item
             })
-            let newUser: any[] = []
-            for (let i = 0; i < list.length; i++) {
-                const users = collection(db, "users")
-                const usersdoc = doc(users, list[i].user)
+
+            const users = collection(db, "users")
+            for (let i = 0; i < newlist.length; i++) {
+                console.log(i, "回目:", newlist[i].user)
+                const usersdoc = doc(users, newlist[i].user)
                 const docRef = getDoc(usersdoc)
-                docRef.then((value) => {
+                await docRef.then((value) => {
                     if (value.exists()) {
-                        newUser.push(value.data())
+                        const item = value.data()
+                        newUser.push(item)
                     }
                 })
             }
-            setList(list)
-            setList2(list2)
+            setList(newlist)
+            setList2(newlist2)
             setUser(newUser)
         })()
     }, [])
@@ -47,12 +51,13 @@ export default function Memories() {
     return (
         <div>
             <Header />
+            {console.log("list", list)}
             <h1>みんなの思い出</h1>
             {list.map((item, i) => {
                 return (
                     <div key={i}>
                         <p>------------------------------</p>
-                        <p>{user[i]?.name}</p>
+                        <p>{user[i].name}</p>
                         <p>{item.comment}</p>
                         {
                             list2.map((item2, j) => {

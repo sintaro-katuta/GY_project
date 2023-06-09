@@ -172,7 +172,7 @@ export default function Account() {
                         <br />
                         <button onClick={(e) => doGoogleLogin(e)}>Googleログイン</button>
                         <button onClick={(e) => doFacebookLogin(e)}>Facebookログイン</button>
-
+                        
                     </form>
                 </div>
                 :

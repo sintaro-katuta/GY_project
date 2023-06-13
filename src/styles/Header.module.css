@@ -100,7 +100,7 @@
 .div{
     position: absolute;
     background-color: #222222;
-    width: 1300px;
+    width: 100%;
     height: 100px;
     right: 0px;
     top: 500px;

@@ -67,7 +67,7 @@ export default function Header() {
                     </li>
                 </ul>
                 <button className={Style.contribution} onClick={() => toPost()}>投稿する</button>
-                <button onClick={() => signout()}>サインアウト</button>
+                {/* <button onClick={() => signout()}>サインアウト</button> */}
             </div>
             {/* <Image
                 src={"/image/hamburger.svg"}

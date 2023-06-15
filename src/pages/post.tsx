@@ -11,18 +11,13 @@ export default function Post() {
     const [image, setImage] = useState<FileList>([])
     const [createImageURL, setCreateImageURL] = useState([])
     const [comment, setComment] = useState("")
-
     // 最大アップロード画像・動画数
     const maxUpload = 4
     // 最大アップロード画像・動画サイズ数 1MB
     const maxSize = 1000000
-
     // ユーザー情報
     const [currentUser, setCurrentUser] = useState<firebase.User | null | undefined>(undefined)
-
-    //
     const [postbtn, setPostbtn] = useState(true)
-
     // firebase関連
     const auth = getAuth()
 

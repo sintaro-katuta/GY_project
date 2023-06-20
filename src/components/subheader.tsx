@@ -1,11 +1,11 @@
 import Drawer from '@mui/material/Drawer';
 import DrawerMenu from './drawermenu';
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { useRouter } from "next/router";
 import Image from 'next/image';
 import Link from "next/link";
 import { getAuth, signOut } from "firebase/auth";
-import Style from '../styles/Header.module.css';
+import Style from '../styles/SubHeader.module.css';
 
 export default function Header() {
     const router = useRouter();
@@ -17,37 +17,25 @@ export default function Header() {
     const [drawerOpened, setDrawerOpened] = useState(false);
     const auth = getAuth()
 
-    if (typeof document !== 'undefined') {
-        let memory:any = document.getElementById("memories");
-        let album:any = document.getElementById("album");
-
-        
-        if (paths[0] == "memories"){
-            memory.style.listStyle= "disc";
-        }else if (paths[0] == "album"){
-            album.style.listStyle= "disc";
+    useEffect(() => {    
+        if (typeof document !== 'undefined') {
+            let connect:any = document.getElementById("connect");
+            let event:any = document.getElementById("event");
+            let account:any = document.getElementById("account");
+            
+            if (paths[0] == "connect"){
+                console.log(connect);
+                connect.style.listStyle= "disc";
+            }else if (paths[0] == "event"){
+                event.style.listStyle= "disc";
+            }else if (paths[0] == "account"){
+                account.style.listStyle= "disc";
+            }
         }
-    }
-        
-    // console.log(paths);
-    const toPost = () => {
-        router.push("/post")
-    }
-
-    const signout = async () => {
-        signOut(auth)
-    }
-   
-
-        //console.log(ref.current.className)
-        // ref.current.className = "dot"
+    },[])
 
     return (
         <header className={Style.container}>
-            <div className={Style.title}>
-                <p>~思い出巡る・心繋がる~</p>
-                <p>IRでの体験や思い出を共有するSNSサービス</p>
-            </div>
             <div className={Style.list}>
                 <ul className={Style.ul_memories} id="memories" ref={ref}>
                     <li>
@@ -87,25 +75,7 @@ export default function Header() {
                         </Link>
                     </li>
                 </ul>
-                <button className={Style.contribution} onClick={() => toPost()}>投稿する</button>
             </div>
-
-            <Link href={"http://localhost:8888"}>
-                <Image className={Style.top}
-                src = {"/image/top.png"}
-                width = {360} height = {126} alt='トップ'
-                />
-            </Link>
-
-            <Image className={Style.icon}
-            src = {"/image/Group 53.png" }
-            width = {360} height = {126} alt='アイコン'
-            />
-            <Image className={Style.header}
-            src = {"/image/header.png" }
-            width = {360} height = {126} alt='ヘッダー'
-            />
-            <div className={Style.div}/>
         </header>
     )
 }

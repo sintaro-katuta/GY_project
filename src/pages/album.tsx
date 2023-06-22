@@ -12,19 +12,24 @@ export default function Album() {
 
     useEffect(() => {
         const fetchData = async () => {
-            const ref = collection(db, "posts_images")
-            const snapShot = await getDocs(ref)
-            const list = snapShot.docs.map((doc) => {
-                const item = doc.data().image
-                return item
-            })
-            setList(list)
+            // const ref = collection(db, "posts_images")
+            // const snapShot = await getDocs(ref)
+            // const newList = snapShot.docs.map((doc) => {
+            //     const item = doc.data().image
+            //     return item
+            // })
+            const newList = [
+                { 0: "/image/カジノ１.jpg" },
+                { 0: "/image/test.mov" }
+            ]
+            setList(newList)
         }
         fetchData()
-        list.forEach((_: any, index: number) => {
-            ref[index] = createRef()
-        });
     }, [])
+
+    list.forEach((_: any, index: number) => {
+        ref[index] = createRef()
+    });
 
     const videoPlay = (e: number) => {
         ref[e].current.play()

@@ -15,7 +15,7 @@ export default function Post() {
     // 最大アップロード画像・動画数
     const maxUpload = 4
     // 最大アップロード画像・動画サイズ数 1MB
-    const maxSize = 1000000
+    const maxSize = 10485760
     // ユーザー情報
     const [currentUser, setCurrentUser] = useState<firebase.User | null | undefined>(undefined)
     const [postbtn, setPostbtn] = useState(true)

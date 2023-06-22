@@ -3,9 +3,13 @@ import { db } from '../../lib/firebase.config';
 import Header from "../../components/header";
 import { collection, doc, setDoc, getDoc, getDocs } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef, createRef, forwardRef } from 'react'
 import { useRouter } from "next/router";
 import NextImage from 'next/image';
+import dayjs from 'dayjs'
+import utc from "dayjs/plugin/utc";
+import timezone from "dayjs/plugin/timezone";
+import ja from 'dayjs/locale/ja';
 
 
 export default function Memories() {
@@ -19,6 +23,12 @@ export default function Memories() {
 
     const auth = getAuth()
     const router = useRouter()
+    const ref = useRef([])
+
+    dayjs.locale(ja);
+    dayjs.extend(utc);
+    dayjs.extend(timezone);
+    dayjs.tz.setDefault("Asia/Tokyo");
 
     useEffect(() => {
         // ログイン状態をウォッチ
@@ -79,6 +89,10 @@ export default function Memories() {
         router.push(`/memories/${id}`)
     }
 
+    const videoPlay = (e: number) => {
+        ref[e].current.play()
+    }
+
 
     useEffect(() => {
         (async () => {
@@ -96,7 +110,7 @@ export default function Memories() {
             for (let i = 0; i < newPostList.length; i++) {
                 const postsImagesDoc = await doc(posts_images, newPostList[i].id)
                 const postsImagesSnapShot = getDoc(postsImagesDoc)
-                postsImagesSnapShot.then((value: any) => {
+                await postsImagesSnapShot.then((value: any) => {
                     if (value.exists()) {
                         newPostsImagesList.push(value.data().image)
                     }
@@ -170,22 +184,37 @@ export default function Memories() {
         })()
     }, [currentUser])
 
+    console.log('imageList', imageList)
+    imageList.forEach((_: any, index: number) => {
+        ref[index] = createRef()
+    });
+
 
     return (
         <div>
             <Header />
             <h1>みんなの思い出</h1>
             {postList.map((post: any, i: number) => {
+                const created_at = dayjs(post.created_at.toDate())
                 return (
                     <div key={i}>
                         <p>------------------------------</p>
-                        <p>{users[i].name}</p>
+                        <p>{users[i].name} {created_at.format('YYYY.MM.DD')}</p>
                         <p>{post.comment}</p>
-                        {Object.keys(imageList[i]).map(key => (
-                            <div key={key}>
-                                <NextImage key={key} src={imageList[i][key]} width={275} height={275} alt="投稿画像" />
-                            </div>
-                        ))}
+                        {Object.keys(imageList[i]).map(key => {
+                            return (
+                                imageList[i][key].includes('.png') || imageList[i][key].includes('.jpg') || imageList[i][key].includes('.jpeg')
+                                    ?
+                                    <div key={i}>
+                                        <NextImage key={key} src={imageList[i][key]} width={275} height={275} alt="投稿画像" ref={ref[i]} />
+                                    </div>
+                                    :
+                                    <div key={i}>
+                                        <video src={imageList[i][key]} width={275} height={275} ref={ref[i]} />
+                                        <button onClick={() => videoPlay(i)}>再生</button>
+                                    </div>
+                            )
+                        })}
                         {likevisible[i] ?
                             <div>
                                 <button onClick={() => deleteLiked(post.id, i)}>いいね済み</button>
@@ -197,7 +226,6 @@ export default function Memories() {
                                 {likeList[i].length}
                             </div>
                         }
-                        {console.log(comments[i])}
                         <button value={post.id} onClick={(e) => commentSubmit(e.target.value, i)}>コメント</button>{comments[i]}
                     </div>
                 )

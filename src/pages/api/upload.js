@@ -1,6 +1,6 @@
 import { storage, db } from "../../lib/firebase.config";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { collection, doc, setDoc, addDoc } from "firebase/firestore";
+import { collection, doc, setDoc, getDoc } from "firebase/firestore";
 
 
 //single image file upload
@@ -20,12 +20,6 @@ export const postImage = async (image = null, post_id) => {
                 uploadResult = url;
             });
         });
-        const post_images = collection(db, "posts_images");
-        const post_imagesData = {
-            post_id: post_id,
-            image: uploadResult,
-        }
-        await addDoc(post_images, post_imagesData);
     }
     return uploadResult;
 }

@@ -70,6 +70,7 @@ export default function Account() {
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 const user = userCredential.user;
+                usersCheck(user)
                 // ログインができたかどうかをわかりやすくするためのアラート
                 alert('ログインOK!');
             })
@@ -172,7 +173,7 @@ export default function Account() {
                         <br />
                         <button onClick={(e) => doGoogleLogin(e)}>Googleログイン</button>
                         <button onClick={(e) => doFacebookLogin(e)}>Facebookログイン</button>
-                        
+
                     </form>
                 </div>
                 :

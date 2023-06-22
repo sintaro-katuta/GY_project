@@ -1,7 +1,8 @@
 // Firebaseの初期化を行うためfirebaseAppをインポート
 import { firebaseApp, db } from '../lib/firebase.config';
 import { getAuth } from "firebase/auth"
-import { collection, doc, setDoc, addDoc, serverTimestamp } from "firebase/firestore";
+import { collection, doc, setDoc, getDoc, addDoc, serverTimestamp } from "firebase/firestore";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { useState, useEffect } from 'react'
 import NextImage from 'next/image';
 import { postImage } from "./api/upload";
@@ -86,11 +87,20 @@ export default function Post() {
             const post = await addDoc(posts, postData);
             const post_id = post.id
 
+            let newPostsImages: any = {}
+
             // storageに画像を保存する処理
             for (let i = 0; i < image.length; i++) {
                 // 繰り返し処理したいコードをここに記述する
                 const result = await postImage(image[i], post_id);
+                newPostsImages[i] = result;
             }
+            const posts_images = collection(db, "posts_images");
+            const posts_images_doc = doc(posts_images, post_id)
+            const post_imagesData = {
+                image: newPostsImages,
+            }
+            await setDoc(posts_images_doc, post_imagesData);
             alert("投稿しました")
         } else {
             alert("画像・動画を1MB以内で投稿してください")

@@ -17,7 +17,6 @@ export default function Account() {
     const auth = getAuth();
     const [changed] = useState(false);
 
-
     const changeTab = (e) => {
         if (e.target.id == 'registerTab') {
             setTab(false)
@@ -204,7 +203,6 @@ export default function Account() {
                             <label htmlFor="login-password" className={styles.pass}>パスワード</label><br></br>
                             <input type="password" id="login-password" autoComplete="on" onChange={(e) => setPassword(e.target.value)} className={styles.password} /><br></br>
                             <div className={styles.text_underline}></div>
-
                             <button onClick={(e) => doLogin(e)} className={styles.buttonlog}>ログインする</button>
                             <br />
                             <Link href={""} onClick={(e) => doGoogleLogin(e)} className={styles.google}>Googleでログインする</Link>< br/>

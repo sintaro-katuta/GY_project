@@ -4,7 +4,9 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, Go
 import { useState, useEffect } from 'react';
 import Link from "next/link";
 import { collection, doc, setDoc, addDoc, serverTimestamp, getDocs, updateDoc } from "firebase/firestore";
-
+import styles from '/styles/Account.module.css'
+import Image from 'next/image';
+import React, { useRef } from 'react';
 
 export default function Account() {
     // useStateでユーザーが入力したメールアドレスとパスワードをemailとpasswordに格納する
@@ -13,12 +15,28 @@ export default function Account() {
     const [password, setPassword] = useState('');
     const [tab, setTab] = useState(true);
     const auth = getAuth();
+    const [changed] = useState(false);
+
 
     const changeTab = (e) => {
         if (e.target.id == 'registerTab') {
             setTab(false)
+            if(changed === false){
+                const login = document.querySelector("#loginTab")
+                const sinki = document.querySelector("#registerTab")        
+                console.log(login);
+                login.style.color = "#A5A5A5";
+                sinki.style.color = "black";
+            }
         } else if (e.target.id == 'loginTab') {
             setTab(true)
+            if(changed === false){
+                const login = document.querySelector("#loginTab")
+                const sinki = document.querySelector("#registerTab")        
+                console.log(login);
+                login.style.color = "black";
+                sinki.style.color = "";
+            }
         }
     }
 
@@ -70,7 +88,6 @@ export default function Account() {
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 const user = userCredential.user;
-                usersCheck(user)
                 // ログインができたかどうかをわかりやすくするためのアラート
                 alert('ログインOK!');
             })
@@ -156,48 +173,71 @@ export default function Account() {
     }
 
     return (
-        <div>
-            <h1>アカウント</h1>
-            <h2 id="loginTab" onClick={(e) => changeTab(e)}>ログイン</h2>
-            <h2 id="registerTab" onClick={(e) => changeTab(e)}>会員登録</h2>
-            {tab ?
-                <div id="login">
-                    <form>
-                        <label htmlFor="login-email">メールアドレス</label>
-                        <input type="text" id="login-email" autoComplete="on" onChange={(e) => setEmail(e.target.value)} />
+        <div className={styles.flame}>
+            <Image className={styles.topleft}
+                src = {"/image/Group 86.png"}
+                width = {310} height = {320} alt='topleft'
+            />
 
-                        <label htmlFor="login-password">パスワード</label>
-                        <input type="password" id="login-password" autoComplete="on" onChange={(e) => setPassword(e.target.value)} />
-
-                        <button onClick={(e) => doLogin(e)}>ログイン</button>
-                        <br />
-                        <button onClick={(e) => doGoogleLogin(e)}>Googleログイン</button>
-                        <button onClick={(e) => doFacebookLogin(e)}>Facebookログイン</button>
-
-                    </form>
+            <Image className={styles.bottomright}
+                src = {"/image/Group 87.png"}
+                width = {310} height = {320} alt='bottomright'
+            />
+            <div className={styles.flame1}>
+                <h2 id="loginInfo" className={styles.memorie}>会員登録してみんなに思い出を共有しよう</h2>
+                <Image className={styles.foop}
+                    src = {"/image/Group 89.png"}
+                    width = {317} height = {360} alt='foop'
+                />
+                <div className={styles.logaka}>
+                    <h2 id="loginTab" onClick={(e) => changeTab(e)} className={styles.loginTab}>ログイン</h2>
+                        <div className={styles.line}></div>
+                    <h2 id="registerTab" onClick={(e) => changeTab(e)} className={styles.sinki}>新規会員登録</h2>
                 </div>
-                :
-                <div id="register">
-                    <form>
-                        <label htmlFor="name">名前</label>
-                        <input type="text" id="name" autoComplete="on" onChange={(e) => setName(e.target.value)} />
+                {tab ?
+                    <div id="login" className={styles.log}>
+                        <form className={styles.form}>
+                            <label htmlFor="login-email" className={styles.mail}>メール</label><br></br>
+                            <input type="text" id="login-email" className={styles.email} autoComplete="on" onChange={(e) => setEmail(e.target.value)} /><br></br>
+                            <div className={styles.text_underline}></div>
 
-                        <label htmlFor="register-email">メールアドレス</label>
-                        <input type="text" id="register-email" autoComplete="on" onChange={(e) => setEmail(e.target.value)} />
+                            <label htmlFor="login-password" className={styles.pass}>パスワード</label><br></br>
+                            <input type="password" id="login-password" autoComplete="on" onChange={(e) => setPassword(e.target.value)} className={styles.password} /><br></br>
+                            <div className={styles.text_underline}></div>
 
-                        <label htmlFor="register-password">パスワード</label>
-                        <input type="password" id="register-password" autoComplete="on" onChange={(e) => setPassword(e.target.value)} />
+                            <button onClick={(e) => doLogin(e)} className={styles.buttonlog}>ログインする</button>
+                            <br />
+                            <Link href={""} onClick={(e) => doGoogleLogin(e)} className={styles.google}>Googleでログインする</Link>< br/>
+                            <Link href={""} onClick={(e) => doFacebookLogin(e)} className={styles.facebook}>Facebookでログインする</Link>
+                        </form>
+                    </div>
+                    :
+                    <div id="register" className={styles.log1}>
+                        <form>
+                            <label htmlFor="register-email" className={styles.mail}>メール</label><br></br>
+                            <input type="text" id="register-email" autoComplete="on" onChange={(e) => setEmail(e.target.value)} className={styles.email1}/><br></br>
+                            <div className={styles.text_underline1}></div>
 
-                        <button
-                            onClick={(e) => {
-                                doRegister(e);
-                            }}
-                        >
-                            登録
-                        </button>
-                    </form>
-                </div>
-            }
+                            <label htmlFor="register-password" className={styles.pass}>パスワード</label><br></br>
+                            <input type="password" id="register-password" autoComplete="on" onChange={(e) => setPassword(e.target.value)} className={styles.password1} /><br></br>
+                            <div className={styles.text_underline1}></div>
+
+                            <label htmlFor="name" className={styles.name}>名前</label><br></br>
+                            <input type="text" id="name" autoComplete="on" onChange={(e) => setName(e.target.value)} className={styles.namae}/><br></br>
+                            <div className={styles.text_underline1}></div>
+
+                            <button
+                                onClick={(e) => {doRegister(e)}} className={styles.buttonlog1}
+                            >
+                                新規会員登録
+                            </button>
+                            <br />
+                            <Link href={""} onClick={(e) => doGoogleLogin(e)} className={styles.google}>Googleでログインする</Link>< br/>
+                            <Link href={""} onClick={(e) => doFacebookLogin(e)} className={styles.facebook}>Facebookでログインする</Link>
+                        </form>
+                    </div>
+                }
+            </div>
         </div>
     )
 }

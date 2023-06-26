@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&display=swap');
+
+.checkImage {
+    text-align: center;
+}
+
+.themeText {
+    font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    text-align: left;
+    margin: 0 0 0 12%;
+}
+
+.bodyDiv {
+    width: 80%;
+    height: 35%;
+    margin: 10% 0 0 10%;
+    text-align: center;
+}
+
+.themeButton {
+    font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    font-size: 18px;
+    width: 128px;
+    height: 128px;
+    margin: 2%;
+    margin-top: 7%;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+    border: 0px;
+    border-radius: 4%;
+    cursor: pointer;
+    letter-spacing: 0.05em;
+}
+
+.themeButtonOn {
+    font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    font-size: 18px;
+    width: 128px;
+    height: 128px;
+    margin: 2%;
+    margin-top: 7%;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+    border: 0px;
+    border-radius: 4%;
+    background-color: #FFFBE7;
+    cursor: pointer;
+    letter-spacing: 0.05em;
+}
+
+.nextButtonDiv {
+    text-align: center;
+    margin-top: 3%;
+}
+
+.nextButtonText {
+    padding-right: 10%;
+    padding-left: 10%;
+    letter-spacing: 0.05em;
+    text-align: center;
+}
+
+.nextButton {
+    width: 224px;
+    height: 70px;
+    background-color: #fff;
+    color: #207C96;
+    border: 1px solid #207C96;
+    border-radius: 50px;
+    cursor: pointer;
+    font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    font-size: 18px;
+    margin-left: 10px;
+}
+
+.backButton {
+    width: 224px;
+    height: 70px;
+    background-color: #fff;
+    color: #207C96;
+    border: 1px solid #207C96;
+    border-radius: 50px;
+    cursor: pointer;
+    font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    font-size: 18px;
+    margin-left: 20px;
+    margin-right: 10px;
+}
+
+.allow {
+    left: 5%;
+    color: #207C96;
+    font-size: 18px;
+}
+
+.image {
+    width: 184px;
+    height: 184px;
+    background-color: #EFEFEF;
+    border: 0px;
+    margin-left: 16px;
+}
+
+.imageDiv {
+    display: flex;
+    justify-content: center;
+    margin-top: 5%;
+}
+
+.imageLabel {
+    width: 48px;
+    height: 48px;
+    position: absolute;
+    top: 47%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-40%, -40%);
+    margin-top: 70px;
+    margin-bottom: 70px;
+    background-image: url('/image/Vector.png');
+    cursor: pointer;
+    z-index: 999;
+}
+
+.imageFile {
+    display: none;
+}
+
+.close {
+    width: 32px;
+    height: 32px;
+    color: #FAFAFA;
+    font-size: 24px;
+    font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    position: relative;
+    cursor: pointer;
+    padding-bottom: 4%;
+    margin: 0;
+    left: 21%;
+    font-weight: bold;
+    -webkit-text-stroke: 1px #222;
+    z-index: 999;
+}
+
+.playIcon {
+    color: #FAFAFA;
+    font-size: 18px;
+    font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    position: relative;
+    cursor: pointer;
+    right: 19%;
+    padding-top: 0.5%;
+    -webkit-text-stroke: 1px #222;
+    z-index: 999;
+}

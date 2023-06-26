@@ -2,17 +2,20 @@
 import { firebaseApp, db } from '../lib/firebase.config';
 import { getAuth } from "firebase/auth"
 import { collection, doc, setDoc, getDoc, addDoc, serverTimestamp } from "firebase/firestore";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { useState, useEffect } from 'react'
 import NextImage from 'next/image';
+import Category from '../components/category'
+import SelectImage from '../components/selectImage'
 import { postImage } from "./api/upload";
 
 export default function Post() {
     // 画像・画像パス・コメント定数
     const [image, setImage] = useState<FileList>([])
     const [createImageURL, setCreateImageURL] = useState([])
+    const [category, setCategory] = useState([])
     const [comment, setComment] = useState("")
-    // 最大アップロード画像・動画数
+    const [visibleList, setVisibleList] = useState([true, false, false, false, false])
+
     const maxUpload = 4
     // 最大アップロード画像・動画サイズ数 1MB
     const maxSize = 10485760
@@ -51,7 +54,7 @@ export default function Post() {
     }
 
     // コメントをセット
-    const addComment = (e) => {
+    const addComment = (e: any) => {
         setComment(e.target.value)
     }
 
@@ -92,7 +95,7 @@ export default function Post() {
             // storageに画像を保存する処理
             for (let i = 0; i < image.length; i++) {
                 // 繰り返し処理したいコードをここに記述する
-                const result = await postImage(image[i], post_id);
+                const result = await postImage(image[i]);
                 newPostsImages[i] = result;
             }
             const posts_images = collection(db, "posts_images");
@@ -107,32 +110,28 @@ export default function Post() {
         }
     }
 
+    const handleVisible = (newData: any) => {
+        setVisibleList(newData);
+    };
+
+    const handleCategory = (newData: any) => {
+        setCategory(newData)
+    }
+
+    const handleImage = (newData: any) => {
+        setImage(newData)
+    }
+
     return (
         <div>
-            <h1 onClick={() => console.log(currentUser)}>投稿</h1>
-            <form>
-                <input type="file" multiple accept="image/jpeg, image/png, image/gif, video/mp4, video/avi, video/quicktime" onChange={(e) => addImage(e)} />
-
-                <label htmlFor="comment">コメント</label>
-                <textarea id="comment" cols="30" rows="10" onChange={(e) => addComment(e)}></textarea>
-
-                <ul style={{ display: "flex", listStyle: "none" }}>
-                    {createImageURL && createImageURL.map((item, i) => {
-                        return (
-                            <li key={i}>
-                                <NextImage alt="プレビュー画像" src={item} width={144} height={144} />
-                                <button value={i} onClick={(e) => removeImage(e)}>削除</button>
-                            </li>
-                        )
-                    }
-                    )}
-                </ul>
-                {postbtn ?
-                    <button onClick={(e) => postOnSubmit(e)}>投稿する</button>
-                    :
-                    <p>投稿中です・・・</p>
+            {console.log("postData", category, image)}
+            {visibleList.map((visible: boolean, i: number) => {
+                if (visible && i == 0) {
+                    return (<Category handleVisible={handleVisible} handleCategory={handleCategory} />)
+                } else if (visible && i == 1) {
+                    return (<SelectImage handleVisible={handleVisible} handleImage={handleImage} />)
                 }
-            </form>
+            })}
         </div >
     )
 }

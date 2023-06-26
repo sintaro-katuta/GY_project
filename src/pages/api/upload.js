@@ -1,10 +1,8 @@
-import { storage, db } from "../../lib/firebase.config";
+import { storage } from "../../lib/firebase.config";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { collection, doc, setDoc, getDoc } from "firebase/firestore";
-
 
 //single image file upload
-export const postImage = async (image = null, post_id) => {
+export const postImage = async (image) => {
     let uploadResult = '';
 
     if (image.name) {

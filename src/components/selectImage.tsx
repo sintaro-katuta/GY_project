@@ -1,0 +1,122 @@
+import Image from 'next/image'
+import styles from '../styles/Post.module.css'
+import { useState, useEffect, useRef, createRef } from 'react'
+import { collection, doc, setDoc, getDoc, addDoc, serverTimestamp } from "firebase/firestore";
+import { postImage } from "./api/upload";
+
+export default function SelectImage({ handleVisible, handleImage }: any) {
+    const [image, setImage] = useState<FileList>([])
+    const [createImageURL, setCreateImageURL] = useState([])
+    const ref = useRef([])
+    // 最大アップロード画像・動画数
+    const maxUpload = 4
+    // 最大アップロード画像・動画サイズ数 1MB
+    const maxSize = 10485760
+
+
+    // 画像をセットと画像のパスをセット関数
+    const addImage = (e: any) => {
+        // 最大アップロード数を超えていたときの処理
+        if (e.target.files.length > maxUpload) {
+            // 画像と画像のパスを空にする
+            setImage([]);
+            setCreateImageURL([])
+        } else {
+            let newImage = [...image]
+            let newInputImage = [...e.target.files]
+            let j = 0;
+            const total = newImage.length + newInputImage.length
+            if (total <= maxUpload) {
+                console.log("上限を超えていない")
+                for (let i = newImage.length; i < total; i++) {
+                    ref[i] = createRef()
+                    newImage[i] = newInputImage[j]
+                    j++;
+                }
+            } else {
+                console.log("上限を超えています", total)
+            }
+            setImage(newImage)
+            console.log("newImage", newImage)
+            let list = [...createImageURL]
+            for (let i = 0; i < newImage.length; i++) {
+                const imageUrl = URL.createObjectURL(newImage[i])
+                list[i] = imageUrl
+            }
+            setCreateImageURL(list)
+        }
+    }
+
+    const videoPlay = (e: number) => {
+        console.log(ref[e].current)
+        ref[e].current.play()
+    }
+
+    const removeImage = (e: any) => {
+        e.preventDefault()
+        // 選択した画像は削除可能
+        const newImages = [...image];
+        const newUrl = [...createImageURL]
+        newImages.splice(e.target.value, 1);
+        newUrl.splice(e.target.value, 1);
+        setImage(newImages);
+        setCreateImageURL(newUrl)
+    }
+
+    const backButton = () => {
+        const newVisibleList = [true, false, false, false, false]
+        handleVisible(newVisibleList)
+    }
+
+    const nextButton = () => {
+        const newVisibleList = [false, false, true, false, false]
+        handleVisible(newVisibleList)
+        handleImage(image)
+    }
+
+    return (
+        <div>
+            <div className={styles.checkImage}>
+                <Image src={"/image/Group 130.svg"} alt="チェック" width={846} height={51} />
+            </div>
+            <div className={styles.bodyDiv}>
+                <p className={styles.themeText}>次に投稿する写真を選択しましょう！</p>
+                <div>
+                    <label htmlFor="file" className={styles.imageLabel}>
+                        <input type="file" id="file" multiple accept="image/jpeg, image/png, image/gif, video/mp4, video/avi, video/quicktime" onChange={(e) => addImage(e)} className={styles.imageFile} />
+                    </label>
+                </div>
+                <div className={styles.imageDiv}>
+                    {createImageURL.length <= 0 &&
+                        <>
+                            <button className={styles.image}></button>
+                            <button className={styles.image}></button>
+                            <button className={styles.image}></button>
+                            <button className={styles.image}></button>
+                        </>
+                    }
+                    {createImageURL.map((item, i) => {
+                        return (
+                            image[i].name.includes('.png') || image[i].name.includes('.jpg') || image[i].name.includes('.jpeg')
+                                ?
+                                <>
+                                    <div className={styles.close} onClick={(e) => removeImage(e)}>×</div>
+                                    <Image src={item} width={184} height={184} alt={`画像${i}`} ref={ref[i]} className={styles.image} />
+                                </>
+                                :
+                                <>
+                                    <div className={styles.close} onClick={(e) => removeImage(e)}>×</div>
+                                    <video src={item} width={184} height={184} ref={ref[i]} className={styles.image} muted autoplay />
+                                    <div className={styles.playIcon} onClick={() => videoPlay(i)}>▶</div>
+                                </>
+                        )
+                    })}
+                </div>
+            </div>
+            <div className={styles.nextButtonDiv}>
+                <button className={styles.backButton} onClick={() => backButton()}><span className={styles.allow}>◀</span><span className={styles.nextButtonText}>１つ戻る</span></button>
+                <button className={styles.nextButton} onClick={() => nextButton()}><span className={styles.nextButtonText}>次の項目へ</span><span className={styles.allow}>▶</span></button>
+            </div>
+        </div>
+    )
+}

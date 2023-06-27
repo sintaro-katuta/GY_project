@@ -1,8 +1,6 @@
 import Image from 'next/image'
 import styles from '../styles/Post.module.css'
 import { useState, useEffect, useRef, createRef } from 'react'
-import { collection, doc, setDoc, getDoc, addDoc, serverTimestamp } from "firebase/firestore";
-import { postImage } from "./api/upload";
 
 export default function SelectImage({ handleVisible, handleImage }: any) {
     const [image, setImage] = useState<FileList>([])
@@ -26,7 +24,11 @@ export default function SelectImage({ handleVisible, handleImage }: any) {
             let newInputImage = [...e.target.files]
             let j = 0;
             const total = newImage.length + newInputImage.length
-            if (total <= maxUpload) {
+            let totalSize = 0
+            for (let i = 0; i < image.length; i++) {
+                totalSize = totalSize + image[i].size
+            }
+            if (total <= maxUpload && totalSize <= maxSize) {
                 console.log("上限を超えていない")
                 for (let i = newImage.length; i < total; i++) {
                     ref[i] = createRef()
@@ -52,13 +54,13 @@ export default function SelectImage({ handleVisible, handleImage }: any) {
         ref[e].current.play()
     }
 
-    const removeImage = (e: any) => {
-        e.preventDefault()
+    const removeImage = (i: number) => {
         // 選択した画像は削除可能
+        console.log(i)
         const newImages = [...image];
         const newUrl = [...createImageURL]
-        newImages.splice(e.target.value, 1);
-        newUrl.splice(e.target.value, 1);
+        newImages.splice(i, 1);
+        newUrl.splice(i, 1);
         setImage(newImages);
         setCreateImageURL(newUrl)
     }
@@ -69,9 +71,13 @@ export default function SelectImage({ handleVisible, handleImage }: any) {
     }
 
     const nextButton = () => {
-        const newVisibleList = [false, false, true, false, false]
-        handleVisible(newVisibleList)
-        handleImage(image)
+        if (image.length <= 0) {
+            alert("一つ以上選択してください")
+        } else {
+            const newVisibleList = [false, false, true, false, false]
+            handleVisible(newVisibleList)
+            handleImage(image)
+        }
     }
 
     return (
@@ -100,12 +106,12 @@ export default function SelectImage({ handleVisible, handleImage }: any) {
                             image[i].name.includes('.png') || image[i].name.includes('.jpg') || image[i].name.includes('.jpeg')
                                 ?
                                 <>
-                                    <div className={styles.close} onClick={(e) => removeImage(e)}>×</div>
+                                    <div className={styles.close} onClick={() => removeImage(i)}>×</div>
                                     <Image src={item} width={184} height={184} alt={`画像${i}`} ref={ref[i]} className={styles.image} />
                                 </>
                                 :
                                 <>
-                                    <div className={styles.close} onClick={(e) => removeImage(e)}>×</div>
+                                    <div className={styles.close} onClick={() => removeImage(i)}>×</div>
                                     <video src={item} width={184} height={184} ref={ref[i]} className={styles.image} muted autoplay />
                                     <div className={styles.playIcon} onClick={() => videoPlay(i)}>▶</div>
                                 </>

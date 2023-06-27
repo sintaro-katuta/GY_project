@@ -19,20 +19,19 @@ export default function Category({ handleVisible, handleCategory }: any) {
     const buttonSubmit = (e: any, i: number) => {
         const newButtonClass = [...buttonClass]
         const newCategory = [...category]
-        console.log(e.target.className)
         if (e.target.className.indexOf("themeButtonOn") !== -1) {
-            newCategory.splice(i, 1)
+            newCategory.pop()
             newButtonClass[i] = styles.themeButton
         } else if (e.target.className.indexOf("themeButton") !== -1) {
             newButtonClass[i] = styles.themeButtonOn
             if (i === 0) {
-                newCategory[i] = 'ショップ'
+                newCategory.push('ショップ')
             } else if (i === 1) {
-                newCategory[i] = 'グルメ'
+                newCategory.push('グルメ')
             } else if (i === 2) {
-                newCategory[i] = 'カジノ'
+                newCategory.push('カジノ')
             } else if (i === 3) {
-                newCategory[i] = '宿泊'
+                newCategory.push('宿泊')
             }
         }
         setButtonClass(newButtonClass)
@@ -40,9 +39,13 @@ export default function Category({ handleVisible, handleCategory }: any) {
     }
 
     const nextButton = () => {
-        const newVisibleList = [false, true, false, false, false]
-        handleVisible(newVisibleList)
-        handleCategory(category)
+        if (category.length <= 0) {
+            alert("一つ以上選択してください")
+        } else {
+            const newVisibleList = [false, true, false, false, false]
+            handleVisible(newVisibleList)
+            handleCategory(category)
+        }
     }
 
     return (

@@ -1,10 +1,8 @@
-import Drawer from '@mui/material/Drawer';
-import DrawerMenu from './drawermenu';
 import { useState, useRef } from 'react'
 import { useRouter } from "next/router";
 import Image from 'next/image';
 import Link from "next/link";
-import { getAuth, signOut } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 import Style from '../styles/Header.module.css';
 
 export default function Header() {
@@ -13,34 +11,22 @@ export default function Header() {
     const paths = decodeURI(router.asPath).substring(1).split("/");
     const roots = [""];
     for (let i = 0; i < paths.length; i++) roots.push(roots[i] + "/" + paths[i]);
-    // drawerがopenしているかどうかのstate
-    const [drawerOpened, setDrawerOpened] = useState(false);
-    const auth = getAuth()
 
     if (typeof document !== 'undefined') {
-        let memory:any = document.getElementById("memories");
-        let album:any = document.getElementById("album");
+        let memory: any = document.getElementById("memories");
+        let album: any = document.getElementById("album");
 
-        
-        if (paths[0] == "memories"){
-            memory.style.listStyle= "disc";
-        }else if (paths[0] == "album"){
-            album.style.listStyle= "disc";
+
+        if (paths[0] == "memories") {
+            memory.style.listStyle = "disc";
+        } else if (paths[0] == "album") {
+            album.style.listStyle = "disc";
         }
     }
-        
-    // console.log(paths);
+
     const toPost = () => {
         router.push("/post")
     }
-
-    const signout = async () => {
-        signOut(auth)
-    }
-   
-
-        //console.log(ref.current.className)
-        // ref.current.className = "dot"
 
     return (
         <header className={Style.container}>
@@ -56,7 +42,7 @@ export default function Header() {
                         </Link>
                     </li>
                 </ul>
-                <ul className={Style.ul_album}  id="album">
+                <ul className={Style.ul_album} id="album">
                     <li>
                         <Link href={"/album"} className={Style.li_album}>
                             みんなのアルバム
@@ -81,8 +67,8 @@ export default function Header() {
                     <li>
                         <Link href={"/account"} className={Style.li_account}>
                             <Image className={Style.account_image}
-                            src = {"/image/Account.png"}
-                            width = {20} height = {20} alt='アカウント'
+                                src={"/image/Account.png"}
+                                width={20} height={20} alt='アカウント'
                             />
                         </Link>
                     </li>
@@ -92,20 +78,20 @@ export default function Header() {
 
             <Link href={"http://localhost:8888"}>
                 <Image className={Style.top}
-                src = {"/image/top.png"}
-                width = {360} height = {126} alt='トップ'
+                    src={"/image/top.png"}
+                    width={360} height={126} alt='トップ'
                 />
             </Link>
 
             <Image className={Style.icon}
-            src = {"/image/Group 53.png" }
-            width = {360} height = {126} alt='アイコン'
+                src={"/image/Group 53.png"}
+                width={360} height={126} alt='アイコン'
             />
             <Image className={Style.header}
-            src = {"/image/header.png" }
-            width = {360} height = {126} alt='ヘッダー'
+                src={"/image/header.png"}
+                width={360} height={126} alt='ヘッダー'
             />
-            <div className={Style.div}/>
+            <div className={Style.div} />
         </header>
     )
 }

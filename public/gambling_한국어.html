@@ -3,38 +3,40 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="gambleling.css">
+    <link rel="stylesheet" type="text/css" href="./css/gambling_한국어.css">
     <script src="gambleling.js"></script>
     <title>도박</title>
 </head>
 
 <body>
-    <nav>
-        <ul>
-            <li><a href="gambling.html">Japanese</a></li>
-            <li><a href="gambling_English.html">English</a></li>
-        </ul>
-    </nav>
-    <header class="l-header is-hide">
-        <div class="l-header__block">
-            <nav class="l-header-gnav">
-                <ul>
-                    <li data-maegamenu-id="1"><a href="bakara_한국어.html">바카라</a></li>
-                    <li data-maegamenu-id="2"><a href="blackjack_한국어.html">블랙잭</a></li>
-                    <li data-maegamenu-id="3"><a href="poker_한국어.html">포커</a></li>
-                    <li data-maegamenu-id="4"><a href="roulette_한국어.html">룰렛</a></li>
-                    <li data-maegamenu-id="5"><a href="sic-bo_한국어.html">크고 작은</a></li>
-                    <li data-maegamenu-id="6"><a href="craps_한국어.html">크랩스</a></li>
-                    <li data-maegamenu-id="7"><a href="kajinowar_한국어.html">카지노 워</a></li>
-                    <li data-maegamenu-id="8"><a href="money_wheel_한국어.html">머니휠</a></li>
-                    <li data-maegamenu-id="9"><a href="pai_gow_한국어.html">파이고우</a></li>
-                </ul>
-            </nav>
-        </div>
+    <div class="language-switch">
+        <form action="">
+            <select name="lang" onChange="location.href=value">
+                <option value="gambling_한국어">한국어</option>
+                <option value="gambling.html">日本語</option>
+                <option value="gambling_English.html">English</option>
+            </select>
+        </form>
+    </div>
+
+    <header>
+        <nav>
+            <ul>
+                <li><a href="bakara_한국어.html">바카라</a></li>
+                <li><a href="blackjack_한국어.html">블랙잭</a></li>
+                <li><a href="poker_한국어.html">포커</a></li>
+                <li><a href="roulette_한국어.html">룰렛</a></li>
+                <li><a href="sic-bo_한국어.html">크고 작은</a></li>
+                <li><a href="craps_한국어.html">크랩스</a></li>
+                <li><a href="kajinowar_한국어.html">카지노 워</a></li>
+                <li><a href="money_wheel_한국어.html">머니휠</a></li>
+                <li><a href="pai_gow_한국어.html">파이고우</a></li>
+            </ul>
+        </nav>
     </header>
     <div class="gambleling">
         <h1>■도박이란?</h1>
-        <img src="./images/Mask group.png">
+        <img src=./images/Mask group.png">
         <p>결과가 우연에 의해 좌우되는 게임이나 경기 등에 돈을 거는 행위.</p>
         <h2>친숙한 도박</h2>
         <ui>

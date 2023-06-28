@@ -57,7 +57,7 @@ export default function Connect() {
             setPostUsers(newPostUsers)
             setPostCurrentUser(newPostCurrentUser)
         })()
-    }, [])
+    }, [setCurrentUser])
     return (
         <div className={styles.container}>
             <SubHeader />

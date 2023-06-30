@@ -4,6 +4,7 @@ import Header from "../components/header";
 import { collection, doc, getDocs, getFirestore } from "firebase/firestore";
 import { useState, useEffect, useRef, createRef } from 'react'
 import NextImage from 'next/image';
+import Style from '../styles/Album.module.css';
 
 export default function Album() {
     const db = getFirestore(firebaseApp)
@@ -38,9 +39,17 @@ export default function Album() {
     return (
         <div>
             <Header />
-            <h1>みんなのアルバム</h1>
-            <ul style={{ display: "flex", listStyle: "none" }}>
-                {list.map((item: any, i: number) => {
+            <p className={Style.atitle}>みんなの投稿した写真が見れます。　IRの雰囲気をみんなに伝えてみよう！</p>
+            <div className={Style.abution}>
+                <p className={Style.p}>全て</p>
+                <p className={Style.p}>ショップ</p>
+                <p className={Style.p}>グルメ</p>
+                <p className={Style.p}>カジノ</p>
+                <p className={Style.p}>宿泊</p>
+            </div>
+
+            <ul className={Style.album}>
+                 {list.map((item: any, i: number) => {
                     return (
                         Object.keys(item).map((key) => {
                             return (
@@ -48,12 +57,11 @@ export default function Album() {
                                     {item[key].includes('.png') || item[key].includes('.jpg') || item[key].includes('.jpeg')
                                         ?
                                         <div>
-                                            <NextImage src={item[key]} width={275} height={275} alt={"みんなのアルバム"} ref={ref[i]} />
+                                            <NextImage className={Style.image} src={item[key]} width={275} height={275} alt={"みんなのアルバム"} ref={ref[i]} />
                                         </div>
                                         :
                                         <div>
-                                            <video src={item[key]} width={275} height={275} ref={ref[i]} />
-                                            <button onClick={() => videoPlay(i)}>再生</button>
+                                            <video className={Style.play} controls src={item[key]} width={275} height={275} ref={ref[i]} />
                                         </div>
                                     }
                                 </li>

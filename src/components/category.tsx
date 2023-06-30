@@ -49,7 +49,7 @@ export default function Category({ handleVisible, handleCategory }: any) {
     }
 
     return (
-        <div>
+        <div className={styles.container}>
             <div className={styles.checkImage}>
                 <Image src={"/image/Group 114.svg"} alt="チェック" width={846} height={51} />
             </div>

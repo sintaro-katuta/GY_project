@@ -81,7 +81,7 @@ export default function SelectImage({ handleVisible, handleImage }: any) {
     }
 
     return (
-        <div>
+        <div className={styles.container}>
             <div className={styles.checkImage}>
                 <Image src={"/image/Group 130.svg"} alt="チェック" width={846} height={51} />
             </div>

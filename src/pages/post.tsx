@@ -1,21 +1,15 @@
 // Firebaseの初期化を行うためfirebaseAppをインポート
-import { firebaseApp, db } from '../lib/firebase.config';
 import { getAuth } from "firebase/auth"
-import { collection, doc, setDoc, getDoc, addDoc, serverTimestamp } from "firebase/firestore";
 import { useState, useEffect } from 'react'
-import NextImage from 'next/image';
 import Category from '../components/category'
 import SelectImage from '../components/selectImage'
 import Comment from '../components/comment'
 import Hashtag from '../components/hashtag'
 import PostResult from '../components/postResult';
-import postSuccess from '../components/postSuccess';
-import { postImage } from "./api/upload";
 
 export default function Post() {
     // 画像・画像パス・コメント定数
     const [image, setImage] = useState<FileList>([])
-    const [createImageURL, setCreateImageURL] = useState([])
     const [category, setCategory] = useState([])
     const [comment, setComment] = useState("")
     const [hashtag, setHashtag] = useState([])
@@ -23,25 +17,25 @@ export default function Post() {
     const [postData, setPostData] = useState({})
 
     // ユーザー情報
-    const [currentUser, setCurrentUser] = useState<firebase.User | null | undefined>(undefined)
-    const [postbtn, setPostbtn] = useState(true)
-    // firebase関連
+    const [currentUser, setCurrentUser] = useState([])
+    // firebaseAuth関連
     const auth = getAuth()
 
     useEffect(() => {
         // ログイン状態をウォッチ
-        auth.onAuthStateChanged((user) => {
+        let unsubscribe = auth.onAuthStateChanged((user: any) => {
             if (user) {
                 // ユーザ情報を格納する
                 setCurrentUser(user)
             }
+            unsubscribe()
         })
     }, [])
 
     useEffect(() => {
-        console.log("つぎにすすんだか前に戻りました")
+        console.log(currentUser)
         const newPostData = {
-            user: currentUser,
+            user: currentUser.uid,
             category: category,
             image: image,
             comment: comment,

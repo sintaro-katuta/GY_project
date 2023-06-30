@@ -1,0 +1,253 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&display=swap');
+
+.container {
+    font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+}
+
+.checkImage {
+    text-align: center;
+}
+
+.themeText {
+    text-align: left;
+    margin-left: 12%;
+}
+
+.themeTextComment {
+    text-align: left;
+    margin-left: 24%;
+}
+
+.bodyDiv {
+    width: 80%;
+    height: 35%;
+    margin: 10% 0 0 10%;
+    text-align: center;
+}
+
+.themeButton {
+    font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    font-size: 18px;
+    width: 128px;
+    height: 128px;
+    margin: 2%;
+    margin-top: 7%;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+    border: 0px;
+    border-radius: 4%;
+    cursor: pointer;
+    letter-spacing: 0.05em;
+}
+
+.themeButtonOn {
+    font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    font-size: 18px;
+    width: 128px;
+    height: 128px;
+    margin: 2%;
+    margin-top: 7%;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+    border: 0px;
+    border-radius: 4%;
+    background-color: #FFFBE7;
+    cursor: pointer;
+    letter-spacing: 0.05em;
+}
+
+.nextButtonDiv {
+    text-align: center;
+    margin-top: 5px;
+}
+
+.nextButtonText {
+    font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    padding-right: 10%;
+    padding-left: 10%;
+    letter-spacing: 0.05em;
+    text-align: center;
+}
+
+.nextButton {
+    font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    width: 224px;
+    height: 70px;
+    background-color: #fff;
+    color: #207C96;
+    border: 1px solid #207C96;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 18px;
+    margin-left: 10px;
+}
+
+.backButton {
+    width: 224px;
+    height: 70px;
+    background-color: #fff;
+    color: #207C96;
+    border: 1px solid #207C96;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 18px;
+    margin-left: 20px;
+    margin-right: 10px;
+}
+
+.allow {
+    left: 5%;
+    color: #207C96;
+    font-size: 18px;
+}
+
+.image {
+    width: 184px;
+    height: 184px;
+    background-color: #EFEFEF;
+    border: 0px;
+    margin-right: 16px;
+}
+
+.imageDiv {
+    display: flex;
+    justify-content: center;
+    margin-top: 5%;
+}
+
+.imageLabel {
+    width: 48px;
+    height: 48px;
+    position: absolute;
+    top: 47%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-40%, -40%);
+    margin-top: 70px;
+    margin-bottom: 70px;
+    background-image: url('/image/Vector.png');
+    cursor: pointer;
+    z-index: 999;
+}
+
+.imageFile {
+    display: none;
+}
+
+.close {
+    width: 32px;
+    height: 32px;
+    color: #FAFAFA;
+    font-size: 24px;
+    position: relative;
+    cursor: pointer;
+    padding-bottom: 4%;
+    margin: 0;
+    left: 21%;
+    font-weight: bold;
+    -webkit-text-stroke: 1px #222;
+    z-index: 999;
+}
+
+.playIcon {
+    color: #FAFAFA;
+    font-size: 18px;
+    position: relative;
+    cursor: pointer;
+    right: 19%;
+    padding-top: 0.5%;
+    -webkit-text-stroke: 1px #222;
+    z-index: 999;
+}
+
+.textarea {
+    width: 492px;
+    height: 192px;
+    resize: none;
+    font-size: 18px;
+}
+
+.checkboxForm {
+    width: fit-content;
+    margin: auto;
+    display: flex;
+}
+
+.checkboxLabel {
+    border-radius: 25px;
+    border: 1px solid #207C96;
+    padding: 14px 20px;
+    margin-right: 30px;
+    margin-left: 30px;
+    margin-bottom: 40px;
+    cursor: pointer;
+}
+
+.checkbox {
+    accent-color: #207C96;
+}
+
+.category_hashtag_comment {
+    display: flex;
+}
+
+.category_hashtag {
+    width: 80%;
+}
+
+.comment {
+    width: 80%;
+}
+
+.category {
+    margin: 0;
+}
+
+.resultText {
+    background-color: #EFEFEF;
+    margin: 0;
+    margin-right: 20px;
+    padding-top: 21px;
+    padding-bottom: 21px;
+    font-size: 20px;
+    text-align: center;
+}
+
+.resultTextComment {
+    background-color: #EFEFEF;
+    margin: 0;
+    width: 80%;
+    height: 90%;
+}
+
+.categoryDiv {
+    margin-bottom: 10px;
+    margin-left: 20%;
+    margin-top: 0;
+}
+
+.hashtagDiv {
+    margin-left: 20%;
+    margin-top: 0;
+}
+
+.resultImageDiv {
+    margin-top: 0;
+    margin-bottom: 20px;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.resultImage {
+    display: flex;
+    justify-content: center;
+}
+
+.resultImageText {
+    margin: 0;
+    padding: 0;
+}
+
+.resultDivImage {
+    width: 184px;
+    height: 184px;
+    padding-right: 18px;
+}

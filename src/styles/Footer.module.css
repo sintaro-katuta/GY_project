@@ -1,10 +1,12 @@
 .footer {
     display: flex;
     background-color: black;
-    background-position:center;
+    background-position: center;
     background-size: cover;
     width: 100%;
     height: 230px;
+    margin: 0;
+    padding: 0;
     margin-top: 2%;
 }
 
@@ -22,7 +24,7 @@
     margin-top: 20px;
 }
 
-.pickup h3{
+.pickup h3 {
     color: white;
     font-size: 18px;
     margin-left: 140px;
@@ -40,32 +42,33 @@
     color: white;
 }
 
-.memories{
+.memories {
     color: white;
     text-decoration: none;
 }
 
-.album{
+.album {
     color: white;
     text-decoration: none;
     clear: both;
 }
 
-.connect{
+.connect {
     color: white;
     text-decoration: none;
 }
 
-.event{
-    color: white;
-    text-decoration: none;
-}
-.account{
+.event {
     color: white;
     text-decoration: none;
 }
 
-.login{
+.account {
+    color: white;
+    text-decoration: none;
+}
+
+.login {
     font-size: 16px;
     margin-left: 120px;
     margin-top: 30px;

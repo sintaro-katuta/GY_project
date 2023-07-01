@@ -12,18 +12,19 @@ export default function Connect() {
     const [postUsers, setPostUsers] = useState([])
     const [postCurrentUser, setPostCurrentUser] = useState()
 
-    const [currentUser, setCurrentUser] = useState<firebase.User | null | undefined>(undefined)
+    const [currentUser, setCurrentUser] = useState([])
 
     // firebase関連
     const auth = getAuth()
 
     useEffect(() => {
         // ログイン状態をウォッチ
-        auth.onAuthStateChanged((user) => {
+        let unsubscribe = auth.onAuthStateChanged((user: any) => {
             if (user) {
                 // ユーザ情報を格納する
                 setCurrentUser(user)
             }
+            unsubscribe()
         })
     }, [])
 

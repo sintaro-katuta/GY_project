@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&display=swap');
+.container {
+    padding-left: 20%;
+}
+.title{
+    padding-top: 5%;
+    font-size: 13px;
+    font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+}
+.english{
+    font-family: Tomarik;
+    font-size: 23px;
+    color: #2FBFD3;
+}
+.japanese{
+    font-size: 18px;
+    font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+}
+.image{
+    padding-right: 10px;
+    padding-bottom: 15px;
+}
+.flex{
+    display: inline-flex;
+}

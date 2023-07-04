@@ -1,6 +1,7 @@
 // Firebaseの初期化を行うためfirebaseAppをインポート
 import { db } from '../../lib/firebase.config';
 import Header from "../../components/header";
+import Footer from "../../components/footer";
 import { collection, doc, setDoc, getDoc, getDocs } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { useState, useEffect, useRef, createRef, forwardRef } from 'react'
@@ -257,6 +258,7 @@ export default function Memories() {
                     </div>
                 )
             })}
+            <Footer />
         </div>
     )
 }

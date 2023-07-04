@@ -2,6 +2,7 @@
 import { firebaseApp, db } from '../../lib/firebase.config';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, FacebookAuthProvider, signInWithPopup, updateProfile } from "firebase/auth"
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router'
 import Link from "next/link";
 import { collection, doc, setDoc, addDoc, serverTimestamp, getDocs, updateDoc } from "firebase/firestore";
 import styles from '/styles/Account.module.css'
@@ -15,7 +16,8 @@ export default function Account() {
     const [password, setPassword] = useState('');
     const [tab, setTab] = useState(true);
     const auth = getAuth();
-    const [changed] = useState(false);
+    const [changed] = useState(false); 
+    const router = useRouter();
 
     const changeTab = (e) => {
         if (e.target.id == 'registerTab') {
@@ -63,7 +65,7 @@ export default function Account() {
                     displayName: name,
                 })
                 // ユーザー登録ができたかどうかをわかりやすくするためのアラート
-                alert('登録完了！');
+                router.push('/post');
             })
             .catch((error) => {
                 console.log(error.code);
@@ -88,7 +90,8 @@ export default function Account() {
             .then((userCredential) => {
                 const user = userCredential.user;
                 // ログインができたかどうかをわかりやすくするためのアラート
-                alert('ログインOK!');
+                router.push('/post');
+
             })
             .catch((error) => {
                 if (error.code === 'auth/invalid-email') {
@@ -168,6 +171,8 @@ export default function Account() {
             }
             const docref = doc(users, user.uid)
             await updateDoc(docref, userData)
+            alert("aaa");
+            router.push('/post');
         }
     }
 
@@ -205,8 +210,8 @@ export default function Account() {
                             <div className={styles.text_underline}></div>
                             <button onClick={(e) => doLogin(e)} className={styles.buttonlog}>ログインする</button>
                             <br />
-                            <Link href={""} onClick={(e) => doGoogleLogin(e)} className={styles.google}>Googleでログインする</Link>< br/>
-                            <Link href={""} onClick={(e) => doFacebookLogin(e)} className={styles.facebook}>Facebookでログインする</Link>
+                            <Link href={"/post"} onClick={(e) => doGoogleLogin(e)} className={styles.google}>Googleでログインする</Link>< br/>
+                            <Link href={"/post"} onClick={(e) => doFacebookLogin(e)} className={styles.facebook}>Facebookでログインする</Link>
                         </form>
                     </div>
                     :

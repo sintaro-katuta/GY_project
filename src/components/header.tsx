@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState, useRef,useEffect } from 'react'
 import { useRouter } from "next/router";
 import Image from 'next/image';
 import Link from "next/link";
@@ -11,18 +11,16 @@ export default function Header() {
     const paths = decodeURI(router.asPath).substring(1).split("/");
     const roots = [""];
     for (let i = 0; i < paths.length; i++) roots.push(roots[i] + "/" + paths[i]);
-
-    if (typeof document !== 'undefined') {
+    useEffect(() => {
         let memory: any = document.getElementById("memories");
         let album: any = document.getElementById("album");
-
 
         if (paths[0] == "memories") {
             memory.style.listStyle = "disc";
         } else if (paths[0] == "album") {
             album.style.listStyle = "disc";
         }
-    }
+    },[])
 
     const toPost = () => {
         router.push("/post")

@@ -1,6 +1,7 @@
 // Firebaseの初期化を行うためfirebaseAppをインポート
 import { db } from '../lib/firebase.config';
 import Header from "../components/header";
+import Footer from "../components/footer";
 import { collection, doc, getDocs, where, query } from "firebase/firestore";
 import { useState, useEffect } from 'react'
 import NextImage from 'next/image';
@@ -111,6 +112,7 @@ export default function Album() {
                     )
                 })}
             </div>
+            <Footer />
         </div>
     )
 }

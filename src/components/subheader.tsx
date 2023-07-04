@@ -18,7 +18,6 @@ export default function Header() {
     const auth = getAuth()
 
     useEffect(() => {    
-        if (typeof document !== 'undefined') {
             let connect:any = document.getElementById("connect");
             let event:any = document.getElementById("event");
             let account:any = document.getElementById("account");
@@ -31,7 +30,6 @@ export default function Header() {
             }else if (paths[0] == "account"){
                 account.style.listStyle= "disc";
             }
-        }
     },[])
 
     return (

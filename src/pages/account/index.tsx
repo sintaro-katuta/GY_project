@@ -171,7 +171,6 @@ export default function Account() {
             }
             const docref = doc(users, user.uid)
             await updateDoc(docref, userData)
-            alert("aaa");
             router.push('/post');
         }
     }

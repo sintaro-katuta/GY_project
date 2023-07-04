@@ -4,6 +4,7 @@ import styles from "../styles/Connect.module.css"
 import { useState, useEffect } from "react"
 import { collection, getDocs, getDoc, doc } from "firebase/firestore";
 import { getAuth } from "firebase/auth"
+import { useRouter } from "next/router";
 
 export default function Connect() {
     const [postData, setPostdata] = useState([])
@@ -13,6 +14,11 @@ export default function Connect() {
     const [postCurrentUser, setPostCurrentUser] = useState()
 
     const [currentUser, setCurrentUser] = useState([])
+    
+    const router = useRouter();
+    const toPost = () => {
+        router.push("/post")
+    }
 
     // firebase関連
     const auth = getAuth()
@@ -79,7 +85,7 @@ export default function Connect() {
             <div>
                 {currentUser.displayName} {postCurrentUser}
             </div>
-            <button>投稿する</button>
+            <button onClick={() => toPost()}>投稿する</button>
         </div>
     )
 }

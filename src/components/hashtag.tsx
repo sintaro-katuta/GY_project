@@ -1,41 +1,74 @@
-import { useState, useEffect, useRef, createRef } from 'react'
-import { collection, doc, setDoc, getDoc, addDoc, serverTimestamp } from "firebase/firestore";
-import { initializeFirebaseApp, db } from '../lib/firebase.config';
+import { useState, useEffect } from 'react'
+import { collection, doc, getDoc } from "firebase/firestore";
+import { db } from '../lib/firebase.config';
 import Image from 'next/image'
 import styles from '../styles/Post.module.css'
 
-export default function Haxh({ handleVisible, handleHashtag }: any) {
+export default function Hashtag({ handleVisible, handleHashtag, handleOriginalHashtag, category }: any) {
     const [DBHashtag, setDBHashtag] = useState([])
-
-    const ref = useRef()
-
-    let newHashtag: any = []
+    const [originalHashtag, setOriginalHashtag] = useState("")
+    const [hashtag, setHashtag] = useState([])
+    const [ErrorMessage, setErrorMessage] = useState("")
 
     const checkMax: number = 5
-    let checkbox: number = 0
 
     useEffect(() => {
-        const hashtags = collection(db, "hashtags")
-        const hashtagsDoc = doc(hashtags, "hashtag")
-        const hashtagShapshot = getDoc(hashtagsDoc)
-        hashtagShapshot.then((value: any) => {
-            setDBHashtag(value.data().name)
-        })
+        (async () => {
+            const hashtags = collection(db, "hashtags")
+            const hashtagsDoc = doc(hashtags, "hashtag")
+            const hashtagShapshot = getDoc(hashtagsDoc)
+            let newHashtag: any = []
+            await hashtagShapshot.then((value: any) => {
+                for (let i in category) {
+                    newHashtag.push(value.data()[category[i]])
+                }
+            })
+            setDBHashtag(newHashtag)
+        })()
     }, [])
 
     const selectHashtag = (e: any) => {
+        setErrorMessage("")
+        const newHashtag = [...hashtag]
+        if (!e.target.value || e.target.value === '#') {
+            e.target.checked = false
+        }
         if (e.target.checked) {
-            if (checkMax > checkbox) {
-                newHashtag.push(e.target.value)
-                checkbox++;
+            if (newHashtag.length < checkMax) {//チェックがついているとき
+                if (e.target.value === '#' || e.target.value) {
+                    newHashtag.push(e.target.value)
+                }
             } else {
-                alert("ハッシュタグは５つまでです")
+                // newHashtag.pop()
                 e.target.checked = false
+                setErrorMessage("５つ以下選択してください")
             }
         } else {
-            newHashtag.pop()
-            checkbox--;
+            if (e.target.value === '#' || e.target.value) {
+                newHashtag.pop()
+            }
         }
+        setHashtag(newHashtag)
+    }
+
+    const addOriginalHashtag = (name: string) => {
+        setErrorMessage("")
+        let originalHashtagElement: any = document.querySelector("#originalHashtag")
+        let originalHashtagCheckboxElement: any = document.querySelector("#originalHashtagCheckbox")
+        originalHashtagCheckboxElement.checked = false
+        const newHashtag = hashtag
+        newHashtag.pop()
+        console.log(newHashtag)
+        let searchH: number = name.indexOf('#', 1)
+        const searchZ: number = name.indexOf('＃', 1)
+        if (name.startsWith('#')) {
+            if (searchH !== -1 || searchZ !== -1) {//#が見つかったとき
+                originalHashtagElement.value = name.slice(0, searchZ)
+            }
+        } else {
+            originalHashtagElement.value = `#${name.replace("#", "")}`
+        }
+        setOriginalHashtag(name)
     }
 
 
@@ -46,11 +79,16 @@ export default function Haxh({ handleVisible, handleHashtag }: any) {
 
     const nextButton = () => {
         const newVisibleList = [false, false, false, false, true]
-        if (newHashtag.length <= 0) {
-            alert("一つ以上選択してくだいさい")
+        if (hashtag.length < 1) {
+            setErrorMessage("ハッシュタグを１つ以上選択してください")
+        } else if (hashtag.length > 5) {
+            setErrorMessage("ハッシュタグを５つ以下選択してください")
         } else {
+            if (originalHashtag.length > 1) {
+                handleOriginalHashtag(originalHashtag)
+            }
             handleVisible(newVisibleList)
-            handleHashtag(newHashtag)
+            handleHashtag(hashtag)
         }
     }
     return (
@@ -60,20 +98,31 @@ export default function Haxh({ handleVisible, handleHashtag }: any) {
             </div>
             <div className={styles.bodyDiv}>
                 <p className={styles.themeText}>最後に投稿するハッシュタグをつけましょう！</p>
+                <p className={styles.error}>{ErrorMessage}</p>
+                <form className={styles.checkboxForm}>
+                    {DBHashtag.map((element: any) => {
+                        return (
+                            <>
+                                {element.map((el: any, j: any) => {
+                                    return (
+                                        <label label key={j} className={styles.checkboxLabel} >
+                                            <input type="checkbox" value={el} name="hashtags" onChange={(e) => selectHashtag(e)} className={styles.checkbox} />{el}
+                                        </label>
+                                    )
+                                })}
+                            </>
+                        )
+                    })}
+                    <label className={styles.checkboxLabel}>
+                        <input type="checkbox" value={originalHashtag} onChange={(e) => selectHashtag(e)} className={styles.checkbox} id="originalHashtagCheckbox" />
+                        <input type="text" defaultValue={"#"} onChange={(e) => addOriginalHashtag(e.target.value)} className={styles.originalHashtag} id="originalHashtag" />
+                    </label>
+                </form>
                 <div className={styles.nextButtonDiv}>
-                    <form ref={ref} className={styles.checkboxForm}>
-                        {DBHashtag.map((element: any, i: number) => {
-                            return (
-                                <label key={i} className={styles.checkboxLabel}>
-                                    <input type="checkbox" value={element} name="hashtags" onChange={(e) => selectHashtag(e)} className={styles.checkbox} />{element}
-                                </label>
-                            )
-                        })}
-                    </form>
                     <button className={styles.backButton} onClick={() => backButton()}><span className={styles.allow}>◀</span><span className={styles.nextButtonText}>１つ戻る</span></button>
                     <button className={styles.nextButton} onClick={() => nextButton()}><span className={styles.nextButtonText}>次の項目へ</span><span className={styles.allow}>▶</span></button>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }

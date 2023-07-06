@@ -4,12 +4,79 @@
     font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
 }
 
+.error {
+    color: #FF0000;
+    margin: 0;
+    height: 40px;
+    font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+}
+
+.layer {
+    background: rgba(0, 0, 0, .2);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.layerOpen {
+    background: rgba(0, 0, 0, .2);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    /* 追記 */
+    z-index: -1;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.modal {
+    position: relative;
+    margin-right: auto;
+    margin-left: auto;
+    width: 80%;
+    min-width: 440px;
+}
+
+.modalOpen {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal__inner {
+    margin-top: 125px;
+    margin-bottom: 125px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    background: #fff;
+    box-shadow: 3px 4px 4px rgba(0, 0, 0, 0.25);
+    /* モーダルにシャドウをかける */
+    border-radius: 13px;
+    /* モーダルの角を丸める */
+    display: block;
+    padding: 21px 8px 21px;
+    height: auto;
+}
+
+.modal__content {
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 23px;
+}
+
 .checkImage {
     text-align: center;
 }
 
 .themeText {
     text-align: left;
+    margin: 0;
+    margin-top: 0;
     margin-left: 12%;
 }
 
@@ -31,7 +98,7 @@
     width: 128px;
     height: 128px;
     margin: 2%;
-    margin-top: 7%;
+    margin-top: 5%;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
     border: 0px;
     border-radius: 4%;
@@ -45,7 +112,7 @@
     width: 128px;
     height: 128px;
     margin: 2%;
-    margin-top: 7%;
+    margin-top: 5%;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
     border: 0px;
     border-radius: 4%;
@@ -56,7 +123,7 @@
 
 .nextButtonDiv {
     text-align: center;
-    margin-top: 5px;
+    margin-top: 30px;
 }
 
 .nextButtonText {
@@ -104,25 +171,23 @@
     height: 184px;
     background-color: #EFEFEF;
     border: 0px;
-    margin-right: 16px;
+    margin-left: 10px;
+    margin-bottom: 30px;
+    cursor: pointer;
 }
 
 .imageDiv {
     display: flex;
-    justify-content: center;
-    margin-top: 5%;
+    justify-content: left;
+    padding-left: 8.5%;
 }
 
 .imageLabel {
     width: 48px;
     height: 48px;
+    top: 55%;
+    left: 48%;
     position: absolute;
-    top: 47%;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-40%, -40%);
-    margin-top: 70px;
-    margin-bottom: 70px;
     background-image: url('/image/Vector.png');
     cursor: pointer;
     z-index: 999;
@@ -137,23 +202,9 @@
     height: 32px;
     color: #FAFAFA;
     font-size: 24px;
-    position: relative;
     cursor: pointer;
-    padding-bottom: 4%;
+    padding: 0;
     margin: 0;
-    left: 21%;
-    font-weight: bold;
-    -webkit-text-stroke: 1px #222;
-    z-index: 999;
-}
-
-.playIcon {
-    color: #FAFAFA;
-    font-size: 18px;
-    position: relative;
-    cursor: pointer;
-    right: 19%;
-    padding-top: 0.5%;
     -webkit-text-stroke: 1px #222;
     z-index: 999;
 }
@@ -167,7 +218,9 @@
 
 .checkboxForm {
     width: fit-content;
+    flex-wrap: wrap;
     margin: auto;
+    margin-left: 8%;
     display: flex;
 }
 
@@ -183,6 +236,14 @@
 
 .checkbox {
     accent-color: #207C96;
+}
+
+.originalHashtag {
+    font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    border: none;
+    outline: none;
+    width: 80px;
+    font-size: 15px;
 }
 
 .category_hashtag_comment {
@@ -250,4 +311,35 @@
     width: 184px;
     height: 184px;
     padding-right: 18px;
+}
+
+.resultChange {
+    color: #0A41D0;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.success {
+    font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    position: absolute;
+    margin: 0;
+    top: 43%;
+    left: 42dvw;
+    text-align: center;
+    font-size: 18px;
+}
+
+.successButton {
+    width: 224px;
+    height: 70px;
+    font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    background-color: #fff;
+    color: #207C96;
+    border: 1px solid #207C96;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 18px;
+    position: absolute;
+    top: 50%;
+    left: 40dvw;
 }

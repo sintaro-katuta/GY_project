@@ -1,5 +1,5 @@
 // Firebaseの初期化を行うためfirebaseAppをインポート
-import { firebaseApp, db } from '../../lib/firebase.config';
+import { db } from '../../lib/firebase.config';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, FacebookAuthProvider, signInWithPopup, updateProfile } from "firebase/auth"
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router'
@@ -16,39 +16,43 @@ export default function Account() {
     const [password, setPassword] = useState('');
     const [tab, setTab] = useState(true);
     const auth = getAuth();
-    const [changed] = useState(false); 
+    const [changed] = useState(false);
     const router = useRouter();
+    let login: any
+    let sinki: any
+    if (typeof window === 'object') {
+        login = document.querySelector("#loginTab")
+        sinki = document.querySelector("#registerTab")
+    }
 
-    const changeTab = (e) => {
+    const changeTab = (e: any) => {
         if (e.target.id == 'registerTab') {
             setTab(false)
-            if(changed === false){
-                const login = document.querySelector("#loginTab")
-                const sinki = document.querySelector("#registerTab")        
-                console.log(login);
-                login.style.color = "#A5A5A5";
-                sinki.style.color = "black";
+            if (changed === false) {
+                if (login && sinki) {
+                    login.style.color = "#A5A5A5";
+                    sinki.style.color = "black";
+                }
             }
         } else if (e.target.id == 'loginTab') {
             setTab(true)
-            if(changed === false){
-                const login = document.querySelector("#loginTab")
-                const sinki = document.querySelector("#registerTab")        
-                console.log(login);
-                login.style.color = "black";
-                sinki.style.color = "";
+            if (changed === false) {
+                if (login && sinki) {
+                    login.style.color = "black";
+                    sinki.style.color = "";
+                }
             }
         }
     }
 
     // ユーザーが登録ボタンを押したときにdoRegister関数が実行される
-    const doRegister = async (e) => {
+    const doRegister = async (e: any) => {
         e.preventDefault();
         // Firebaseで用意されているユーザー登録の関数
         createUserWithEmailAndPassword(auth, email, password)
             .then(async (userCredential) => {
                 // ユーザー登録すると自動的にログインされてuserCredential.userでユーザーの情報を取得できる
-                const user = userCredential.user;
+                const user: any = userCredential.user;
                 if (user == null) {
                     alert("アカウント作成に失敗しました")
                 }
@@ -82,7 +86,7 @@ export default function Account() {
     }
 
     // ユーザーがログインボタンを押したときにdoLogin関数が実行される
-    const doLogin = (e) => {
+    const doLogin = (e: any) => {
         e.preventDefault();
 
         // Firebaseで用意されているメールアドレスとパスワードでログインするための関数
@@ -116,7 +120,7 @@ export default function Account() {
             })
     };
 
-    const doGoogleLogin = async (e) => {
+    const doGoogleLogin = async (e: any) => {
         e.preventDefault();
 
         const provider = new GoogleAuthProvider();
@@ -126,7 +130,7 @@ export default function Account() {
         });
     };
 
-    const doFacebookLogin = async (e) => {
+    const doFacebookLogin = async (e: any) => {
         e.preventDefault();
 
         const provider = new FacebookAuthProvider();
@@ -136,11 +140,11 @@ export default function Account() {
         });
     };
 
-    const usersCheck = async (user) => {
+    const usersCheck = async (user: any) => {
         const ref = collection(db, "users")
         const snapShot = await getDocs(ref)
         let flag = false
-        const list = snapShot.docs.map((doc) => {
+        const list = snapShot.docs.map((doc: any) => {
             const item = doc.data()
             item.id = doc.id
             return item
@@ -178,23 +182,23 @@ export default function Account() {
     return (
         <div className={styles.flame}>
             <Image className={styles.topleft}
-                src = {"/image/Group 86.png"}
-                width = {310} height = {320} alt='topleft'
+                src={"/image/Group 86.png"}
+                width={310} height={320} alt='topleft'
             />
 
             <Image className={styles.bottomright}
-                src = {"/image/Group 87.png"}
-                width = {310} height = {320} alt='bottomright'
+                src={"/image/Group 87.png"}
+                width={310} height={320} alt='bottomright'
             />
             <div className={styles.flame1}>
                 <h2 id="loginInfo" className={styles.memorie}>会員登録してみんなに思い出を共有しよう</h2>
                 <Image className={styles.foop}
-                    src = {"/image/Group 89.png"}
-                    width = {317} height = {360} alt='foop'
+                    src={"/image/Group 89.png"}
+                    width={317} height={360} alt='foop'
                 />
                 <div className={styles.logaka}>
                     <h2 id="loginTab" onClick={(e) => changeTab(e)} className={styles.loginTab}>ログイン</h2>
-                        <div className={styles.line}></div>
+                    <div className={styles.line}></div>
                     <h2 id="registerTab" onClick={(e) => changeTab(e)} className={styles.sinki}>新規会員登録</h2>
                 </div>
                 {tab ?
@@ -209,7 +213,7 @@ export default function Account() {
                             <div className={styles.text_underline}></div>
                             <button onClick={(e) => doLogin(e)} className={styles.buttonlog}>ログインする</button>
                             <br />
-                            <Link href={"/post"} onClick={(e) => doGoogleLogin(e)} className={styles.google}>Googleでログインする</Link>< br/>
+                            <Link href={"/post"} onClick={(e) => doGoogleLogin(e)} className={styles.google}>Googleでログインする</Link>< br />
                             <Link href={"/post"} onClick={(e) => doFacebookLogin(e)} className={styles.facebook}>Facebookでログインする</Link>
                         </form>
                     </div>
@@ -217,7 +221,7 @@ export default function Account() {
                     <div id="register" className={styles.log1}>
                         <form>
                             <label htmlFor="register-email" className={styles.mail}>メール</label><br></br>
-                            <input type="text" id="register-email" autoComplete="on" onChange={(e) => setEmail(e.target.value)} className={styles.email1}/><br></br>
+                            <input type="text" id="register-email" autoComplete="on" onChange={(e) => setEmail(e.target.value)} className={styles.email1} /><br></br>
                             <div className={styles.text_underline1}></div>
 
                             <label htmlFor="register-password" className={styles.pass}>パスワード</label><br></br>
@@ -225,17 +229,15 @@ export default function Account() {
                             <div className={styles.text_underline1}></div>
 
                             <label htmlFor="name" className={styles.name}>名前</label><br></br>
-                            <input type="text" id="name" autoComplete="on" onChange={(e) => setName(e.target.value)} className={styles.namae}/><br></br>
+                            <input type="text" id="name" autoComplete="on" onChange={(e) => setName(e.target.value)} className={styles.namae} /><br></br>
                             <div className={styles.text_underline1}></div>
 
-                            <button
-                                onClick={(e) => {doRegister(e)}} className={styles.buttonlog1}
-                            >
+                            <button onClick={(e: any) => doRegister(e)} className={styles.buttonlog1}>
                                 新規会員登録
                             </button>
                             <br />
-                            <Link href={""} onClick={(e) => doGoogleLogin(e)} className={styles.google}>Googleでログインする</Link>< br/>
-                            <Link href={""} onClick={(e) => doFacebookLogin(e)} className={styles.facebook}>Facebookでログインする</Link>
+                            <Link href={""} onClick={(e: any) => doGoogleLogin(e)} className={styles.google}>Googleでログインする</Link>< br />
+                            <Link href={""} onClick={(e: any) => doFacebookLogin(e)} className={styles.facebook}>Facebookでログインする</Link>
                         </form>
                     </div>
                 }

@@ -29,7 +29,7 @@ export default function Hashtag({ handleVisible, handleHashtag, handleOriginalHa
 
     const selectHashtag = (e: any) => {
         setErrorMessage("")
-        const newHashtag = [...hashtag]
+        const newHashtag: any = [...hashtag]
         if (!e.target.value || e.target.value === '#') {
             e.target.checked = false
         }
@@ -105,7 +105,7 @@ export default function Hashtag({ handleVisible, handleHashtag, handleOriginalHa
                             <>
                                 {element.map((el: any, j: any) => {
                                     return (
-                                        <label label key={j} className={styles.checkboxLabel} >
+                                        <label key={j} className={styles.checkboxLabel} >
                                             <input type="checkbox" value={el} name="hashtags" onChange={(e) => selectHashtag(e)} className={styles.checkbox} />{el}
                                         </label>
                                     )

@@ -3,9 +3,9 @@ import styles from '../styles/Post.module.css'
 import { useState } from 'react'
 
 export default function SelectImage({ handleVisible, handleImage }: any) {
-    const [image, setImage] = useState<FileList>([])
-    const [createImageURL, setCreateImageURL] = useState([])
-    const [ErrorMessage, setErrorMessage] = useState("")
+    const [image, setImage]: any = useState([])
+    const [createImageURL, setCreateImageURL]: any = useState([])
+    const [ErrorMessage, setErrorMessage]: any = useState("")
     // 最大アップロード画像・動画数
     const maxUpload = 4
     // 最大アップロード画像・動画サイズ数 1MB
@@ -19,9 +19,9 @@ export default function SelectImage({ handleVisible, handleImage }: any) {
             setCreateImageURL([])
         } else {
             setErrorMessage("")
-            let newImage = [...image]
-            let newInputImage = [...e.target.files]
-            let list = [...createImageURL]
+            let newImage: any = [...image]
+            let newInputImage: any = [...e.target.files]
+            let list: any = [...createImageURL]
             let j = 0;
             let totalSize = 0
             const total = newImage.length + newInputImage.length
@@ -105,11 +105,11 @@ export default function SelectImage({ handleVisible, handleImage }: any) {
                             image[i].name.includes('.png') || image[i].name.includes('.jpg') || image[i].name.includes('.jpeg')
                                 ?
                                 <>
-                                    <Image key={i} src={item} width={184} height={184} alt={`画像${i}`} className={styles.image} onClick={() => removeImage(i)} />
+                                    <Image src={item} width={184} height={184} alt="投稿する画像" className={styles.image} onClick={() => removeImage(i)} />
                                 </>
                                 :
                                 <>
-                                    <video key={i} src={item} width={184} height={184} alt={`画像${i}`} className={styles.image} controls onClick={() => removeImage(i)} />
+                                    <video src={item} width={184} height={184} className={styles.image} controls onClick={() => removeImage(i)} />
                                 </>
                         )
                     })}

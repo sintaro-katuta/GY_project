@@ -9,16 +9,16 @@ export default function Post() {
     const router = useRouter();
     const query = router.query;
     const auth = getAuth()
-    const { post_id } = router.query;
+    const { post_id }: any = router.query;
 
-    const [post, setPost] = useState({})
-    const [postUser, setPostUser] = useState({})
-    const [postImages, setPostImages] = useState([])
-    const [postLiked, setPostLiked] = useState([])
-    const [postLikedVisible, setPostLikedVisible] = useState(false)
-    const [postComments, setPostComments] = useState([])
-    const [comment, setComment] = useState("")
-    const [currentUser, setCurrentUser] = useState<firebase.User | null | undefined>(undefined)
+    const [post, setPost]: any = useState({})
+    const [postUser, setPostUser]: any = useState({})
+    const [postImages, setPostImages]: any = useState([])
+    const [postLiked, setPostLiked]: any = useState([])
+    const [postLikedVisible, setPostLikedVisible]: any = useState(false)
+    const [postComments, setPostComments]: any = useState([])
+    const [comment, setComment]: any = useState("")
+    const [currentUser, setCurrentUser]: any = useState([])
 
     useEffect(() => {
         // ログイン状態をウォッチ
@@ -35,9 +35,9 @@ export default function Post() {
 
     useEffect(() => {
         if (router.isReady) {
-            const posts = collection(db, "posts")
-            const postsDoc = doc(posts, post_id)
-            const postsSnapShot = getDoc(postsDoc)
+            const posts: any = collection(db, "posts")
+            const postsDoc: any = doc(posts, post_id)
+            const postsSnapShot: any = getDoc(postsDoc)
             postsSnapShot.then((ps: any) => {
                 if (ps.exists()) {
                     const psitem = ps.data()
@@ -65,7 +65,7 @@ export default function Post() {
                     likedSnapshot.then((ls: any) => {
                         if (ls.exists()) {
                             for (let i = 0; i < ls.data().user.length; i++) {
-                                if (ls.data().user[i] == currentUser?.uid) {
+                                if (ls.data().user[i] == currentUser.uid) {
                                     setPostLikedVisible(true)
                                 } else {
                                     setPostLikedVisible(false)
@@ -88,11 +88,11 @@ export default function Post() {
     }, [router, query, currentUser, post_id])
 
     const addLiked = () => {
-        const likes = collection(db, 'likes')
-        const likedDoc = doc(likes, post.id)
-        let newPost_liked = [...postLiked]
+        const likes: any = collection(db, 'likes')
+        const likedDoc: any = doc(likes, post.id)
+        let newPost_liked: any = [...postLiked]
         newPost_liked.push(currentUser.uid)
-        const likedData = {
+        const likedData: any = {
             user: newPost_liked
         }
         setDoc(likedDoc, likedData)
@@ -101,9 +101,9 @@ export default function Post() {
     }
 
     const deleteLiked = () => {
-        const likes = collection(db, 'likes')
-        const likedDoc = doc(likes, post.id)
-        let newPost_liked = [...postLiked]
+        const likes: any = collection(db, 'likes')
+        const likedDoc: any = doc(likes, post.id)
+        let newPost_liked: any = [...postLiked]
         const idx = newPost_liked.indexOf(currentUser.uid)
         if (idx >= 0) {
             newPost_liked.splice(idx, 1)

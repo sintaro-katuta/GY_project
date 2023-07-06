@@ -8,8 +8,8 @@ import NextImage from 'next/image';
 import Style from '../styles/Album.module.css';
 
 export default function Album() {
-    const [list, setList] = useState([]);
-    const [category, setCategory] = useState([]);
+    const [list, setList]: any = useState([]);
+    const [category, setCategory]: any = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -82,7 +82,7 @@ export default function Album() {
     }
 
     return (
-        <div>
+        <>
             {console.log("list", list)}
             <Header />
             <p className={Style.atitle}>みんなの投稿した写真が見れます。　IRの雰囲気をみんなに伝えてみよう！</p>
@@ -113,6 +113,6 @@ export default function Album() {
                 })}
             </div>
             <Footer />
-        </div>
+        </>
     )
 }

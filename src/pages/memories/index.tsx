@@ -1,10 +1,8 @@
 // Firebaseの初期化を行うためfirebaseAppをインポート
-import { db } from '../../lib/firebase.config';
 import Header from "../../components/header";
 import Footer from "../../components/footer";
-import { collection, doc, setDoc, getDoc, getDocs } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
-import { useState, useEffect, useRef, createRef, forwardRef } from 'react'
+import { useState, useEffect, useRef, createRef } from 'react'
 import { useRouter } from "next/router";
 import NextImage from 'next/image';
 import dayjs from 'dayjs'
@@ -14,17 +12,17 @@ import ja from 'dayjs/locale/ja';
 
 
 export default function Memories() {
-    const [postList, setPostList] = useState([])
-    const [imageList, setImageList] = useState([])
-    const [likeList, setLikeList] = useState([])
-    const [likevisible, setLikevisible] = useState([])
-    const [users, setUsers] = useState([])
-    const [comments, setComments] = useState([])
-    const [currentUser, setCurrentUser] = useState<firebase.User | null | undefined>(undefined)
+    const [postList, setPostList]: any = useState([])
+    const [imageList, setImageList]: any = useState([])
+    const [likeList, setLikeList]: any = useState([])
+    const [likevisible, setLikevisible]: any = useState([])
+    const [users, setUsers]: any = useState([])
+    const [comments, setComments]: any = useState([])
+    const [currentUser, setCurrentUser]: any = useState([])
 
     const auth = getAuth()
     const router = useRouter()
-    const ref = useRef([])
+    const ref: any = useRef([])
 
     dayjs.locale(ja);
     dayjs.extend(utc);
@@ -86,7 +84,7 @@ export default function Memories() {
         // setLikevisible(newLikevisible)
     }
 
-    const commentSubmit = (id: string) => {
+    const commentSubmit = (id: any) => {
         // router.push(`/memories/${id}`)
     }
 
@@ -176,29 +174,29 @@ export default function Memories() {
             //     })
             // }
 
-            const newPostList = [
+            const newPostList: any = [
                 {
                     id: "test",
                     comment: "test comment",
                     creted_at: ""
                 }
             ]
-            const newPostsImagesList = [
+            const newPostsImagesList: any = [
                 {
                     0: "/image/カジノ１.jpg",
                     1: "/image/test.mov"
                 }
             ]
-            const newUser = [
+            const newUser: any = [
                 { name: "testname" }
             ]
-            const newLikeList = [
+            const newLikeList: any = [
                 ""
             ]
-            const newLikevisible = [
+            const newLikevisible: any = [
                 true
             ]
-            const newComments = [
+            const newComments: any = [
                 1
             ]
 
@@ -234,7 +232,7 @@ export default function Memories() {
                                 imageList[i][key].includes('.png') || imageList[i][key].includes('.jpg') || imageList[i][key].includes('.jpeg')
                                     ?
                                     <div key={i}>
-                                        <NextImage key={key} src={imageList[i][key]} width={275} height={275} alt="投稿画像" ref={ref[i]} />
+                                        <NextImage key={key} src={imageList[i][key]} width={275} height={275} alt="投稿画像" />
                                     </div>
                                     :
                                     <div key={i}>
@@ -254,7 +252,7 @@ export default function Memories() {
                                 {likeList[i].length}
                             </div>
                         }
-                        <button value={post.id} onClick={(e) => commentSubmit(e.target.value, i)}>コメント</button>{comments[i]}
+                        <button value={post.id} onClick={() => commentSubmit(post.id)}>コメント</button>{comments[i]}
                     </div>
                 )
             })}

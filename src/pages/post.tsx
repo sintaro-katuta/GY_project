@@ -10,16 +10,16 @@ import PostResult from '../components/postResult';
 
 export default function Post() {
     // 画像・画像パス・コメント定数
-    const [image, setImage] = useState<FileList>([])
-    const [category, setCategory] = useState([])
-    const [comment, setComment] = useState("")
-    const [hashtag, setHashtag] = useState([])
-    const [originalHashtag, setOriginalHashtag] = useState("")
-    const [visibleList, setVisibleList] = useState([true, false, false, false, false])
-    const [postData, setPostData] = useState({})
+    const [image, setImage]: any = useState([])
+    const [category, setCategory]: any = useState([])
+    const [comment, setComment]: any = useState("")
+    const [hashtag, setHashtag]: any = useState([])
+    const [originalHashtag, setOriginalHashtag]: any = useState("")
+    const [visibleList, setVisibleList]: any = useState([true, false, false, false, false])
+    const [postData, setPostData]: any = useState({})
 
     // ユーザー情報
-    const [currentUser, setCurrentUser] = useState([])
+    const [currentUser, setCurrentUser]: any = useState([])
     // firebaseAuth関連
     const auth = getAuth()
 
@@ -35,7 +35,7 @@ export default function Post() {
     }, [auth])
 
     useEffect(() => {
-        const newPostData = {
+        const newPostData: any = {
             user: currentUser.displayName,
             category: category,
             image: image,

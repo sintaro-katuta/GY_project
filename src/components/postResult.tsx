@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState } from 'react'
 import { useRouter } from "next/router";
 import Image from 'next/image'
 import styles from '../styles/Post.module.css'
@@ -13,7 +13,6 @@ import animationData from '../public/image/crucker.json'
 export default function PostResult({ handleVisible, postData, originalHashtag }: any) {
 
     const [visible, setVisible] = useState(false)
-    const ref = useRef()
     const router = useRouter()
 
     const backButton = () => {
@@ -74,7 +73,6 @@ export default function PostResult({ handleVisible, postData, originalHashtag }:
                 ?
                 <>
                     <Player
-                        ref={ref}
                         autoplay={true}
                         loop={false}
                         controls={false}

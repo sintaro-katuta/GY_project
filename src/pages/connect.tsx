@@ -14,7 +14,7 @@ export default function Connect() {
     const [postCurrentUser, setPostCurrentUser] = useState()
 
     const [currentUser, setCurrentUser] = useState([])
-    
+
     const router = useRouter();
     const toPost = () => {
         router.push("/post")
@@ -32,7 +32,7 @@ export default function Connect() {
             }
             unsubscribe()
         })
-    }, [])
+    }, [auth])
 
     useEffect(() => {
         (async () => {
@@ -64,7 +64,7 @@ export default function Connect() {
             setPostUsers(newPostUsers)
             setPostCurrentUser(newPostCurrentUser)
         })()
-    }, [setCurrentUser])
+    }, [currentUser.uid])
     return (
         <div className={styles.container}>
             <SubHeader />

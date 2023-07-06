@@ -32,7 +32,7 @@ export default function Post() {
             }
             unsubscribe()
         })
-    }, [])
+    }, [auth])
 
     useEffect(() => {
         const newPostData = {
@@ -43,7 +43,7 @@ export default function Post() {
             hashtag: hashtag
         }
         setPostData(newPostData)
-    }, [visibleList])
+    }, [visibleList, currentUser, category, image, comment, hashtag])
 
     const handleVisible = (newData: any) => {
         setVisibleList(newData);
@@ -72,15 +72,15 @@ export default function Post() {
         <>
             {visibleList.map((visible: boolean, i: number) => {
                 if (visible && i == 0) {
-                    return (<Category handleVisible={handleVisible} handleCategory={handleCategory} categorys={category} />)
+                    return (<Category handleVisible={handleVisible} handleCategory={handleCategory} categorys={category} key={i} />)
                 } else if (visible && i == 1) {
-                    return (<SelectImage handleVisible={handleVisible} handleImage={handleImage} />)
+                    return (<SelectImage handleVisible={handleVisible} handleImage={handleImage} key={i} />)
                 } else if (visible && i == 2) {
-                    return (<Comment handleVisible={handleVisible} handleComment={handleComment} />)
+                    return (<Comment handleVisible={handleVisible} handleComment={handleComment} key={i} />)
                 } else if (visible && i == 3) {
-                    return (<Hashtag handleVisible={handleVisible} handleHashtag={handleHashtag} handleOriginalHashtag={handleOriginalHashtag} category={category} />)
+                    return (<Hashtag handleVisible={handleVisible} handleHashtag={handleHashtag} handleOriginalHashtag={handleOriginalHashtag} category={category} key={i} />)
                 } else if (visible && i == 4) {
-                    return (<PostResult handleVisible={handleVisible} postData={postData} originalHashtag={originalHashtag} />)
+                    return (<PostResult handleVisible={handleVisible} postData={postData} originalHashtag={originalHashtag} key={i} />)
                 }
             })}
         </>

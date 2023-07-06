@@ -25,7 +25,7 @@ export default function Hashtag({ handleVisible, handleHashtag, handleOriginalHa
             })
             setDBHashtag(newHashtag)
         })()
-    }, [])
+    }, [category])
 
     const selectHashtag = (e: any) => {
         setErrorMessage("")

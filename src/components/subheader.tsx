@@ -17,20 +17,20 @@ export default function Header() {
     const [drawerOpened, setDrawerOpened] = useState(false);
     const auth = getAuth()
 
-    useEffect(() => {    
-            let connect:any = document.getElementById("connect");
-            let event:any = document.getElementById("event");
-            let account:any = document.getElementById("account");
-            
-            if (paths[0] == "connect"){
-                console.log(connect);
-                connect.style.listStyle= "disc";
-            }else if (paths[0] == "event"){
-                event.style.listStyle= "disc";
-            }else if (paths[0] == "account"){
-                account.style.listStyle= "disc";
-            }
-    },[])
+    useEffect(() => {
+        let connect: any = document.getElementById("connect");
+        let event: any = document.getElementById("event");
+        let account: any = document.getElementById("account");
+
+        if (paths[0] == "connect") {
+            console.log(connect);
+            connect.style.listStyle = "disc";
+        } else if (paths[0] == "event") {
+            event.style.listStyle = "disc";
+        } else if (paths[0] == "account") {
+            account.style.listStyle = "disc";
+        }
+    }, [paths])
 
     return (
         <header className={Style.container}>
@@ -42,7 +42,7 @@ export default function Header() {
                         </Link>
                     </li>
                 </ul>
-                <ul className={Style.ul_album}  id="album">
+                <ul className={Style.ul_album} id="album">
                     <li>
                         <Link href={"/album"} className={Style.li_album}>
                             みんなのアルバム
@@ -67,8 +67,8 @@ export default function Header() {
                     <li>
                         <Link href={"/account"} className={Style.li_account}>
                             <Image className={Style.account_image}
-                            src = {"/image/Account.png"}
-                            width = {20} height = {20} alt='アカウント'
+                                src={"/image/Account.png"}
+                                width={20} height={20} alt='アカウント'
                             />
                         </Link>
                     </li>

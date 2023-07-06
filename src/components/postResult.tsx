@@ -131,11 +131,11 @@ export default function PostResult({ handleVisible, postData, originalHashtag }:
                                     <>
                                         {image.name.includes('.png') || image.name.includes('.jpg') || image.name.includes('.jpeg')
                                             ?
-                                            <div className={styles.resultDivImage}>
+                                            <div className={styles.resultDivImage} key={i}>
                                                 <Image src={imageURL} width={184} height={184} alt={`画像${i}`} className={styles.image} />
                                             </div>
                                             :
-                                            <div>
+                                            <div className={styles.resultDivImage} key={i}>
                                                 <video src={imageURL} width={184} height={184} className={styles.image} controls />
                                             </div>
                                         }

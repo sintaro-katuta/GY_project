@@ -1,4 +1,4 @@
-import { useState, useRef,useEffect } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { useRouter } from "next/router";
 import Image from 'next/image';
 import Link from "next/link";
@@ -20,7 +20,7 @@ export default function Header() {
         } else if (paths[0] == "album") {
             album.style.listStyle = "disc";
         }
-    },[])
+    }, [paths])
 
     const toPost = () => {
         router.push("/post")

@@ -1,6 +1,7 @@
 // Firebaseの初期化を行うためfirebaseAppをインポート
 import { getAuth } from "firebase/auth"
 import { useState, useEffect } from 'react'
+import styles from '../styles/Post.module.css'
 import Category from '../components/category'
 import SelectImage from '../components/selectImage'
 import Comment from '../components/comment'
@@ -13,6 +14,7 @@ export default function Post() {
     const [category, setCategory] = useState([])
     const [comment, setComment] = useState("")
     const [hashtag, setHashtag] = useState([])
+    const [originalHashtag, setOriginalHashtag] = useState("")
     const [visibleList, setVisibleList] = useState([true, false, false, false, false])
     const [postData, setPostData] = useState({})
 
@@ -33,9 +35,8 @@ export default function Post() {
     }, [])
 
     useEffect(() => {
-        console.log(currentUser)
         const newPostData = {
-            user: currentUser.uid,
+            user: currentUser.displayName,
             category: category,
             image: image,
             comment: comment,
@@ -63,23 +64,25 @@ export default function Post() {
     const handleHashtag = (newData: any) => {
         setHashtag(newData)
     }
+    const handleOriginalHashtag = (newData: any) => {
+        setOriginalHashtag(newData)
+    }
 
     return (
-        <div>
-            {console.log("postData", category, image, comment)}
+        <>
             {visibleList.map((visible: boolean, i: number) => {
                 if (visible && i == 0) {
-                    return (<Category handleVisible={handleVisible} handleCategory={handleCategory} />)
+                    return (<Category handleVisible={handleVisible} handleCategory={handleCategory} categorys={category} />)
                 } else if (visible && i == 1) {
                     return (<SelectImage handleVisible={handleVisible} handleImage={handleImage} />)
                 } else if (visible && i == 2) {
                     return (<Comment handleVisible={handleVisible} handleComment={handleComment} />)
                 } else if (visible && i == 3) {
-                    return (<Hashtag handleVisible={handleVisible} handleHashtag={handleHashtag} />)
+                    return (<Hashtag handleVisible={handleVisible} handleHashtag={handleHashtag} handleOriginalHashtag={handleOriginalHashtag} category={category} />)
                 } else if (visible && i == 4) {
-                    return (<PostResult handleVisible={handleVisible} postData={postData} />)
+                    return (<PostResult handleVisible={handleVisible} postData={postData} originalHashtag={originalHashtag} />)
                 }
             })}
-        </div>
+        </>
     )
 }

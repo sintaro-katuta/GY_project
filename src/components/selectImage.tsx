@@ -1,17 +1,15 @@
 import Image from 'next/image'
 import styles from '../styles/Post.module.css'
-import { useState, useEffect, useRef, createRef } from 'react'
+import { useState } from 'react'
 
 export default function SelectImage({ handleVisible, handleImage }: any) {
     const [image, setImage] = useState<FileList>([])
     const [createImageURL, setCreateImageURL] = useState([])
-    const ref = useRef([])
+    const [ErrorMessage, setErrorMessage] = useState("")
     // 最大アップロード画像・動画数
     const maxUpload = 4
     // 最大アップロード画像・動画サイズ数 1MB
     const maxSize = 10485760
-
-
     // 画像をセットと画像のパスをセット関数
     const addImage = (e: any) => {
         // 最大アップロード数を超えていたときの処理
@@ -20,47 +18,49 @@ export default function SelectImage({ handleVisible, handleImage }: any) {
             setImage([]);
             setCreateImageURL([])
         } else {
+            setErrorMessage("")
             let newImage = [...image]
             let newInputImage = [...e.target.files]
-            let j = 0;
-            const total = newImage.length + newInputImage.length
-            let totalSize = 0
-            for (let i = 0; i < image.length; i++) {
-                totalSize = totalSize + image[i].size
-            }
-            if (total <= maxUpload && totalSize <= maxSize) {
-                console.log("上限を超えていない")
-                for (let i = newImage.length; i < total; i++) {
-                    ref[i] = createRef()
-                    newImage[i] = newInputImage[j]
-                    j++;
-                }
-            } else {
-                console.log("上限を超えています", total)
-            }
-            setImage(newImage)
-            console.log("newImage", newImage)
             let list = [...createImageURL]
+            let j = 0;
+            let totalSize = 0
+            const total = newImage.length + newInputImage.length
+            for (let i = newImage.length; i < total; i++) {
+                newImage[i] = newInputImage[j]
+                j++;
+            }
+            for (let i = 0; i < newImage.length; i++) {
+                totalSize = totalSize + newImage[i].size
+                if (newImage[i].type !== "image/jpeg" && newImage[i].type !== "image/png" && newImage[i].type !== "image/jpg" && newImage[i].type !== "video/quicktime" && newImage[i].type !== "video/mp4") {
+                    i = newImage.length
+                    setErrorMessage("画像・動画以外のファイルが選択されています")
+                    newImage = image
+                }
+            }
+            if (total > maxUpload) {
+                setErrorMessage("画像・動画は４つまで投稿できます")
+                newImage = image
+            } else if (totalSize >= maxSize) {
+                setErrorMessage("画像・動画サイズの上限を超えています")
+                newImage = image
+            }
             for (let i = 0; i < newImage.length; i++) {
                 const imageUrl = URL.createObjectURL(newImage[i])
                 list[i] = imageUrl
             }
+            setImage(newImage)
             setCreateImageURL(list)
+            e.target.value = ""
         }
-    }
-
-    const videoPlay = (e: number) => {
-        console.log(ref[e].current)
-        ref[e].current.play()
     }
 
     const removeImage = (i: number) => {
         // 選択した画像は削除可能
-        console.log(i)
         const newImages = [...image];
         const newUrl = [...createImageURL]
         newImages.splice(i, 1);
         newUrl.splice(i, 1);
+        setErrorMessage("")
         setImage(newImages);
         setCreateImageURL(newUrl)
     }
@@ -72,7 +72,7 @@ export default function SelectImage({ handleVisible, handleImage }: any) {
 
     const nextButton = () => {
         if (image.length <= 0) {
-            alert("一つ以上選択してください")
+            setErrorMessage("一つ以上選択してください")
         } else {
             const newVisibleList = [false, false, true, false, false]
             handleVisible(newVisibleList)
@@ -86,12 +86,11 @@ export default function SelectImage({ handleVisible, handleImage }: any) {
                 <Image src={"/image/Group 130.svg"} alt="チェック" width={846} height={51} />
             </div>
             <div className={styles.bodyDiv}>
-                <p className={styles.themeText}>次に投稿する写真を選択しましょう！</p>
-                <div>
-                    <label htmlFor="file" className={styles.imageLabel}>
-                        <input type="file" id="file" multiple accept="image/jpeg, image/png, image/gif, video/mp4, video/avi, video/quicktime" onChange={(e) => addImage(e)} className={styles.imageFile} />
-                    </label>
-                </div>
+                <p className={styles.themeText}>次に投稿する写真を選択しましょう！※最大1MB <small>クリックすると削除できます</small></p>
+                <p className={styles.error}>{ErrorMessage}</p>
+                <label htmlFor="file" className={styles.imageLabel}>
+                    <input type="file" id="file" multiple accept="image/jpeg, image/png, image/gif, video/mp4, video/avi, video/quicktime" onChange={(e) => addImage(e)} className={styles.imageFile} />
+                </label>
                 <div className={styles.imageDiv}>
                     {createImageURL.length <= 0 &&
                         <>
@@ -101,19 +100,16 @@ export default function SelectImage({ handleVisible, handleImage }: any) {
                             <button className={styles.image}></button>
                         </>
                     }
-                    {createImageURL.map((item, i) => {
+                    {createImageURL.map((item: any, i: any) => {
                         return (
                             image[i].name.includes('.png') || image[i].name.includes('.jpg') || image[i].name.includes('.jpeg')
                                 ?
                                 <>
-                                    <div className={styles.close} onClick={() => removeImage(i)}>×</div>
-                                    <Image src={item} width={184} height={184} alt={`画像${i}`} ref={ref[i]} className={styles.image} />
+                                    <Image key={i} src={item} width={184} height={184} alt={`画像${i}`} className={styles.image} onClick={() => removeImage(i)} />
                                 </>
                                 :
                                 <>
-                                    <div className={styles.close} onClick={() => removeImage(i)}>×</div>
-                                    <video src={item} width={184} height={184} ref={ref[i]} className={styles.image} muted autoplay />
-                                    <div className={styles.playIcon} onClick={() => videoPlay(i)}>▶</div>
+                                    <video key={i} src={item} width={184} height={184} alt={`画像${i}`} className={styles.image} controls onClick={() => removeImage(i)} />
                                 </>
                         )
                     })}

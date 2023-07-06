@@ -31,7 +31,7 @@ export default function Post() {
             }
             unsubscribe()
         })
-    }, [])
+    }, [auth, router])
 
     useEffect(() => {
         if (router.isReady) {
@@ -85,7 +85,7 @@ export default function Post() {
                 }
             })
         }
-    }, [router, query, currentUser])
+    }, [router, query, currentUser, post_id])
 
     const addLiked = () => {
         const likes = collection(db, 'likes')
@@ -137,8 +137,8 @@ export default function Post() {
             <button onClick={() => router.push("/memories")}>←</button>
             {postUser.name}<br />
             {post.comment}<br />
-            {Object.keys(postImages).map((key) => (
-                <NextImage src={postImages[key]} width={270} height={270} alt="投稿画像" />
+            {Object.keys(postImages).map((key, i) => (
+                <NextImage src={postImages[key]} width={270} height={270} alt="投稿画像" key={i} />
             ))}
             {postLiked.length}
             {postLikedVisible

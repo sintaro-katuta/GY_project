@@ -42,7 +42,7 @@ export default function Memories() {
             }
             unsubscribe()
         })
-    }, [])
+    }, [auth, router])
 
 
     // いいねボタンを押したときの処理

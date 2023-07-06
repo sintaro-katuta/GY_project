@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { useRouter } from "next/router";
 import Image from 'next/image'
 import styles from '../styles/Post.module.css'
@@ -13,6 +13,7 @@ import animationData from '../public/image/crucker.json'
 export default function PostResult({ handleVisible, postData, originalHashtag }: any) {
 
     const [visible, setVisible] = useState(false)
+    const ref = useRef()
     const router = useRouter()
 
     const backButton = () => {
@@ -73,6 +74,7 @@ export default function PostResult({ handleVisible, postData, originalHashtag }:
                 ?
                 <>
                     <Player
+                        ref={ref}
                         autoplay={true}
                         loop={false}
                         controls={false}
@@ -130,7 +132,7 @@ export default function PostResult({ handleVisible, postData, originalHashtag }:
                                         {image.name.includes('.png') || image.name.includes('.jpg') || image.name.includes('.jpeg')
                                             ?
                                             <div className={styles.resultDivImage} key={i}>
-                                                <Image src={imageURL} width={184} height={184} alt={`画像${i}`} className={styles.image} />
+                                                <Image src={imageURL} width={154} height={154} alt={`画像${i}`} className={styles.imageResult} />
                                             </div>
                                             :
                                             <div className={styles.resultDivImage} key={i}>

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRouter } from 'react'
 import Image from 'next/image'
 import styles from '../styles/Post.module.css'
 
@@ -13,7 +13,7 @@ export default function Comment({ handleVisible, handleComment }: any) {
 
     const nextButton = () => {
         if (comment.length <= 0 || comment.length >= 100) {
-            setErrorMessage("文字数は0字以上100字以内")
+            setErrorMessage("文字数は1字以上100字以内")
         } else {
             const newVisibleList = [false, false, false, true, false]
             handleVisible(newVisibleList)
@@ -28,7 +28,7 @@ export default function Comment({ handleVisible, handleComment }: any) {
             <div className={styles.bodyDiv}>
                 <p className={styles.themeTextComment}>次に投稿する文章を入力しましょう！※１文字～１００文字</p>
                 <p className={styles.error}>{ErrorMessage}</p>
-                <textarea cols={30} rows={10} placeholder="コメント" onChange={(e) => setComment(e.target.value)} className={styles.textarea} />
+                <textarea cols="30" rows="10" placeholder="コメント" onChange={(e) => setComment(e.target.value)} className={styles.textarea} />
                 <div className={styles.nextButtonDiv}>
                     <button className={styles.backButton} onClick={() => backButton()}><span className={styles.allow}>◀</span><span className={styles.nextButtonText}>１つ戻る</span></button>
                     <button className={styles.nextButton} onClick={() => nextButton()}><span className={styles.nextButtonText}>次の項目へ</span><span className={styles.allow}>▶</span></button>

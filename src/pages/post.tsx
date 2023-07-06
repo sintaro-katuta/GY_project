@@ -2,6 +2,7 @@
 import { getAuth } from "firebase/auth"
 import { useState, useEffect } from 'react'
 import styles from '../styles/Post.module.css'
+import Image from 'next/image';
 import Category from '../components/category'
 import SelectImage from '../components/selectImage'
 import Comment from '../components/comment'
@@ -10,16 +11,16 @@ import PostResult from '../components/postResult';
 
 export default function Post() {
     // 画像・画像パス・コメント定数
-    const [image, setImage]: any = useState([])
-    const [category, setCategory]: any = useState([])
-    const [comment, setComment]: any = useState("")
-    const [hashtag, setHashtag]: any = useState([])
-    const [originalHashtag, setOriginalHashtag]: any = useState("")
-    const [visibleList, setVisibleList]: any = useState([true, false, false, false, false])
-    const [postData, setPostData]: any = useState({})
+    const [image, setImage] = useState<FileList>([])
+    const [category, setCategory] = useState([])
+    const [comment, setComment] = useState("")
+    const [hashtag, setHashtag] = useState([])
+    const [originalHashtag, setOriginalHashtag] = useState("")
+    const [visibleList, setVisibleList] = useState([true, false, false, false, false])
+    const [postData, setPostData] = useState({})
 
     // ユーザー情報
-    const [currentUser, setCurrentUser]: any = useState([])
+    const [currentUser, setCurrentUser] = useState([])
     // firebaseAuth関連
     const auth = getAuth()
 
@@ -35,7 +36,7 @@ export default function Post() {
     }, [auth])
 
     useEffect(() => {
-        const newPostData: any = {
+        const newPostData = {
             user: currentUser.displayName,
             category: category,
             image: image,
@@ -70,19 +71,32 @@ export default function Post() {
 
     return (
         <>
-            {visibleList.map((visible: boolean, i: number) => {
-                if (visible && i == 0) {
-                    return (<Category handleVisible={handleVisible} handleCategory={handleCategory} categorys={category} key={i} />)
-                } else if (visible && i == 1) {
-                    return (<SelectImage handleVisible={handleVisible} handleImage={handleImage} key={i} />)
-                } else if (visible && i == 2) {
-                    return (<Comment handleVisible={handleVisible} handleComment={handleComment} key={i} />)
-                } else if (visible && i == 3) {
-                    return (<Hashtag handleVisible={handleVisible} handleHashtag={handleHashtag} handleOriginalHashtag={handleOriginalHashtag} category={category} key={i} />)
-                } else if (visible && i == 4) {
-                    return (<PostResult handleVisible={handleVisible} postData={postData} originalHashtag={originalHashtag} key={i} />)
-                }
-            })}
+            <div className={styles.flame}>
+                <Image className={styles.topleft}
+                    src={"/image/Group 86.png"}
+                    width={310} height={320} alt='topleft'
+                />
+
+                <Image className={styles.bottomright}
+                    src={"/image/Group 87.png"}
+                    width={310} height={320} alt='bottomright'
+                />
+                <div className={styles.flame1}>
+                    {visibleList.map((visible: boolean, i: number) => {
+                        if (visible && i == 0) {
+                            return (<Category handleVisible={handleVisible} handleCategory={handleCategory} categorys={category} key={i} />)
+                        } else if (visible && i == 1) {
+                            return (<SelectImage handleVisible={handleVisible} handleImage={handleImage} key={i} />)
+                        } else if (visible && i == 2) {
+                            return (<Comment handleVisible={handleVisible} handleComment={handleComment} key={i} />)
+                        } else if (visible && i == 3) {
+                            return (<Hashtag handleVisible={handleVisible} handleHashtag={handleHashtag} handleOriginalHashtag={handleOriginalHashtag} category={category} key={i} />)
+                        } else if (visible && i == 4) {
+                            return (<PostResult handleVisible={handleVisible} postData={postData} originalHashtag={originalHashtag} key={i} />)
+                        }
+                    })}
+                </div>
+            </div>
         </>
     )
 }

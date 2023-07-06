@@ -7,13 +7,13 @@ import { getAuth } from "firebase/auth"
 import { useRouter } from "next/router";
 
 export default function Connect() {
-    const [postData, setPostdata] = useState([])
-    const [clear, setClear] = useState([])
-    const [clearFlag, setClearFlag] = useState(false)
-    const [postUsers, setPostUsers] = useState([])
-    const [postCurrentUser, setPostCurrentUser] = useState()
+    const [postData, setPostdata]: any = useState([])
+    const [clear, setClear]: any = useState([])
+    const [clearFlag, setClearFlag]: any = useState(false)
+    const [postUsers, setPostUsers]: any = useState([])
+    const [postCurrentUser, setPostCurrentUser]: any = useState()
 
-    const [currentUser, setCurrentUser] = useState([])
+    const [currentUser, setCurrentUser]: any = useState([])
 
     const router = useRouter();
     const toPost = () => {
@@ -36,19 +36,19 @@ export default function Connect() {
 
     useEffect(() => {
         (async () => {
-            const posts = collection(db, "posts")
-            const postsSnapShot = await getDocs(posts)
-            const newPostList = postsSnapShot.docs.map((doc: any) => {
+            const posts: any = collection(db, "posts")
+            const postsSnapShot: any = await getDocs(posts)
+            const newPostList: any = postsSnapShot.docs.map((doc: any) => {
                 const item = doc.data()
                 return item
             })
-            const connect = collection(db, "connect")
-            const connectDoc = await doc(connect, "aoc3SSKRohVxhyg2HSpo")
-            const connectSnapShot = await getDoc(connectDoc)
-            const point = connectSnapShot.data().point
-            const totalPost = newPostList
-            const newPostUsers = newPostList.user
-            let newPostCurrentUser
+            const connect: any = collection(db, "connect")
+            const connectDoc: any = await doc(connect, "aoc3SSKRohVxhyg2HSpo")
+            const connectSnapShot: any = await getDoc(connectDoc)
+            const point: any = connectSnapShot.data().point
+            const totalPost: any = newPostList
+            const newPostUsers: any = newPostList.user
+            let newPostCurrentUser: any
             if (point - totalPost < 0) {
                 setClearFlag(true)
             } else {
@@ -79,7 +79,7 @@ export default function Connect() {
                 </>
                 :
                 <>
-                    クリアまで{clear - postData.length}！協力して投稿しよう！
+                    <>クリアまで{clear - postData.length}！協力して投稿しよう！</>
                 </>
             }
             <div>

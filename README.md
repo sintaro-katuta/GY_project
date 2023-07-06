@@ -30,7 +30,7 @@ The new repository will start with the same files and folders as this repository
 
 ### Git clone
 ```bash
-git clone https://github.com/[your repository]
+git clone https://github.com/sintaro-katuta/GY_project
 ```
 
 ### Docker Setup

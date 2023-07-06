@@ -13,8 +13,8 @@ export default function Footer() {
     const tologin = () => {
         router.push("/account")
     }
-    
-    return(
+
+    return (
         <><footer className={styles.footer}>
             <div className={styles.pic}>
                 <div className={styles.pickup}>
@@ -54,16 +54,16 @@ export default function Footer() {
             </div>
             <div className={styles.login}>
                 <h3>LOGIN</h3>
-                <button className={styles.sinki} onClick={tologin}>新規会員登録</button><br/>
+                <button className={styles.sinki} onClick={tologin}>新規会員登録</button><br />
                 <button className={styles.log} onClick={tologin}>ログイン</button>
             </div>
             <div className={styles.movement}>
                 <h3>MOVEMENT</h3>
-                <Link href={"http://localhost:8888"} className={styles.resort}>リゾートサイトへ</Link><br />
+                <Link href={"https://gyproject-66748.web.app/index.html"} className={styles.resort}>リゾートサイトへ</Link><br />
             </div>
         </footer>
-        <div className={styles.bottom}>
-            <h3>copyright F∞P.sns.Co.</h3>
-        </div></>
+            <div className={styles.bottom}>
+                <h3>copyright F∞P.sns.Co.</h3>
+            </div></>
     )
 }

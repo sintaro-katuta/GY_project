@@ -8,7 +8,7 @@ export default function Category({ handleVisible, handleCategory }: any) {
     const [ErrorMessage, setErrorMessage] = useState("")
 
     useEffect(() => {
-        let newButtonClass = [
+        let newButtonClass: any = [
             styles.themeButton,
             styles.themeButton,
             styles.themeButton,
@@ -25,8 +25,8 @@ export default function Category({ handleVisible, handleCategory }: any) {
     }
 
     const buttonSubmit = (e: any, i: number) => {
-        const newButtonClass: string[] = [...buttonClass]
-        const newCategory = [...category]
+        const newButtonClass: any = [...buttonClass]
+        const newCategory: any = [...category]
         if (e.target.className.indexOf("themeButtonOn") !== -1) {
             newCategory.pop()
             newButtonClass[i] = styles.themeButton

@@ -1,0 +1,101 @@
+.ul_memories{
+    position: absolute;
+    color: #FAFAFA;
+    width: 153px;
+    height: 300px;
+    left: 0px;
+    top: 160px;
+    font-family: 'Noto Sans JP';
+    font-size: 16px;
+    letter-spacing: 0.08em;
+    list-style: none;
+    
+}
+.li_memories{
+    color: #FAFAFA;
+    text-decoration: none;
+    list-style-type: none;
+}
+.ul_album{
+    position: absolute;
+    color: #FAFAFA;
+    width: 153px;
+    height: 300px;
+    left: 0px;
+    top: 200px;
+    font-family: 'Noto Sans JP';
+    font-size: 16px;
+    letter-spacing: 0.08em;
+    list-style: none;
+}
+.li_album{
+    color: #FAFAFA;
+    text-decoration: none;
+    list-style-type: none;
+}
+.ul_connect{
+    position: absolute;
+    color: #FAFAFA;
+    width: 153px;
+    height: 300px;
+    left: 0px;
+    top: 240px;
+    font-family: 'Noto Sans JP';
+    font-size: 16px;
+    letter-spacing: 0.08em;
+    list-style: none;
+}
+.li_connect{
+    color: #FAFAFA;
+    text-decoration: none;
+    list-style-type: none;
+}
+.ul_event{
+    position: absolute;
+    color: #FAFAFA;
+    width: 153px;
+    height: 300px;
+    left: 0px;
+    top: 280px;
+    font-family: 'Noto Sans JP';
+    font-size: 16px;
+    letter-spacing: 0.08em;
+    list-style: none;
+}
+.li_event{
+    color: #FAFAFA;
+    text-decoration: none;
+    list-style-type: none;
+}
+.ul_account{
+    position: absolute;
+    color: #FAFAFA;
+    width: 153px;
+    height: 300px;
+    left: 0px;
+    top: 320px;
+    font-family: 'Noto Sans JP';
+    font-size: 16px;
+    letter-spacing: 0.08em;
+    list-style: none;
+}
+.li_account{
+    color: #FAFAFA;
+    text-decoration: none;
+    list-style-type: none;
+}
+.list{
+    position: absolute;
+    background-color: #222222;
+    width: 17%;
+    height: 100%;
+    /* right: 800px; */
+    left: 0px;
+    top: 0px;
+    position:fixed;
+}
+.account_image{
+    padding: 10px;
+    border-radius: 50%;
+    border: 1.5px solid white;
+}

@@ -1,0 +1,258 @@
+.form {
+    height: 350px;
+}
+
+.flame {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    top: 0px;
+    background: #DEEBEE;
+}
+
+.topleft {
+    position: absolute;
+    width: 320px;
+    height: 310px;
+    left: -30px;
+    top: 0px;
+}
+
+.bottomright {
+    position: absolute;
+    width: 330px;
+    height: 340px;
+    margin-left: 895px;
+    margin-top: 237px;
+    right: 0px;
+    bottom: 0px;
+}
+
+.memorie{
+    font-size: 13px;
+    position: absolute;
+    left: 140px;
+    top: 65px;
+}
+
+.foop {
+    position: absolute;
+    width: 230px;
+    height: 280px;
+    left: 140px;
+    top: 125px;
+}
+
+.log {
+    position: absolute;
+    width: 369px;
+    height: 340px;
+    left: 550px;
+    top: 80px;
+}
+
+.log1{
+    position: absolute;
+    width: 369px;
+    height: 340px;
+    left: 550px;
+    top: 75px;
+}
+
+.logaka {
+    display: flex;
+    margin-left: 545px;
+    margin-top: 10px;
+}
+
+.line {
+    width: 30px;
+    height: 0px;
+    margin-top: 27px;
+    margin-left: 30px;
+
+    /* SNS_サブ1 */
+
+    border: 1.5px solid #2FBFD3;
+    transform: rotate(90deg);
+}
+
+.loginTab {
+    font-size: 20px;
+    color: black;
+}
+
+.fontColor {
+    color: black;
+}
+
+.sinki {
+    font-size: 20px;
+    margin-left: 40px;
+    color: #A5A5A5;
+}
+
+.mail {
+    font-size: 16px;
+    letter-spacing: 0.1cm;
+}
+
+.email {
+    position: absolute;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    width: 100%;
+    margin-top: 16px;
+}
+
+.email1 {
+    position: absolute;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    width: 100%;
+    margin-top: 12px;
+}
+
+
+.text_underline{
+    position: relative; 
+    border-top: 1px solid #c2c2c2; 
+    margin-top: 10px;
+    margin-bottom: 22px;
+}
+
+.text_underline1{
+    position: relative; /*.text_underline::beforeの親要素*/
+    border-top: 1px solid #c2c2c2; /*text3の下線*/
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+
+
+.pass {
+    position: absolute;
+    font-family: 'Noto Sans JP';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 23px;
+    letter-spacing: 0.1cm;
+
+    /* SNS_メイン */
+
+    color: #222222;
+}
+
+.password {
+    position: absolute;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    width: 100%;
+    margin-top: 16px;
+}
+
+.password1 {
+    position: absolute;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    width: 100%;
+    margin-top: 12px;
+}
+
+.namae {
+    position: absolute;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    width: 100%;
+    margin-top: 12px;
+}
+
+.name {
+    letter-spacing: 0.05cm;
+}
+
+.buttonlog {
+    color: #208196;
+    background-color: white;
+    border: 1px solid #2FBFD3;
+    font-size: 20px;
+    line-height: 35px;
+    width: 240px;
+    height: 80px;
+    border-radius:50px;
+    letter-spacing: 0.1cm;
+    margin-bottom: 24px;
+}
+
+.buttonlog:hover {
+    background: linear-gradient(105.42deg, #2FBFD3 14.19%, #208196 78.21%);
+    color: white;
+}
+
+.buttonlog1 {
+    color: #208196;
+    background-color: white;
+    border: 1px solid #2FBFD3;
+    font-size: 20px;
+    line-height: 35px;
+    width: 240px;
+    height: 80px;
+    border-radius:50px;
+    letter-spacing: 0.1cm;
+    margin-bottom: 12px;
+}
+
+.buttonlog1:hover {
+    background: linear-gradient(105.42deg, #2FBFD3 14.19%, #208196 78.21%);
+    color: white;
+}
+
+.google {
+    color:#2FBFD3;
+    letter-spacing: 0.05cm;
+}
+
+.facebook {
+    color:#2FBFD3;
+    letter-spacing: 0.05cm;
+}
+
+.flame1 {
+    /* box-sizing: border-box; */
+    position: absolute;
+    width: 1100px;
+    height: 450px;
+    left: calc(50% - 1110px/2);
+    top: calc(50% - 445px/2);
+  
+    background: linear-gradient(180deg, #FAFAFA 0%, #FAFAFA 100%);
+    /* SNS_サブ1 */
+  
+    border: 3px solid #2FBFD3;
+    border-radius: 30px;
+
+    @media(min-height: 600px) {
+        height: 500px;
+        .log {
+            top: 120px;
+        }
+        .log1 {
+            top: 110px;
+        }
+        .logaka {
+            margin-top: 40px;
+        }
+        .memorie{
+            margin-top: 30px;
+        }
+        .foop {
+            margin-top: 30px;
+        }
+    }
+}

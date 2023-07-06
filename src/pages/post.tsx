@@ -11,7 +11,7 @@ import PostResult from '../components/postResult';
 
 export default function Post() {
     // 画像・画像パス・コメント定数
-    const [image, setImage] = useState<FileList>([])
+    const [image, setImage] = useState([])
     const [category, setCategory] = useState([])
     const [comment, setComment] = useState("")
     const [hashtag, setHashtag] = useState([])
@@ -20,7 +20,7 @@ export default function Post() {
     const [postData, setPostData] = useState({})
 
     // ユーザー情報
-    const [currentUser, setCurrentUser] = useState([])
+    const [currentUser, setCurrentUser]: any = useState([])
     // firebaseAuth関連
     const auth = getAuth()
 

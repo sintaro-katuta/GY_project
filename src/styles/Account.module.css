@@ -1,8 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&display=swap');
+
 .form {
     height: 350px;
 }
 
 .flame {
+    font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
     position: absolute;
     width: 100%;
     height: 100%;
@@ -29,7 +32,7 @@
     bottom: 0px;
 }
 
-.memorie{
+.memorie {
     font-size: 13px;
     position: absolute;
     left: 140px;
@@ -52,7 +55,7 @@
     top: 80px;
 }
 
-.log1{
+.log1 {
     position: absolute;
     width: 369px;
     height: 340px;
@@ -79,21 +82,24 @@
 }
 
 .loginTab {
+    cursor: pointer;
     font-size: 20px;
-    color: black;
+    color: #222222;
 }
 
 .fontColor {
-    color: black;
+    color: #222222;
 }
 
 .sinki {
+    cursor: pointer;
     font-size: 20px;
     margin-left: 40px;
     color: #A5A5A5;
 }
 
 .mail {
+    color: #222222;
     font-size: 16px;
     letter-spacing: 0.1cm;
 }
@@ -117,24 +123,26 @@
 }
 
 
-.text_underline{
-    position: relative; 
-    border-top: 1px solid #c2c2c2; 
+.text_underline {
+    position: relative;
+    border-top: 1px solid #c2c2c2;
     margin-top: 10px;
     margin-bottom: 22px;
 }
 
-.text_underline1{
-    position: relative; /*.text_underline::beforeの親要素*/
-    border-top: 1px solid #c2c2c2; /*text3の下線*/
+.text_underline1 {
+    position: relative;
+    /*.text_underline::beforeの親要素*/
+    border-top: 1px solid #c2c2c2;
+    /*text3の下線*/
     margin-top: 5px;
     margin-bottom: 15px;
 }
 
 
 .pass {
+    color: #222222;
     position: absolute;
-    font-family: 'Noto Sans JP';
     font-style: normal;
     font-weight: 300;
     font-size: 16px;
@@ -174,10 +182,12 @@
 }
 
 .name {
+    color: #222222;
     letter-spacing: 0.05cm;
 }
 
 .buttonlog {
+    font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
     color: #208196;
     background-color: white;
     border: 1px solid #2FBFD3;
@@ -185,9 +195,10 @@
     line-height: 35px;
     width: 240px;
     height: 80px;
-    border-radius:50px;
+    border-radius: 50px;
     letter-spacing: 0.1cm;
     margin-bottom: 24px;
+    cursor: pointer;
 }
 
 .buttonlog:hover {
@@ -196,6 +207,7 @@
 }
 
 .buttonlog1 {
+    font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
     color: #208196;
     background-color: white;
     border: 1px solid #2FBFD3;
@@ -203,9 +215,10 @@
     line-height: 35px;
     width: 240px;
     height: 80px;
-    border-radius:50px;
+    border-radius: 50px;
     letter-spacing: 0.1cm;
     margin-bottom: 12px;
+    cursor: pointer;
 }
 
 .buttonlog1:hover {
@@ -214,12 +227,13 @@
 }
 
 .google {
-    color:#2FBFD3;
+    color: #2FBFD3;
     letter-spacing: 0.05cm;
+    display: block;
 }
 
 .facebook {
-    color:#2FBFD3;
+    color: #2FBFD3;
     letter-spacing: 0.05cm;
 }
 
@@ -230,27 +244,33 @@
     height: 450px;
     left: calc(50% - 1110px/2);
     top: calc(50% - 445px/2);
-  
+
     background: linear-gradient(180deg, #FAFAFA 0%, #FAFAFA 100%);
     /* SNS_サブ1 */
-  
+
     border: 3px solid #2FBFD3;
     border-radius: 30px;
 
     @media(min-height: 600px) {
         height: 500px;
+
         .log {
             top: 120px;
         }
+
         .log1 {
             top: 110px;
         }
+
         .logaka {
             margin-top: 40px;
         }
-        .memorie{
+
+        .memorie {
+            color: #222222;
             margin-top: 30px;
         }
+
         .foop {
             margin-top: 30px;
         }

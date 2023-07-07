@@ -31,14 +31,14 @@ export default function Account() {
             if (changed === false) {
                 if (login && sinki) {
                     login.style.color = "#A5A5A5";
-                    sinki.style.color = "black";
+                    sinki.style.color = "#222222";
                 }
             }
         } else if (e.target.id == 'loginTab') {
             setTab(true)
             if (changed === false) {
                 if (login && sinki) {
-                    login.style.color = "black";
+                    login.style.color = "#222222";
                     sinki.style.color = "";
                 }
             }
@@ -69,7 +69,7 @@ export default function Account() {
                     displayName: name,
                 })
                 // ユーザー登録ができたかどうかをわかりやすくするためのアラート
-                router.push('/post');
+                router.push('/');
             })
             .catch((error) => {
                 console.log(error.code);
@@ -94,7 +94,7 @@ export default function Account() {
             .then((userCredential) => {
                 const user = userCredential.user;
                 // ログインができたかどうかをわかりやすくするためのアラート
-                router.push('/post');
+                router.push('/');
 
             })
             .catch((error) => {
@@ -175,7 +175,7 @@ export default function Account() {
             }
             const docref = doc(users, user.uid)
             await updateDoc(docref, userData)
-            router.push('/post');
+            router.push('/');
         }
     }
 
@@ -193,7 +193,7 @@ export default function Account() {
             <div className={styles.flame1}>
                 <h2 id="loginInfo" className={styles.memorie}>会員登録してみんなに思い出を共有しよう</h2>
                 <Image className={styles.foop}
-                    src={"/image/Group 89.png"}
+                    src={"/image/Group 89.svg"}
                     width={317} height={360} alt='foop'
                 />
                 <div className={styles.logaka}>
@@ -229,14 +229,13 @@ export default function Account() {
                             <div className={styles.text_underline1}></div>
 
                             <label htmlFor="name" className={styles.name}>名前</label><br></br>
-                            <input type="text" id="name" autoComplete="on" onChange={(e) => setName(e.target.value)} className={styles.namae} /><br></br>
+                            <input type="text" id="name" autoComplete="on" onChange={(e) => setName(e.target.value)} className={styles.namae} />
                             <div className={styles.text_underline1}></div>
 
                             <button onClick={(e: any) => doRegister(e)} className={styles.buttonlog1}>
                                 新規会員登録
                             </button>
-                            <br />
-                            <Link href={""} onClick={(e: any) => doGoogleLogin(e)} className={styles.google}>Googleでログインする</Link>< br />
+                            <Link href={""} onClick={(e: any) => doGoogleLogin(e)} className={styles.google}>Googleでログインする</Link>
                             <Link href={""} onClick={(e: any) => doFacebookLogin(e)} className={styles.facebook}>Facebookでログインする</Link>
                         </form>
                     </div>

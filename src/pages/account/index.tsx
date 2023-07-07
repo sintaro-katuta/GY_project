@@ -58,12 +58,13 @@ export default function Account() {
                 } else {
                     const users = collection(db, "users")
                     const usersData = {
-                        id: user.id,
+                        id: user.uid,
                         name: name,
                         email: email,
                         updated_at: serverTimestamp(),
                         created_at: serverTimestamp(),
                     }
+                    console.log("usersData", usersData)
                     addDoc(users, usersData)
                     updateProfile(user, {
                         displayName: name,

@@ -64,7 +64,6 @@ export default function Account() {
                         updated_at: serverTimestamp(),
                         created_at: serverTimestamp(),
                     }
-                    console.log("usersData", usersData)
                     addDoc(users, usersData)
                     updateProfile(user, {
                         displayName: name,

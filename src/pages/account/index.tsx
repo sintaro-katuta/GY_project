@@ -55,21 +55,22 @@ export default function Account() {
                 const user: any = userCredential.user;
                 if (user == null) {
                     alert("アカウント作成に失敗しました")
+                } else {
+                    const users = collection(db, "users")
+                    const usersData = {
+                        id: user.id,
+                        name: name,
+                        email: email,
+                        updated_at: serverTimestamp(),
+                        created_at: serverTimestamp(),
+                    }
+                    await addDoc(users, usersData)
+                    updateProfile(user, {
+                        displayName: name,
+                    })
+                    // ユーザー登録ができたかどうかをわかりやすくするためのアラート
+                    router.push('/');
                 }
-                const users = collection(db, "users")
-                const usersData = {
-                    id: user.id,
-                    name: name,
-                    email: email,
-                    updated_at: serverTimestamp(),
-                    created_at: serverTimestamp(),
-                }
-                await addDoc(users, usersData)
-                updateProfile(user, {
-                    displayName: name,
-                })
-                // ユーザー登録ができたかどうかをわかりやすくするためのアラート
-                router.push('/');
             })
             .catch((error) => {
                 console.log(error.code);
@@ -95,7 +96,6 @@ export default function Account() {
                 const user = userCredential.user;
                 // ログインができたかどうかをわかりやすくするためのアラート
                 router.push('/');
-
             })
             .catch((error) => {
                 if (error.code === 'auth/invalid-email') {

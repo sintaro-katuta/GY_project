@@ -64,7 +64,7 @@ export default function Account() {
                         updated_at: serverTimestamp(),
                         created_at: serverTimestamp(),
                     }
-                    await addDoc(users, usersData)
+                    addDoc(users, usersData)
                     updateProfile(user, {
                         displayName: name,
                     })

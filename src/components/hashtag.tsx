@@ -29,7 +29,7 @@ export default function Hashtag({ handleVisible, handleHashtag, handleOriginalHa
 
     const selectHashtag = (e: any) => {
         setErrorMessage("")
-        const newHashtag: any = [...hashtag]
+        const newHashtag: any = hashtag
         if (!e.target.value || e.target.value === '#') {
             e.target.checked = false
         }
@@ -48,6 +48,7 @@ export default function Hashtag({ handleVisible, handleHashtag, handleOriginalHa
                 newHashtag.pop()
             }
         }
+        console.log(newHashtag)
         setHashtag(newHashtag)
     }
 
@@ -56,9 +57,6 @@ export default function Hashtag({ handleVisible, handleHashtag, handleOriginalHa
         let originalHashtagElement: any = document.querySelector("#originalHashtag")
         let originalHashtagCheckboxElement: any = document.querySelector("#originalHashtagCheckbox")
         originalHashtagCheckboxElement.checked = false
-        const newHashtag = hashtag
-        newHashtag.pop()
-        console.log(newHashtag)
         let searchH: number = name.indexOf('#', 1)
         const searchZ: number = name.indexOf('＃', 1)
         if (name.startsWith('#')) {
@@ -100,6 +98,10 @@ export default function Hashtag({ handleVisible, handleHashtag, handleOriginalHa
                 <p className={styles.themeText}>最後に投稿するハッシュタグをつけましょう！</p>
                 <p className={styles.error}>{ErrorMessage}</p>
                 <form className={styles.checkboxForm}>
+                    <label className={styles.checkboxLabel}>
+                        <input type="checkbox" value={originalHashtag} onChange={(e) => selectHashtag(e)} className={styles.checkbox} id="originalHashtagCheckbox" />
+                        <input type="text" defaultValue={"#"} onChange={(e) => addOriginalHashtag(e.target.value)} className={styles.originalHashtag} id="originalHashtag" />
+                    </label>
                     {DBHashtag.map((element: any) => {
                         return (
                             <>
@@ -113,10 +115,6 @@ export default function Hashtag({ handleVisible, handleHashtag, handleOriginalHa
                             </>
                         )
                     })}
-                    <label className={styles.checkboxLabel}>
-                        <input type="checkbox" value={originalHashtag} onChange={(e) => selectHashtag(e)} className={styles.checkbox} id="originalHashtagCheckbox" />
-                        <input type="text" defaultValue={"#"} onChange={(e) => addOriginalHashtag(e.target.value)} className={styles.originalHashtag} id="originalHashtag" />
-                    </label>
                 </form>
                 <div className={styles.nextButtonDiv}>
                     <button className={styles.backButton} onClick={() => backButton()}><span className={styles.allow}>◀</span><span className={styles.nextButtonText}>１つ戻る</span></button>

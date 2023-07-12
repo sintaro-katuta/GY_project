@@ -1,7 +1,7 @@
 //* Firebase関連
 import { db } from '../../lib/firebase.config';
 import { getAuth } from "firebase/auth";
-import { collection, doc, setDoc, getDoc, getDocs, query, where, updateDoc, arrayRemove, arrayUnion } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs, query, where, orderBy, updateDoc, arrayRemove, arrayUnion } from "firebase/firestore";
 //* Headerコンポーネント
 import Header from "../../components/header";
 //* React Next関連
@@ -48,7 +48,8 @@ export default function Memories() {
         (async () => {
             //* 投稿取得
             const posts = collection(db, "posts")
-            const postsDocs = await getDocs(posts)
+            const q = query(posts, orderBy("created_at", "desc"));
+            const postsDocs = await getDocs(q)
             const newPostData: any[] = await postsDocs.docs.map((doc: any) => {
                 const item = doc.data()
                 item.id = doc.id
@@ -85,7 +86,7 @@ export default function Memories() {
 
     const hashtagFilter = async (hashtag: string) => {
         const posts = collection(db, "posts")
-        const q = await query(posts, where("hashtag", "array-contains-any", [hashtag]))
+        const q = await query(posts, where("hashtag", "array-contains-any", [hashtag]), orderBy("created_at", "desc"))
         const postsSnapShot = await getDocs(q)
         const newPostData = await postsSnapShot.docs.map((doc: any) => {
             if (doc.exists()) {
@@ -101,7 +102,8 @@ export default function Memories() {
         await updateDoc(postsDoc, {
             ["liked"]: arrayUnion(currentUser.uid)
         })
-        const postsDocs = await getDocs(posts)
+        const q = query(posts, orderBy("created_at", "desc"));
+        const postsDocs = await getDocs(q)
         const newPostData = await postsDocs.docs.map((doc: any) => {
             const item = doc.data()
             item.id = doc.id
@@ -128,7 +130,8 @@ export default function Memories() {
         await updateDoc(postsDoc, {
             ["liked"]: arrayRemove(currentUser.uid)
         })
-        const postsDocs = await getDocs(posts)
+        const q = query(posts, orderBy("created_at", "desc"));
+        const postsDocs = await getDocs(q)
         const newPostData = await postsDocs.docs.map((doc: any) => {
             const item = doc.data()
             item.id = doc.id
@@ -156,7 +159,7 @@ export default function Memories() {
         <>
             <Header />
             <div className={styles.wrap}>
-                <div>
+                <div className={styles.leftContent}>
                     <div className={styles.sidebar}>
                         <p className={styles.themeText}>ハッシュタグやカテゴリー別で絞りこめます。</p>
                         <div className={styles.categoryHashtag}>
@@ -187,7 +190,7 @@ export default function Memories() {
                         </div>
                     </div>
                 </div>
-                <div>
+                <div className={styles.rightContent}>
                     <p className={styles.themeText2}>IRでの思い出やクチコミを残してみよう！</p>
                     {postsData.map((post: any, i: number) => {
                         const created_at = dayjs(post.created_at.toDate())
@@ -208,7 +211,7 @@ export default function Memories() {
                                         </p>
                                     </div>
                                     <div>
-                                        <p className={styles.hashtag}>{post.hashtag}</p>
+                                        <p className={styles.hashtag} onClick={(e: any) => hashtagFilter(e.target.innerHTML)}>{post.hashtag}</p>
                                         <p className={styles.comment}>{post.comment}</p>
                                     </div>
                                     <div className={styles.footer}>

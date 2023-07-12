@@ -1,13 +1,12 @@
-import Header from "../components/header";
-import Link from "next/link";
+import { useEffect } from "react"
 import { useRouter } from "next/router";
-import Footer from "../components/footer";
 
 export default function Index() {
+    const router = useRouter()
+    useEffect(() => {
+        router.push("/memories")
+    })
     return (
-        <div>
-            <Header />
-            <Footer />
-        </div>
+        <></>
     )
 }

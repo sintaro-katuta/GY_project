@@ -4,6 +4,7 @@ import { serverTimestamp } from "firebase/firestore";
 import { useState, useEffect } from 'react'
 import styles from '../styles/Post.module.css'
 import Image from 'next/image';
+import { useRouter } from 'next/router'
 import Category from '../components/category'
 import SelectImage from '../components/selectImage'
 import Comment from '../components/comment'
@@ -24,6 +25,7 @@ export default function Post() {
     const [currentUser, setCurrentUser]: any = useState([])
     // firebaseAuth関連
     const auth = getAuth()
+    const router = useRouter()
 
     useEffect(() => {
         // ログイン状態をウォッチ
@@ -31,6 +33,8 @@ export default function Post() {
             if (user) {
                 // ユーザ情報を格納する
                 setCurrentUser(user)
+            } else {
+                router.push("/account")
             }
             unsubscribe()
         })

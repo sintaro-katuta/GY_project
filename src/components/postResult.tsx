@@ -13,6 +13,7 @@ import animationData from '../public/image/crucker.json'
 export default function PostResult({ handleVisible, postData, originalHashtag }: any) {
 
     const [visible, setVisible] = useState(false)
+    const [loaded, setLoaded] = useState(false)
     const router = useRouter()
 
     const backButton = () => {
@@ -21,6 +22,7 @@ export default function PostResult({ handleVisible, postData, originalHashtag }:
     }
 
     const nextButton = async () => {
+        setLoaded(true)
         let newPostData: any = postData
         for (let i = 0; i < postData.image.length; i++) {
             const result = await postImage(postData.image[i])
@@ -99,6 +101,14 @@ export default function PostResult({ handleVisible, postData, originalHashtag }:
                     <div className={styles.checkImage}>
                         <Image src={"/image/Group 133.svg"} alt="チェック" width={846} height={51} />
                     </div>
+                    {loaded
+                        ?
+                        <div className={styles.loading}>
+                            <div className={styles.loading_circle}></div>
+                        </div>
+                        :
+                        <div></div>
+                    }
                     <div className={styles.category_hashtag_comment}>
                         <div className={styles.category_hashtag}>
                             <div className={styles.categoryDiv}>

@@ -3,7 +3,6 @@ import { db } from '../../lib/firebase.config';
 import { getAuth } from "firebase/auth";
 import { collection, doc, setDoc, getDoc, serverTimestamp, updateDoc, arrayUnion } from "firebase/firestore";
 //* React Next関連
-import type { NextPage } from 'next'
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
@@ -15,7 +14,7 @@ import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
 import ja from 'dayjs/locale/ja';
 
-export default function Post(): NextPage {
+export default function Post() {
     const router = useRouter();
     const auth = getAuth()
     // *dayjsの詳細設定
@@ -27,8 +26,6 @@ export default function Post(): NextPage {
     const [post, setPost]: any = useState({})
     const [comment, setComment]: any = useState("")
     const [currentUser, setCurrentUser]: any = useState([])
-    const [imageList, setImageList]: any = useState([])
-    const [created_at, setCreated_at]: any = useState("")
 
     useEffect(() => {
         // ログイン状態をウォッチ
@@ -41,7 +38,7 @@ export default function Post(): NextPage {
             }
             unsubscribe()
         })
-    }, [auth])
+    }, [auth, router])
 
     useEffect(() => {
         (async () => {
@@ -53,7 +50,7 @@ export default function Post(): NextPage {
             console.log(newPostData)
             setPost(newPostData)
         })()
-    }, [])
+    }, [router.query])
 
     const addComment = async (e: any) => {
         e.preventDefault()
@@ -83,25 +80,25 @@ export default function Post(): NextPage {
                     <p className={styles.hashtag}>{post.hashtag}</p>
                 </div>
                 <div className={styles.headerImage}>
-                    {post.image && post.image.map((image: any) => {
+                    {post.image && post.image.map((image: any, i: number) => {
                         if (image.includes('.png') || image.includes('.jpg') || image.includes('.jpeg')) {
-                            return (<Image src={image} width={100} height={100} alt="投稿画像" />)
+                            return (<Image src={image} width={100} height={100} alt="投稿画像" key={i} />)
                         } else {
-                            return (<video src={image} width={100} height={100} alt="投稿動画" />)
+                            return (<video src={image} width="100" height="100" key={i} />)
                         }
                     })}
                 </div>
             </div>
-            <div className={styles.headerTitle}><button onClick={() => router.push("/memories")} className={styles.backButton}><Image src={'/image/arrow.svg'} width={15} height={15} /></button><div>{post.user}</div><div>/</div><div>{post.created_at && dayjs(post.created_at.toDate()).format('YYYY.MM.DD HH:mm')}</div><div>/</div>{post.category && post.category.map((category: any) => { return (<div className={styles.categoryText}><div>{category}</div><div>/</div></div>) })}</div>
+            <div className={styles.headerTitle}><button onClick={() => router.push("/memories")} className={styles.backButton}><Image src={'/image/arrow.svg'} width={15} height={15} alt="アカウントアイコン" /></button><div>{post.user}</div><div>/</div><div>{post.created_at && dayjs(post.created_at.toDate()).format('YYYY.MM.DD HH:mm')}</div><div>/</div>{post.category && post.category.map((category: any, i: number) => { return (<div className={styles.categoryText} key={i}><div>{category}</div><div>/</div></div>) })}</div>
             <div className={styles.comment}>
                 <form onSubmit={(e) => addComment(e)} className={styles.form}>
                     <input type="text" id="comment" placeholder="コメント" value={comment} className={styles.commentField} onChange={(e) => setComment(e.target.value)} />
-                    <Image src={"/image/send_icon.svg"} width={20} height={20} onClick={(e: any) => addComment(e)} className={styles.icon} />
+                    <Image src={"/image/send_icon.svg"} width={20} height={20} alt="送信アイコン" onClick={(e: any) => addComment(e)} className={styles.icon} />
                 </form>
                 <div className={styles.commentParent}>
-                    {post.comments && post.comments.map((comment: any) => {
+                    {post.comments && post.comments.map((comment: any, i: number) => {
                         return (
-                            <p className={styles.commentText}><div className={styles.userName}><Image src={"/image/acount.svg"} width={15} height={15} />{comment.user} {dayjs(comment.created_at.toDate()).format('YYYY.MM.DD HH:mm')} </div><br /><div className={styles.commentSpan}>{comment.comment}</div></p>
+                            <p key={i} className={styles.commentText}><div className={styles.userName}><Image src={"/image/acount.svg"} width={15} height={15} alt="アカウントアイコン" />{comment.user} {dayjs(comment.created_at.toDate()).format('YYYY.MM.DD HH:mm')} </div><br /><div className={styles.commentSpan}>{comment.comment}</div></p>
                         )
                     })}
                 </div>

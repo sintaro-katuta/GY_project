@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -21,16 +20,12 @@
     <meta property="og:type" content="website">
     <link rel="shortcut icon" href="http://www.hoge.hoge/favicon.ico" type="image/vnd.microsoft.icon">
     <link rel="apple-touch-icon" href="http://www.hoge.hoge/logo.png">
-    <title></title>
+    <title>統合型総合施設(IR)大阪</title>
     <link href="https://fonts.googleapis.com/css?family=M+PLUS+1" rel="stylesheet">
     <link rel="stylesheet" href="css/ress.css">
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.4.1/css/glide.core.min.css"> -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
-    <link rel="stylesheet" type="text/css"
-        href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
     <link rel="stylesheet" href="./css/index.css">
 </head>
-
 <body>
     <header>
         <nav class="headerNav">
@@ -84,14 +79,11 @@
                 <li><a href="#">ニュース</a></li>
                 <li><a href="#">クーポン</a></li>
                 <li><a href="#">宿泊</a></li>
-                <li><a href="./gambling.html">カジノ</a></li>
+                <li><a href="#">カジノ</a></li>
             </ul>
         </div>
         <div class="motionDesignWrap">
-            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/06PTq_3GOrY"
-                title="YouTube video player" frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen></iframe>
+            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/06PTq_3GOrY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
         <div class="banaWrap"></div>
         <p class="kuchikomi">実際のクチコミ</p>
@@ -112,32 +104,45 @@
                     <li><a href="#"><img src="img/review3.png" alt=""></a></li>
                 </ul>
             </div>
-        </div>
+        </div> 
         <div class="iventWrap">
             <h3>SPECIAL FEATURE EVENT</h3>
             <p>特集・イベント</p>
-            <ul class="slide-items">
+            <!-- <ul class="slide-items">
                 <li><img src="img/ivent1.jpeg" alt="" class="slideImg active"></li>
                 <li><img src="img/ivent2.jpeg" alt="" class="slideImg"></li>
                 <li><img src="img/ivent1.jpeg" alt="" class="slideImg"></li>
-                <li><img src="img/ivent2.jpeg" alt="" class="slideImg"></li>
-                <li>
-                    <div class="dame"></div>
-                </li>
-            </ul>
+                <li><img src="img/ivent2.jpeg" alt="" class="slideImg"></li> 
+                <li><div class="dame"></div></li>
+            </ul> -->
+            <div class="swiper mySwiper">
+                <div class="container swiper-wrapper">
+                    <img src="img/ivent1.jpeg" class="imgBox swiper-slide">
+                    <img src="img/ivent2.jpeg" class="imgBox swiper-slide">
+                    <img src="img/ivent1.jpeg" class="imgBox swiper-slide">
+                    <img src="img/ivent2.jpeg" class="imgBox swiper-slide">
+                </div>
+            </div>
+        
         </div>
         <div class="couponWrap">
             <h3>COUPON</h3>
             <p>クーポン</p>
-            <ul class="couponSlideItems">
+            <!-- <ul class="couponSlideItems">
                 <li><img src="img/coupon1.png" alt="" class="couponSlideImg active"></li>
                 <li><img src="img/coupon2.png" alt="" class="couponSlideImg"></li>
                 <li><img src="img/coupon3.png" alt="" class="couponSlideImg"></li>
-                <li><img src="img/coupon4.png" alt="" class="couponSlideImg"></li>
-                <li>
-                    <div class="dame"></div>
-                </li>
-            </ul>
+                <li><img src="img/coupon4.png" alt="" class="couponSlideImg"></li> 
+                <li><div class="dame"></div></li>
+            </ul> -->
+            <div class="swiper mySwiper">
+                <div class="container swiper-wrapper">
+                    <img src="img/coupon1.png" class="imgBox swiper-slide">
+                    <img src="img/coupon2.png" class="imgBox swiper-slide">
+                    <img src="img/coupon3.png" class="imgBox swiper-slide">
+                    <img src="img/coupon4.png" class="imgBox swiper-slide">
+                </div>
+            </div>
         </div>
         <div class="newsWrap">
             <h3>NEWS</h3>
@@ -194,8 +199,6 @@
         </div>
     </footer>
 
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.4.1/glide.min.js"></script> -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
     <script src="js/index.js"></script>
 </body>

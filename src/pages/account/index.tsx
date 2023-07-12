@@ -33,7 +33,7 @@ export default function Account() {
             }
             unsubscribe()
         })
-    }, [auth])
+    }, [auth, router])
 
     if (typeof window === 'object') {
         login = document.querySelector("#loginTab")

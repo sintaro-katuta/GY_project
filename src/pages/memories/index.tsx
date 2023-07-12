@@ -23,11 +23,11 @@ export default function Memories() {
     dayjs.extend(timezone);
     dayjs.tz.setDefault("Asia/Tokyo");
 
-    const [postsData, setPostsData] = useState([])
-    const [selectCategory, setSelectCategory] = useState("ショップ")
-    const [hashtags, setHashtags] = useState([])
-    const [allHashtags, setAllHashtags] = useState({})
-    const [likeList, setLikeList] = useState([])
+    const [postsData, setPostsData]: any = useState([])
+    const [selectCategory, setSelectCategory]: any = useState("ショップ")
+    const [hashtags, setHashtags]: any = useState([])
+    const [allHashtags, setAllHashtags]: any = useState({})
+    const [likeList, setLikeList]: any = useState([])
     // ユーザー情報
     const [currentUser, setCurrentUser]: any = useState([])
     // firebaseAuth関連
@@ -42,28 +42,25 @@ export default function Memories() {
             }
             unsubscribe()
         })
-    }, [])
+    }, [auth])
 
     useEffect(() => {
         (async () => {
             //* 投稿取得
             const posts = collection(db, "posts")
             const postsDocs = await getDocs(posts)
-            const newPostData = await postsDocs.docs.map((doc: any) => {
+            const newPostData: any[] = await postsDocs.docs.map((doc: any) => {
                 const item = doc.data()
                 item.id = doc.id
                 return item
             })
             //* ログインユーザがいいねしているかチェック
             let newLikeList: any = []
-            await newPostData.forEach((element: any, i: number) => {
-                element.liked.forEach((e: any) => {
-                    console.log(e)
-                    if (e == currentUser.uid) {
-                        //! いいね済み
-                        newLikeList[i] = true
-                    }
-                });
+            function checkString(array: any, uid: string) {
+                return array.includes(uid);
+            }
+            await newPostData.forEach((element: any) => {
+                newLikeList.push(checkString(element.liked, currentUser.uid))
             });
             setPostsData(newPostData)
             setLikeList(newLikeList)
@@ -157,7 +154,7 @@ export default function Memories() {
 
     return (
         <>
-            <Header className={styles.headerComponet} />
+            <Header />
             <div className={styles.wrap}>
                 <div>
                     <div className={styles.sidebar}>
@@ -167,14 +164,13 @@ export default function Memories() {
                             <div className={styles.hashtags}>
                                 {hashtags.map((hashtag: any, i: number) => {
                                     return (
-                                        <small key={i} className={styles.hashtag} onClick={(e) => hashtagFilter(e.target.innerHTML)}>{hashtag}</small>
+                                        <small key={i} className={styles.hashtag} onClick={(e: any) => hashtagFilter(e.target.innerHTML)}>{hashtag}</small>
                                     )
                                 })}
                             </div>
                         </div>
                         <div className={styles.category} onClick={() => setSelectCategory("ショップ")}>
                             <p className={styles.categoryText}>ショップ</p>
-
                             {allHashtags["ショップ"] && <div>(全{allHashtags["ショップ"].length}件)</div>}
                         </div>
                         <div className={styles.category} onClick={() => setSelectCategory("グルメ")}>
@@ -196,7 +192,7 @@ export default function Memories() {
                     {postsData.map((post: any, i: number) => {
                         const created_at = dayjs(post.created_at.toDate())
                         return (
-                            <div className={styles.flame}>
+                            <div className={styles.flame} key={i}>
                                 <div className={styles.contents}>
                                     <div className={styles.header}>
                                         <p className={styles.headerContent}>{post.user}</p>

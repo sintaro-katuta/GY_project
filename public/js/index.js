@@ -61,76 +61,88 @@ let slideNum = 0
 // });
 
 
-slideEle.addEventListener("scroll",()=>{
-    console.log(slideEle.scrollLeft);
-    if(slideEle.scrollLeft <= 200){
-        if(slideImg[0].classList.contains("active")){
-        }else{
-            slideImg[0].classList.add("active")
-            slideImg[1].classList.remove("active")
-            slideImg[2].classList.remove("active")
-            slideImg[3].classList.remove("active")
-        }
-    }else if(slideEle.scrollLeft > 200 && slideEle.scrollLeft <= 450){
-        if(slideImg[1].classList.contains("active")){
-        }else{
-            slideImg[1].classList.add("active")
-            slideImg[0].classList.remove("active")
-            slideImg[2].classList.remove("active")
-            slideImg[3].classList.remove("active")
-        }
-    }else if(slideEle.scrollLeft > 450 && slideEle.scrollLeft <= 700){
-        if(slideImg[2].classList.contains("active")){
-        }else{
-            slideImg[2].classList.add("active")
-            slideImg[0].classList.remove("active")
-            slideImg[1].classList.remove("active")
-            slideImg[3].classList.remove("active")
-        }
-    }else{
-        if(slideImg[3].classList.contains("active")){
-        }else{
-            slideImg[3].classList.add("active")
-            slideImg[0].classList.remove("active")
-            slideImg[1].classList.remove("active")
-            slideImg[2].classList.remove("active")
-        }
-    }
-})
+// slideEle.addEventListener("scroll",()=>{
+//     console.log(slideEle.scrollLeft);
+//     if(slideEle.scrollLeft <= 200){
+//         if(slideImg[0].classList.contains("active")){
+//         }else{
+//             slideImg[0].classList.add("active")
+//             slideImg[1].classList.remove("active")
+//             slideImg[2].classList.remove("active")
+//             slideImg[3].classList.remove("active")
+//         }
+//     }else if(slideEle.scrollLeft > 200 && slideEle.scrollLeft <= 450){
+//         if(slideImg[1].classList.contains("active")){
+//         }else{
+//             slideImg[1].classList.add("active")
+//             slideImg[0].classList.remove("active")
+//             slideImg[2].classList.remove("active")
+//             slideImg[3].classList.remove("active")
+//         }
+//     }else if(slideEle.scrollLeft > 450 && slideEle.scrollLeft <= 700){
+//         if(slideImg[2].classList.contains("active")){
+//         }else{
+//             slideImg[2].classList.add("active")
+//             slideImg[0].classList.remove("active")
+//             slideImg[1].classList.remove("active")
+//             slideImg[3].classList.remove("active")
+//         }
+//     }else{
+//         if(slideImg[3].classList.contains("active")){
+//         }else{
+//             slideImg[3].classList.add("active")
+//             slideImg[0].classList.remove("active")
+//             slideImg[1].classList.remove("active")
+//             slideImg[2].classList.remove("active")
+//         }
+//     }
+// })
 
-couponSlideItems.addEventListener("scroll",()=>{
-    console.log(couponSlideItems.scrollLeft);
-    if(couponSlideItems.scrollLeft <= 200){
-        if(couponSlideImg[0].classList.contains("active")){
-        }else{
-            couponSlideImg[0].classList.add("active")
-            couponSlideImg[1].classList.remove("active")
-            couponSlideImg[2].classList.remove("active")
-            couponSlideImg[3].classList.remove("active")
-        }
-    }else if(couponSlideItems.scrollLeft > 200 && couponSlideItems.scrollLeft <= 450){
-        if(couponSlideImg[1].classList.contains("active")){
-        }else{
-            couponSlideImg[1].classList.add("active")
-            couponSlideImg[0].classList.remove("active")
-            couponSlideImg[2].classList.remove("active")
-            couponSlideImg[3].classList.remove("active")
-        }
-    }else if(couponSlideItems.scrollLeft > 450 && couponSlideItems.scrollLeft <= 700){
-        if(couponSlideImg[2].classList.contains("active")){
-        }else{
-            couponSlideImg[2].classList.add("active")
-            couponSlideImg[0].classList.remove("active")
-            couponSlideImg[1].classList.remove("active")
-            couponSlideImg[3].classList.remove("active")
-        }
-    }else{
-        if(couponSlideImg[3].classList.contains("active")){
-        }else{
-            couponSlideImg[3].classList.add("active")
-            couponSlideImg[0].classList.remove("active")
-            couponSlideImg[1].classList.remove("active")
-            couponSlideImg[2].classList.remove("active")
-        }
-    }
-})
+
+
+// couponSlideItems.addEventListener("scroll",()=>{
+//     console.log(couponSlideItems.scrollLeft);
+//     if(couponSlideItems.scrollLeft <= 200){
+//         if(couponSlideImg[0].classList.contains("active")){
+//         }else{
+//             couponSlideImg[0].classList.add("active")
+//             couponSlideImg[1].classList.remove("active")
+//             couponSlideImg[2].classList.remove("active")
+//             couponSlideImg[3].classList.remove("active")
+//         }
+//     }else if(couponSlideItems.scrollLeft > 200 && couponSlideItems.scrollLeft <= 450){
+//         if(couponSlideImg[1].classList.contains("active")){
+//         }else{
+//             couponSlideImg[1].classList.add("active")
+//             couponSlideImg[0].classList.remove("active")
+//             couponSlideImg[2].classList.remove("active")
+//             couponSlideImg[3].classList.remove("active")
+//         }
+//     }else if(couponSlideItems.scrollLeft > 450 && couponSlideItems.scrollLeft <= 700){
+//         if(couponSlideImg[2].classList.contains("active")){
+//         }else{
+//             couponSlideImg[2].classList.add("active")
+//             couponSlideImg[0].classList.remove("active")
+//             couponSlideImg[1].classList.remove("active")
+//             couponSlideImg[3].classList.remove("active")
+//         }
+//     }else{
+//         if(couponSlideImg[3].classList.contains("active")){
+//         }else{
+//             couponSlideImg[3].classList.add("active")
+//             couponSlideImg[0].classList.remove("active")
+//             couponSlideImg[1].classList.remove("active")
+//             couponSlideImg[2].classList.remove("active")
+//         }
+//     }
+// })
+
+const swiper = new Swiper(".mySwiper", {
+    loop: true,
+    slidesPerView: 3.3,
+    spaceBetween: 30,
+    speed:700,
+    autoplay: { // スライドの自動再生
+        delay: 3500, // スライド間の遷移の遅延を設定 (ミリ秒設定） 1000ミリ秒=1秒
+    },
+});

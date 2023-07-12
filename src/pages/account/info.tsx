@@ -26,7 +26,7 @@ export default function Info() {
             }
             unsubscribe()
         })
-    }, [auth])
+    }, [auth, router])
 
     useEffect(() => {
         (async () => {

@@ -60,6 +60,10 @@
     left: 125%;
   }
 }
+h3 {
+  color: #D2B970;
+}
+
 .firstViewWrap {
   padding-top: 70px;
   width: 100vw;
@@ -376,6 +380,47 @@
 .iventWrap .slide-items li .dame {
   width: 570px;
   height: 200px;
+}
+
+.swiper {
+  width: 1000px;
+  height: 300px;
+}
+
+.swiper-wrapper .swiper-slide {
+  transform-origin: top center;
+  width: 235px;
+  height: 200px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  transition: transform 0.4s;
+  transition: 0.7s;
+  cursor: pointer;
+}
+
+.swiper-wrapper .swiper-slide img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  transition: 0.7s;
+}
+
+.swiper-slide.swiper-slide-active {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 405px;
+  height: 260px;
+  transition: 0.7s;
+  cursor: pointer;
+}
+
+.swiper-slide.swiper-slide-active img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  transition: 0.7s;
 }
 
 .couponWrap {

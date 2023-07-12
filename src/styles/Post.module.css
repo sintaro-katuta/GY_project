@@ -1,0 +1,434 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&display=swap');
+
+.container {
+    font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+}
+
+.error {
+    color: #FF0000;
+    margin: 0;
+    height: 40px;
+    font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+}
+
+.flame {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    top: 0px;
+    background: #DEEBEE;
+}
+
+.flame1 {
+    /* box-sizing: border-box; */
+    position: absolute;
+    width: 1100px;
+    height: 530px;
+    left: calc(50% - 1110px/2);
+    top: calc(50% - 530px/2);
+    z-index: 999;
+
+    background: linear-gradient(180deg, #FAFAFA 0%, #FAFAFA 100%);
+    /* SNS_サブ1 */
+
+    border: 3px solid #2FBFD3;
+    border-radius: 30px;
+
+    @media(min-height: 600px) {
+        height: 500px;
+
+        .log {
+            top: 120px;
+        }
+
+        .log1 {
+            top: 110px;
+        }
+
+        .logaka {
+            margin-top: 40px;
+        }
+
+        .memorie {
+            margin-top: 30px;
+        }
+
+        .foop {
+            margin-top: 30px;
+        }
+    }
+}
+
+.topleft {
+    position: absolute;
+    width: 320px;
+    height: 310px;
+    left: -30px;
+    top: 0px;
+    z-index: 1;
+}
+
+.bottomright {
+    position: absolute;
+    width: 330px;
+    height: 340px;
+    margin-left: 895px;
+    margin-top: 237px;
+    right: 0px;
+    bottom: 0px;
+    z-index: 1;
+}
+
+.layer {
+    background: rgba(0, 0, 0, .2);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.layerOpen {
+    background: rgba(0, 0, 0, .2);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    /* 追記 */
+    z-index: -1;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.modal {
+    position: relative;
+    margin-right: auto;
+    margin-left: auto;
+    width: 80%;
+    min-width: 440px;
+}
+
+.modalOpen {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal__inner {
+    margin-top: 125px;
+    margin-bottom: 125px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    background: #fff;
+    box-shadow: 3px 4px 4px rgba(0, 0, 0, 0.25);
+    /* モーダルにシャドウをかける */
+    border-radius: 13px;
+    /* モーダルの角を丸める */
+    display: block;
+    padding: 21px 8px 21px;
+    height: auto;
+}
+
+.modal__content {
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 23px;
+}
+
+.checkImage {
+    text-align: center;
+}
+
+.themeText {
+    text-align: left;
+    margin: 0;
+    margin-top: 0;
+    margin-left: 12%;
+}
+
+.themeTextComment {
+    padding: 0;
+    margin: 0;
+    text-align: left;
+    margin-left: 24%;
+}
+
+.bodyDiv {
+    width: 80%;
+    height: 35%;
+    margin: 3% 0 0 10%;
+    text-align: center;
+}
+
+.themeButton {
+    font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    font-size: 18px;
+    width: 128px;
+    height: 128px;
+    margin: 2%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+    border: 0px;
+    border-radius: 4%;
+    cursor: pointer;
+    letter-spacing: 0.05em;
+}
+
+.themeButtonOn {
+    font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    font-size: 18px;
+    width: 128px;
+    height: 128px;
+    margin: 2%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+    border: 0px;
+    border-radius: 4%;
+    background-color: #FFFBE7;
+    cursor: pointer;
+    letter-spacing: 0.05em;
+}
+
+.nextButtonDiv {
+    text-align: center;
+}
+
+.nextButtonText {
+    font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    padding-right: 10%;
+    padding-left: 10%;
+    letter-spacing: 0.05em;
+    text-align: center;
+}
+
+.nextButton {
+    font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    width: 224px;
+    height: 70px;
+    background-color: #fff;
+    color: #207C96;
+    border: 1px solid #207C96;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 18px;
+    margin-left: 10px;
+}
+
+.backButton {
+    width: 224px;
+    height: 70px;
+    background-color: #fff;
+    color: #207C96;
+    border: 1px solid #207C96;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 18px;
+    margin-left: 20px;
+    margin-right: 10px;
+}
+
+.allow {
+    left: 5%;
+    color: #207C96;
+    font-size: 18px;
+}
+
+.image {
+    width: 184px;
+    height: 184px;
+    background-color: #EFEFEF;
+    border: 0px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.imageResult {
+    width: 154px;
+    height: 154px;
+    background-color: #EFEFEF;
+    border: 0px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.imageDiv {
+    display: flex;
+    justify-content: left;
+    padding-left: 6%;
+    padding-top: 35px;
+    padding-bottom: 20px;
+}
+
+.imageLabel {
+    width: 48px;
+    height: 48px;
+    top: 50%;
+    left: 48%;
+    position: absolute;
+    background-image: url('/image/Vector.png');
+    cursor: pointer;
+    z-index: 999;
+}
+
+.imageFile {
+    display: none;
+}
+
+.close {
+    width: 32px;
+    height: 32px;
+    color: #FAFAFA;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    -webkit-text-stroke: 1px #222;
+    z-index: 999;
+}
+
+.textarea {
+    width: 492px;
+    height: 192px;
+    resize: none;
+    font-size: 18px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.checkboxForm {
+    flex-wrap: wrap;
+    margin: auto;
+    margin-left: 8%;
+    display: flex;
+    overflow: scroll;
+}
+
+.checkboxForm::-webkit-scrollbar {
+    display: none;
+}
+
+.checkboxLabel {
+    border-radius: 25px;
+    border: 1px solid #207C96;
+    padding: 14px 20px;
+    margin-right: 30px;
+    margin-left: 30px;
+    margin-bottom: 40px;
+    cursor: pointer;
+}
+
+.checkbox {
+    accent-color: #207C96;
+}
+
+.originalHashtag {
+    font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    background-color: #fafafa;
+    border: none;
+    outline: none;
+    width: 80px;
+    font-size: 15px;
+}
+
+.category_hashtag_comment {
+    display: flex;
+}
+
+.category_hashtag {
+    width: 80%;
+}
+
+.comment {
+    width: 80%;
+}
+
+.category {
+    margin: 0;
+}
+
+.resultText {
+    background-color: #EFEFEF;
+    margin: 0;
+    margin-right: 20px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    font-size: 20px;
+    text-align: center;
+}
+
+.resultTextComment {
+    background-color: #EFEFEF;
+    margin: 0;
+    width: 80%;
+    height: 84%;
+}
+
+.categoryDiv {
+    margin-bottom: 10px;
+    margin-left: 20%;
+    margin-top: 0;
+}
+
+.hashtagDiv {
+    margin-left: 20%;
+    margin-top: 0;
+}
+
+.resultImageDiv {
+    margin-top: 0;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.resultImage {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.resultImageText {
+    margin: 0;
+    padding: 0;
+}
+
+.resultDivImage {
+    width: 154px;
+    height: 154px;
+    padding-right: 18px;
+}
+
+.resultChange {
+    color: #0A41D0;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.success {
+    font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    position: absolute;
+    margin: 0;
+    top: 43%;
+    left: 42dvw;
+    text-align: center;
+    font-size: 18px;
+}
+
+.successButton {
+    width: 224px;
+    height: 70px;
+    font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    background-color: #fff;
+    color: #207C96;
+    border: 1px solid #207C96;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 18px;
+    position: absolute;
+    top: 50%;
+    left: 40dvw;
+}

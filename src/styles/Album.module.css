@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&display=swap');
+
+.p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgba(32, 129, 150, 1);
+    background-color: white;
+    border: 1px solid rgba(32, 129, 150, 1);
+    width: 200px;
+    height: 70px;
+    font-size: 18px;
+    font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    cursor: pointer
+}
+
+.p:hover {
+    background-image: linear-gradient(135deg, rgba(47, 191, 211, 1), rgba(32, 129, 150, 1));
+    color: white;
+
+}
+
+.atitle {
+    padding: 64px 0px 24px 10%;
+    font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    font-size: 14px;
+}
+
+.abution {
+    display: flex;
+    justify-content: center;
+}
+
+.album {
+    display: flex;
+    justify-content: left;
+    flex-wrap: wrap;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.albumImage {
+    width: 235px;
+    height: 235px;
+    margin-left: 21px;
+    margin-bottom: 21px;
+}
+
+
+.play {
+    text-align: center;
+    position: relative;
+    font-size: 20px;
+    padding: 10px;
+}

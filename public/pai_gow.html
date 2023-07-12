@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="./css/gambleling.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="./images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16x16.png">
+    <link rel="manifest" href="./images/site.webmanifest">
+    <link rel="mask-icon" href="./images/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <title>IR|カジノ|牌九</title>
+</head>
+<style>
+    table {
+        border-collapse: collapse;
+    }
+
+    table,
+    th,
+    td {
+        border: 1px solid #000;
+    }
+</style>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="gambling.html">ホーム</a></li>
+                <li><a href="gambling.html">ホーム</a></li>
+                <li><a href="bakara.html">バカラ</a></li>
+                <li><a href="blackjack.html">ブラックジャック(ポントゥーン、21)</a></li>
+                <li><a href="poker.html">ポーカー</a></li>
+                <li><a href="roulette.html">ルーレット</a></li>
+                <li><a href="sic-bo.html">大小(シックボー)</a></li>
+                <li><a href="craps.html">クラップス</a></li>
+                <li><a href="kajinowar.html">カジノウォー</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div>
+        <h1>牌九(パイゴウ、パイガオ)とは</h1>
+        <p>
+            牌九牌（天九牌）を用いた、主に中華圏で行われているゲームである。<br>
+            米国ではパイ・ゴウ・ポーカーと区別するため「pai gow tiles」とも呼ばれる。<br>
+            一部のカジノへも導入されている。
+        </p>
+        <h1>基本ルール</h1>
+        <p>
+            サイコロを二つ並べたようなデザインを持つ、21種32枚の牌から構成される。1と4の目が赤いのが特徴である。<br>
+        <h4>文牌</h4>
+        全32牌中、11種はまったく同じ模様をもつ牌が2枚ずつある（合計22枚）。これを文牌もしくは文子と呼ぶ。<br>
+        <table>
+            <tr>
+                <th>牌</th>
+                <th>名称</th>
+                <th>英語(English)</th>
+                <th>数</th>
+                <th>紹介</th>
+            </tr>
+            <tr>
+                <th><img src="./images/パオガオ01.png"></th>
+                <th>天牌<br>(てんぱい)</th>
+                <th>Teen(ティーン)</th>
+                <th>12</th>
+                <th>紅6点、白6点。<br>天を象徴する二十四節気をあらわす。文牌でもっとも位が高い。</th>
+            </tr>
+            <tr>
+                <th><img src="./images/パオガオ02.png"></th>
+                <th>地牌<br>(じぱい)</th>
+                <th>Day(デイ)</th>
+                <th>2</th>
+                <th>紅2点。<br>大地の東南西北4方位を象徵する。</th>
+            </tr>
+            <tr>
+                <th><img src="./images/パオガオ03.png"></th>
+                <th>人牌<br>(にんぱい)</th>
+                <th>High 8</th>
+                <th>8</th>
+                <th>紅8点。<br>仁義忠信など人の道徳を象徵する。</th>
+            </tr>
+            <tr>
+                <th><img src="./images/パオガオ04.png"></th>
+                <th>和牌、鵝牌<br>(わぱい、がはい)</th>
+                <th>High 4</th>
+                <th>4</th>
+                <th>紅1点、白3点。<br>八節（春節、元宵、清明、端午、中元、中秋、重陽、冬至）を象徵する。</th>
+            </tr>
+            <tr>
+                <th><img src="./images/パオガオ05.png"></th>
+                <th>梅花、梅牌<br>(ばいか、ばいはい)</th>
+                <th>High 10</th>
+                <th>10</th>
+                <th>白10点。<br>梅の花を象徵する。</th>
+            </tr>
+            <tr>
+                <th><img src="./images/パオガオ06.png"></th>
+                <th>長三、長牌、長衫<br>(ちょうさん、ちょうはい、ちょうしゃん)</th>
+                <th>High 6</th>
+                <th>6</th>
+                <th>白6点。</th>
+            </tr>
+            <tr>
+                <th><img src="./images/パオガオ07.png"></th>
+                <th>板、板凳<br>(ばん、ばんてん)</th>
+                <th>Low 4</th>
+                <th>4</th>
+                <th>白4点。<br>（背もたれがない）板製の腰掛けに似ていることから</th>
+            </tr>
+            <tr>
+                <th><img src="./images/パオガオ08.png"></th>
+                <th>斧頭、虎頭<br>(ふとう、ことう)</th>
+                <th>11</th>
+                <th>11</th>
+                <th>白11点。</th>
+            </tr>
+            <tr>
+                <th><img src="./images/パオガオ09.png"></th>
+                <th>紅頭、四六、屏風<br>(こうとう、しろく、びょうぶ)</th>
+                <th>Low 10</th>
+                <th>10</th>
+                <th>紅4点、白6点。</th>
+            </tr>
+            <tr>
+                <th><img src="./images/パオガオ10.png"></th>
+                <th>高脚七<br>(こうきゃくしち)</th>
+                <th>High 7</th>
+                <th>7</th>
+                <th>紅1点、白6点。</th>
+            </tr>
+            <tr>
+                <th><img src="./images/パオガオ10.png"></th>
+                <th>銅錘、伶冧六<br>(どうつい、れいりょうりく)</th>
+                <th>Low 6</th>
+                <th>6</th>
+                <th>紅1点、白5点。</th>
+            </tr>
+        </table>
+        <br>
+        <h4>文牌</h4>
+        全32牌中、文牌22枚を除く10種（各1枚）を武牌もしくは武子と呼ぶ。武牌は目の合計によって分類される。
+        <table>
+            <tr>
+                <th>牌</th>
+                <th>名称</th>
+                <th>英語(English)</th>
+                <th>数</th>
+                <th>紹介</th>
+            </tr>
+            <tr>
+                <th><img src="./images/パオガオ12.png"></th>
+                <th>雑九<br>(ざっく)</th>
+                <th>9</th>
+                <th>9</th>
+                <th>2種類ある<br>一つは紅4点白5点、もう一つは白9点。</th>
+            </tr>
+            <tr>
+                <th><img src="./images/パオガオ13.png"></th>
+                <th>雑八<br>(ざっぱち)</th>
+                <th>Low 8</th>
+                <th>8</th>
+                <th>2種類ある<br>両方とも白8点だが配列が異なる。</th>
+            </tr>
+            <tr>
+                <th><img src="./images/パオガオ14.png"></th>
+                <th>雑七<br>(ざっしち)</th>
+                <th>Low 7</th>
+                <th>7</th>
+                <th>2種類ある<br>一つは紅4点白3点、もう一つは白7点。</th>
+            <tr>
+                <th><img src="./images/パオガオ15.png"></th>
+                <th>雑五<br>(ざつご)</th>
+                <th>5</th>
+                <th>5</th>
+                <th>2種類ある<br>一つは紅5点、もう一つは白5点。</th>
+            </tr>
+            <tr>
+                <th><img src="./images/パオガオ16.png"></th>
+                <th>二四、高六、大六、大鶏六<br>(にし、こうろく、だいろく、おおとりろ)</th>
+                <th>Gee Joon(ジージュン)</th>
+                <th>6(or3)</th>
+                <th>至尊牌の一つ。<br>6としても3としても用いることができるカメレオン牌。</th>
+            </tr>
+            <tr>
+                <th><img src="./images/パオガオ17.png"></th>
+                <th>丁三、細三、大三、高三、么鶏三<br>(ていさん、さいさん、だいさん、こうさん、もけいさん)</th>
+                <th>Gee Joon(ジージュン)</th>
+                <th>3(or6)</th>
+                <th>至尊牌の一つ。<br>3としても6としても用いることができるカメレオン牌。</th>
+            </tr>
+            </tr>
+        </table>
+        <br>
+        <h4>役の順位</h4>
+        役は対牌もしくは対子の二牌からなる。第16位までのペア(pair)の役を、特にボー(BO)と呼ぶ。
+        <table>
+            <tr>
+                <th>順位</th>
+                <th>組牌</th>
+                <th>名称</th>
+                <th>英語(English)</th>
+                <th>紹介</th>
+            </tr>
+            <tr>
+                <th>最高位</th>
+                <th><img src="./images/パオガオ18.png"></th>
+                <th>至尊宝<br>(しすんぽう)</th>
+                <th>Geen Joon(ジージュン)</th>
+                <th>丁三と二四から構成される。<br>各々では弱い牌だがペアでは最高位である。</th>
+            </tr>
+            <tr>
+                <th>第2位</th>
+                <th><img src="./images/パオガオ19.png"></th>
+                <th>双天<br>(そうてん)</th>
+                <th>Teen(ティーン)</th>
+                <th>天牌のペア</th>
+            </tr>
+            <tr>
+                <th>第3位</th>
+                <th><img src="./images/パオガオ20.png"></th>
+                <th>双地<br>(そうち)</th>
+                <th>Day(デイ)</th>
+                <th>地牌のペア</th>
+            </tr>
+            <tr>
+                <th>第4位</th>
+                <th><img src="./images/パオガオ21.png"></th>
+                <th>双人<br>(そうにん)</th>
+                <th>Yun(ヤン)</th>
+                <th>人牌のペア</th>
+            </tr>
+            <tr>
+                <th>第5位</th>
+                <th><img src="./images/パオガオ22.png"></th>
+                <th>双和<br>(そうわ)</th>
+                <th>Gor(ゴー)</th>
+                <th>和牌のペア</th>
+            </tr>
+            <tr>
+                <th>第6位</th>
+                <th><img src="./images/パオガオ23.png"></th>
+                <th>双梅<br>(そうばい)</th>
+                <th>Mooy(ムイ)</th>
+                <th>梅花牌のペア</th>
+            </tr>
+            <tr>
+                <th>第7位</th>
+                <th><img src="./images/パオガオ24.png"></th>
+                <th>双長<br>(そうちょう)</th>
+                <th>Chong(チャン)</th>
+                <th>長三牌のペア</th>
+            </tr>
+            <tr>
+                <th>第8位</th>
+                <th><img src="./images/パオガオ25.png"></th>
+                <th>双板<br>(そうばん)</th>
+                <th>Bon(バン)</th>
+                <th>板牌のペア</th>
+            </tr>
+            <tr>
+                <th>第9位</th>
+                <th><img src="./images/パオガオ26.png"></th>
+                <th>双斧<br>(そうふ)</th>
+                <th>Foo(フー)</th>
+                <th>斧頭のペア</th>
+            </tr>
+            <tr>
+                <th>第10位</th>
+                <th><img src="./images/パオガオ27.png"></th>
+                <th>双紅頭<br>(そうこうとう)</th>
+                <th>Ping(ピン)</th>
+                <th>紅頭牌のペア</th>
+            </tr>
+            <tr>
+                <th>第11位</th>
+                <th><img src="./images/パオガオ28.png"></th>
+                <th>双高脚<br>(そうこうきゃく)</th>
+                <th>Tit(ティット)</th>
+                <th>高脚七牌のペア</th>
+            </tr>
+            <tr>
+                <th>第12位</th>
+                <th><img src="./images/パオガオ29.png"></th>
+                <th>双伶冧<br>(そうれいりょう)</th>
+                <th>Look(ルック)</th>
+                <th>伶冧六牌のペア</th>
+            </tr>
+            <tr>
+                <th>第13位</th>
+                <th><img src="./images/パオガオ30.png"></th>
+                <th>雑九<br>(ざっく)</th>
+                <th>Gow(ガウ)</th>
+                <th>雑九牌のペア</th>
+            </tr>
+            <tr>
+                <th>第14位</th>
+                <th><img src="./images/パオガオ31.png"></th>
+                <th>雑八<br>(ざっぱち)</th>
+                <th>Bot(バット)</th>
+                <th>雑八牌のペア</th>
+            </tr>
+            <tr>
+                <th>第15位</th>
+                <th><img src="./images/パオガオ32.png"></th>
+                <th>雑七<br>(ざっしち)</th>
+                <th>Chit(チット)</th>
+                <th>雑七牌のペア</th>
+            </tr>
+            <tr>
+                <th>第16位</th>
+                <th><img src="./images/パオガオ33.png"></th>
+                <th>雑五<br>(ざつご)</th>
+                <th>Ng(ンー)</th>
+                <th>雑五牌のペア</th>
+            </tr>
+            <tr>
+                <th>第17位</th>
+                <th><img src="./images/パオガオ34.png"></th>
+                <th>王、天王<br>(おう、てんのう)</th>
+                <th>Wong(ウォン)</th>
+                <th>天牌とは12と九の組み合わせ</th>
+            </tr>
+            <tr>
+                <th>第18位</th>
+                <th><img src="./images/パオガオ35.png"></th>
+                <th>王、地王<br>(おう、じおう)</th>
+                <th>Wong(ウォン)</th>
+                <th>地牌とは二と九の組み合わせ</th>
+            </tr>
+            <tr>
+                <th>第19位</th>
+                <th><img src="./images/パオガオ36.png"></th>
+                <th>槓、天槓<br>(かん、てんかん)</th>
+                <th>Gong(ゴン)</th>
+                <th>天槓とは12と八の組み合わせ</th>
+            </tr>
+            <tr>
+                <th>第20位</th>
+                <th><img src="./images/パオガオ37.png"></th>
+                <th>槓、地槓<br>(かん、ちかん)</th>
+                <th>Gong(ゴン)</th>
+                <th>地槓とは二と八の組み合わせ</th>
+            </tr>
+            <tr>
+                <th>第21位</th>
+                <th><img src="./images/パオガオ38.png"></th>
+                <th>高九、天高九<br>(こうきゅう、てんこうきゅう)</th>
+                <th>High 9</th>
+                <th>天高九とは12と七の組み合わせ</th>
+            </tr>
+            <tr>
+                <th>第22位</th>
+                <th><img src="./images/パオガオ39.png"></th>
+                <th>高九、地高九<br>(こうきゅう、じこうきゅう)</th>
+                <th>High 9</th>
+                <th>地高九とは二と七の組み合わせ</th>
+            </tr>
+        </table>
+        簡略化すると、強さは<br>
+        <ul>
+            <li>
+                <h5>ボー(Bo) > ウォン(Wong) > ゴン(Gong) > 高九(High 9) > 役無し</h5>
+            </li>
+        </ul>
+        の順になる。
+        </p>
+    </div>
+</body>
+
+</html>

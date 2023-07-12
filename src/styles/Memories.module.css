@@ -49,6 +49,14 @@
     margin-top: 0px;
 }
 
+.leftContent {
+    width: 30%;
+}
+
+.rightContent {
+    width: 70%;
+}
+
 .hashtag {
     color: #0A41D0;
     cursor: pointer;
@@ -61,7 +69,6 @@
 }
 
 .categoryHashtag {
-    width: 300px;
     height: 200px;
     border: 1px solid #222222;
     border-left: 20px solid #222222;
@@ -124,6 +131,7 @@
 
 .hashtags {
     display: flex;
+    overflow: auto;
     flex-wrap: wrap;
     margin-left: 20px;
 }

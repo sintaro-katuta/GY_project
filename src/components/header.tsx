@@ -2,7 +2,6 @@ import { useState, useRef, useEffect } from 'react'
 import { useRouter } from "next/router";
 import Image from 'next/image';
 import Link from "next/link";
-import { getAuth } from "firebase/auth";
 import Style from '../styles/Header.module.css';
 
 export default function Header() {

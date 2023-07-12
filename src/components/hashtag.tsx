@@ -98,6 +98,10 @@ export default function Hashtag({ handleVisible, handleHashtag, handleOriginalHa
                 <p className={styles.themeText}>最後に投稿するハッシュタグをつけましょう！</p>
                 <p className={styles.error}>{ErrorMessage}</p>
                 <form className={styles.checkboxForm}>
+                    <label className={styles.checkboxLabel}>
+                        <input type="checkbox" value={originalHashtag} onChange={(e) => selectHashtag(e)} className={styles.checkbox} id="originalHashtagCheckbox" />
+                        <input type="text" defaultValue={"#"} onChange={(e) => addOriginalHashtag(e.target.value)} className={styles.originalHashtag} id="originalHashtag" />
+                    </label>
                     {DBHashtag.map((element: any) => {
                         return (
                             <>
@@ -111,10 +115,6 @@ export default function Hashtag({ handleVisible, handleHashtag, handleOriginalHa
                             </>
                         )
                     })}
-                    <label className={styles.checkboxLabel}>
-                        <input type="checkbox" value={originalHashtag} onChange={(e) => selectHashtag(e)} className={styles.checkbox} id="originalHashtagCheckbox" />
-                        <input type="text" defaultValue={"#"} onChange={(e) => addOriginalHashtag(e.target.value)} className={styles.originalHashtag} id="originalHashtag" />
-                    </label>
                 </form>
                 <div className={styles.nextButtonDiv}>
                     <button className={styles.backButton} onClick={() => backButton()}><span className={styles.allow}>◀</span><span className={styles.nextButtonText}>１つ戻る</span></button>

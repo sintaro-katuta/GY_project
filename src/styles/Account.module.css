@@ -276,3 +276,45 @@
         }
     }
 }
+
+.error {
+    color: #FF0000;
+    margin: 0;
+    height: 40px;
+    text-align: center;
+    font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+}
+
+.infoFlame {
+    font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    border: 1px solid #208196;
+    border-radius: 60px;
+    padding-left: 10%;
+    margin-left: 20%;
+    margin-right: 5%;
+    margin-top: 5%;
+}
+
+.infoName {
+    margin-left: 20px;
+    margin-right: 20%;
+    border-bottom: 1px solid #222222;
+}
+
+.infoValue {
+    padding-left: 50vh;
+    text-align: center;
+}
+
+.infoDiv {
+    display: table;
+    width: 100%;
+}
+
+.logout {
+    text-align: center;
+    color: #FF2222;
+    cursor: pointer;
+    margin: 0;
+    margin-bottom: 5%;
+}

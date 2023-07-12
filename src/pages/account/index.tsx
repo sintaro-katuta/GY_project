@@ -15,11 +15,26 @@ export default function Account() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [tab, setTab] = useState(true);
-    const auth = getAuth();
     const [changed] = useState(false);
+    // ユーザー情報
+    const [currentUser, setCurrentUser]: any = useState([])
+    const auth = getAuth();
     const router = useRouter();
     let login: any
     let sinki: any
+
+    useEffect(() => {
+        // ログイン状態をウォッチ
+        let unsubscribe = auth.onAuthStateChanged((user: any) => {
+            if (user) {
+                // ユーザ情報を格納する
+                setCurrentUser(user)
+                router.push("/account/info")
+            }
+            unsubscribe()
+        })
+    }, [auth])
+
     if (typeof window === 'object') {
         login = document.querySelector("#loginTab")
         sinki = document.querySelector("#registerTab")

@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&display=swap');
+
+.container {
+    font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+}
+
+.header {
+    height: 150px;
+    background: #FAFAFA;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    border-bottom: 1px solid #2fbfd3;
+    gap: 30%;
+}
+
+.backButton {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.headerTitle {
+    display: flex;
+    position: relative;
+    top: 20px;
+    left: 50px;
+    gap: 8px;
+    margin: 0;
+    margin-bottom: 25px;
+    font-size: 8px;
+    justify-content: stretch;
+}
+
+.headerContent {
+    padding-left: 5%;
+    padding-right: 8%;
+    text-align: left;
+}
+
+.headerImage {
+    display: flex;
+    gap: 8px;
+    padding-left: 0%;
+    padding-right: 0%;
+}
+
+.hashtag {
+    color: #0A41D0;
+    margin: 0;
+}
+
+.comment {
+    width: 950px;
+    height: 300px;
+    overflow: scroll;
+    margin-top: 30px;
+    margin-left: 10%;
+    margin-right: 10%;
+    /* border-radius: 40px; */
+    /* background-color: #FAFAFA; */
+    /* border: 1px solid #2fbfd3; */
+}
+
+.comment::-webkit-scrollbar {
+    display: none;
+}
+
+.commentText {
+    margin-left: 50px;
+    color: #909090;
+    border: solid 1px #fafafa;
+    border-radius: 16px;
+    box-shadow: 2px 1px 4px #2FBFD3;
+    padding: 20px 10px;
+    font-size: 10px;
+}
+
+.commentParent {
+    width: 930px;
+}
+
+.commentSpan {
+    /* position: absolute; */
+    margin-left: 80px;
+    padding: 10px 0;
+    text-align: center;
+    color: black;
+    font-size: large;
+}
+
+.form {
+    position: fixed;
+    bottom: 6%;
+    left: 40%;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-top: 15px;
+}
+
+.label {
+    margin-right: 15px;
+}
+
+.icon {
+    margin-left: 10px;
+}
+
+.commentField {
+    width: 300px;
+    height: 23px;
+    padding: 5px 5px;
+    border-radius: 10px;
+}
+
+.userName {
+    display: flex;
+    align-items: stretch;
+}
+
+.categoryText {
+    display: flex;
+    gap: 8px;
+}

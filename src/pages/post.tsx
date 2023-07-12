@@ -1,5 +1,6 @@
 // Firebaseの初期化を行うためfirebaseAppをインポート
 import { getAuth } from "firebase/auth"
+import { serverTimestamp } from "firebase/firestore";
 import { useState, useEffect } from 'react'
 import styles from '../styles/Post.module.css'
 import Image from 'next/image';
@@ -41,7 +42,10 @@ export default function Post() {
             category: category,
             image: image,
             comment: comment,
-            hashtag: hashtag
+            hashtag: hashtag,
+            created_at: serverTimestamp(),
+            liked: [],
+            comments: [],
         }
         setPostData(newPostData)
     }, [visibleList, currentUser, category, image, comment, hashtag])

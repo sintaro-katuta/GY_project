@@ -185,6 +185,7 @@
     height: 128px;
     margin: 2%;
     margin-top: 5%;
+    margin-bottom: 5%;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
     border: 0px;
     border-radius: 4%;
@@ -300,11 +301,15 @@
 }
 
 .checkboxForm {
-    width: fit-content;
     flex-wrap: wrap;
     margin: auto;
     margin-left: 8%;
     display: flex;
+    overflow: scroll;
+}
+
+.checkboxForm::-webkit-scrollbar {
+    display: none;
 }
 
 .checkboxLabel {

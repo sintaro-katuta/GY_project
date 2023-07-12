@@ -1,4 +1,4 @@
-.ul_memories{
+.ul_memories {
     position: absolute;
     color: #FAFAFA;
     width: 153px;
@@ -9,14 +9,16 @@
     font-size: 16px;
     letter-spacing: 0.08em;
     list-style: none;
-    
+
 }
-.li_memories{
+
+.li_memories {
     color: #FAFAFA;
     text-decoration: none;
     list-style-type: none;
 }
-.ul_album{
+
+.ul_album {
     position: absolute;
     color: #FAFAFA;
     width: 153px;
@@ -28,12 +30,14 @@
     letter-spacing: 0.08em;
     list-style: none;
 }
-.li_album{
+
+.li_album {
     color: #FAFAFA;
     text-decoration: none;
     list-style-type: none;
 }
-.ul_connect{
+
+.ul_connect {
     position: absolute;
     color: #FAFAFA;
     width: 153px;
@@ -45,12 +49,14 @@
     letter-spacing: 0.08em;
     list-style: none;
 }
-.li_connect{
+
+.li_connect {
     color: #FAFAFA;
     text-decoration: none;
     list-style-type: none;
 }
-.ul_event{
+
+.ul_event {
     position: absolute;
     color: #FAFAFA;
     width: 153px;
@@ -62,29 +68,34 @@
     letter-spacing: 0.08em;
     list-style: none;
 }
-.li_event{
+
+.li_event {
     color: #FAFAFA;
     text-decoration: none;
     list-style-type: none;
 }
-.ul_account{
+
+.ul_account {
     position: absolute;
     color: #FAFAFA;
     width: 153px;
     height: 300px;
     left: 0px;
     top: 320px;
+    padding: auto;
     font-family: 'Noto Sans JP';
     font-size: 16px;
     letter-spacing: 0.08em;
     list-style: none;
 }
-.li_account{
+
+.li_account {
     color: #FAFAFA;
     text-decoration: none;
     list-style-type: none;
 }
-.list{
+
+.list {
     position: absolute;
     background-color: #222222;
     width: 17%;
@@ -92,9 +103,10 @@
     /* right: 800px; */
     left: 0px;
     top: 0px;
-    position:fixed;
+    position: fixed;
 }
-.account_image{
+
+.account_image {
     padding: 10px;
     border-radius: 50%;
     border: 1.5px solid white;

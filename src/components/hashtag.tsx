@@ -29,7 +29,7 @@ export default function Hashtag({ handleVisible, handleHashtag, handleOriginalHa
 
     const selectHashtag = (e: any) => {
         setErrorMessage("")
-        const newHashtag: any = [...hashtag]
+        const newHashtag: any = hashtag
         if (!e.target.value || e.target.value === '#') {
             e.target.checked = false
         }
@@ -48,6 +48,7 @@ export default function Hashtag({ handleVisible, handleHashtag, handleOriginalHa
                 newHashtag.pop()
             }
         }
+        console.log(newHashtag)
         setHashtag(newHashtag)
     }
 
@@ -56,9 +57,6 @@ export default function Hashtag({ handleVisible, handleHashtag, handleOriginalHa
         let originalHashtagElement: any = document.querySelector("#originalHashtag")
         let originalHashtagCheckboxElement: any = document.querySelector("#originalHashtagCheckbox")
         originalHashtagCheckboxElement.checked = false
-        const newHashtag = hashtag
-        newHashtag.pop()
-        console.log(newHashtag)
         let searchH: number = name.indexOf('#', 1)
         const searchZ: number = name.indexOf('＃', 1)
         if (name.startsWith('#')) {

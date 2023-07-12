@@ -28,13 +28,14 @@ export default function PostResult({ handleVisible, postData, originalHashtag }:
         }
         const posts = collection(db, 'posts')
         await addDoc(posts, newPostData)
-        const hashtags = collection(db, "hashtags")
-        const hashtagsDoc = doc(hashtags, "hashtag")
-        for (let i in newPostData.category) {
-
-            await updateDoc(hashtagsDoc, {
-                [newPostData.category[i]]: arrayUnion(originalHashtag)
-            })
+        if (originalHashtag.length > 0) {
+            const hashtags = collection(db, "hashtags")
+            const hashtagsDoc = doc(hashtags, "hashtag")
+            for (let i in newPostData.category) {
+                await updateDoc(hashtagsDoc, {
+                    [newPostData.category[i]]: arrayUnion(originalHashtag)
+                })
+            }
         }
         setVisible(true)
         setTimeout(textAnimation, 15)

@@ -60,7 +60,7 @@ export default function Memories() {
             function checkString(array: any, uid: string) {
                 return array.includes(uid);
             }
-            await newPostData.forEach((element: any) => {
+            newPostData.forEach((element: any) => {
                 newLikeList.push(checkString(element.liked, currentUser.uid))
             });
             setPostsData(newPostData)
@@ -92,6 +92,18 @@ export default function Memories() {
             if (doc.exists()) {
                 return doc.data()
             }
+        })
+        setPostsData(newPostData)
+    }
+
+    const reset = async () => {
+        const posts = collection(db, "posts")
+        const q = query(posts, orderBy("created_at", "desc"));
+        const postsDocs = await getDocs(q)
+        const newPostData: any[] = await postsDocs.docs.map((doc: any) => {
+            const item = doc.data()
+            item.id = doc.id
+            return item
         })
         setPostsData(newPostData)
     }
@@ -192,6 +204,9 @@ export default function Memories() {
                 </div>
                 <div className={styles.rightContent}>
                     <p className={styles.themeText2}>IRでの思い出やクチコミを残してみよう！</p>
+                    <div className={styles.reloadIcon}>
+                        <Image src={"/image/reset_undo_arrow_icon.svg"} width={20} height={20} onClick={() => reset()} />
+                    </div>
                     {postsData.map((post: any, i: number) => {
                         const created_at = dayjs(post.created_at.toDate())
                         return (
@@ -217,12 +232,12 @@ export default function Memories() {
                                     <div className={styles.footer}>
                                         {likeList[i]
                                             ?
-                                            <Image src={"/image/Group 76.svg"} width={20} height={20} alt="いいね済みアイコン" className={styles.likedIcon} onClick={() => removeLiked(post.id)} />
+                                            <Image src={"/image/Group 76.svg"} width={20} height={20} alt="いいね済みアイコン" className={styles.Icon} onClick={() => removeLiked(post.id)} />
                                             :
-                                            <Image src={"/image/Group 75.svg"} width={20} height={20} alt="いいねアイコン" className={styles.likedIcon} onClick={() => addLiked(post.id)} />
+                                            <Image src={"/image/Group 75.svg"} width={20} height={20} alt="いいねアイコン" className={styles.Icon} onClick={() => addLiked(post.id)} />
                                         }
                                         <div>{Object.keys(post.liked).length}</div>
-                                        <Image src={"/image/Group 74.svg"} width={20} height={20} alt="コメントアイコン" className={styles.commentIcon} onClick={() => toDetail(post.id)} />
+                                        <Image src={"/image/Group 74.svg"} width={20} height={20} alt="コメントアイコン" className={styles.Icon} onClick={() => toDetail(post.id)} />
                                         <div>{post.comments && post.comments.length}</div>
                                     </div>
                                 </div>
@@ -248,7 +263,7 @@ export default function Memories() {
                         )
                     })}
                 </div>
-            </div >
+            </div>
         </>
     )
 }

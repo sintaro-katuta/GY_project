@@ -1,7 +1,7 @@
 //* firebase関連
 import { db } from '../../lib/firebase.config';
 import { getAuth } from "firebase/auth";
-import { collection, doc, setDoc, getDoc, serverTimestamp, updateDoc, arrayUnion } from "firebase/firestore";
+import { collection, doc, getDoc, updateDoc, arrayUnion, query, orderBy } from "firebase/firestore";
 //* React Next関連
 import Image from 'next/image';
 import { useRouter } from 'next/router';
@@ -44,10 +44,9 @@ export default function Post() {
         (async () => {
             const { post_id }: any = router.query;
             const posts: any = collection(db, "posts")
-            const postsDoc: any = doc(posts, `${post_id}`)
+            const postsDoc: any = await doc(posts, `${post_id}`)
             const postsSnapShot: any = await getDoc(postsDoc)
             const newPostData = await postsSnapShot.data()
-            console.log(newPostData)
             setPost(newPostData)
         })()
     }, [router.query])
@@ -75,8 +74,9 @@ export default function Post() {
     return (
         <div className={styles.container}>
             <div className={styles.header}>
+                <button onClick={() => router.push("/memories")} className={styles.backButton}><Image src={'/image/arrow.svg'} width={30} height={30} alt="アカウントアイコン" /></button>
                 <div className={styles.headerContent}>
-                    <h1>{post.comment}</h1>
+                    <h4>{post.comment}</h4>
                     <p className={styles.hashtag}>{post.hashtag}</p>
                 </div>
                 <div className={styles.headerImage}>
@@ -89,7 +89,7 @@ export default function Post() {
                     })}
                 </div>
             </div>
-            <div className={styles.headerTitle}><button onClick={() => router.push("/memories")} className={styles.backButton}><Image src={'/image/arrow.svg'} width={15} height={15} alt="アカウントアイコン" /></button><div>{post.user}</div><div>/</div><div>{post.created_at && dayjs(post.created_at.toDate()).format('YYYY.MM.DD HH:mm')}</div><div>/</div>{post.category && post.category.map((category: any, i: number) => { return (<div className={styles.categoryText} key={i}><div>{category}</div><div>/</div></div>) })}</div>
+            <div className={styles.headerTitle}><div>{post.user}</div><div>/</div><div>{post.created_at && dayjs(post.created_at.toDate()).format('YYYY.MM.DD HH:mm')}</div><div>/</div>{post.category && post.category.map((category: any, i: number) => { return (<div className={styles.categoryText} key={i}><div>{category}</div><div>/</div></div>) })}</div>
             <div className={styles.comment}>
                 <form onSubmit={(e) => addComment(e)} className={styles.form}>
                     <input type="text" id="comment" placeholder="コメント" value={comment} className={styles.commentField} onChange={(e) => setComment(e.target.value)} />

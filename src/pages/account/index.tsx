@@ -143,6 +143,7 @@ export default function Account() {
         signInWithPopup(auth, provider).then((response) => {
             usersCheck(response.user)
         });
+        router.push('/');
     };
 
     const doFacebookLogin = async (e: any) => {
@@ -153,6 +154,7 @@ export default function Account() {
         signInWithPopup(auth, provider).then(async (response) => {
             usersCheck(response.user)
         });
+        router.push('/');
     };
 
     const usersCheck = async (user: any) => {
@@ -190,7 +192,6 @@ export default function Account() {
             }
             const docref = doc(users, user.uid)
             await updateDoc(docref, userData)
-            router.push('/');
         }
     }
 

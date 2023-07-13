@@ -7,7 +7,7 @@
     height: 400px;
     border: 1.5px solid #2FBFD3;
     border-radius: 10px;
-    margin-top: 30px;
+    margin-top: 20px;
     margin-bottom: 40px;
     margin-left: 100px;
     margin-right: 100px;
@@ -34,7 +34,7 @@
     flex-direction: row;
     justify-content: left;
     align-items: end;
-    gap: 5px;
+    gap: 10px;
 }
 
 .wrap {
@@ -91,8 +91,12 @@
 }
 
 .selectCategoryText {
+    display: flex;
+    align-items: center;
     text-align: center;
+    justify-content: center;
     padding-bottom: 24px;
+    gap: 10px;
 }
 
 .contents {
@@ -136,12 +140,12 @@
     margin-left: 20px;
 }
 
-.likedIcon {
-    margin-left: 10px;
+.Icon {
     cursor: pointer;
 }
 
-.commentIcon {
-    margin-left: 10px;
+.reloadIcon {
     cursor: pointer;
+    text-align: center;
+    /* margin-left: 400px; */
 }

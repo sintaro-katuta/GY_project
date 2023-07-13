@@ -12,7 +12,7 @@
     justify-content: left;
     align-items: center;
     border-bottom: 1px solid #2fbfd3;
-    gap: 30%;
+    gap: 20px;
 }
 
 .backButton {
@@ -34,16 +34,12 @@
 }
 
 .headerContent {
-    padding-left: 5%;
-    padding-right: 8%;
     text-align: left;
 }
 
 .headerImage {
     display: flex;
     gap: 8px;
-    padding-left: 0%;
-    padding-right: 0%;
 }
 
 .hashtag {

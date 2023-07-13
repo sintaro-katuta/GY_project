@@ -39,7 +39,6 @@ export default function Hashtag({ handleVisible, handleHashtag, handleOriginalHa
                     newHashtag.push(e.target.value)
                 }
             } else {
-                // newHashtag.pop()
                 e.target.checked = false
                 setErrorMessage("５つ以下選択してください")
             }

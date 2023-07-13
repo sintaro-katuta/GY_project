@@ -1,10 +1,8 @@
-import Drawer from '@mui/material/Drawer';
-import DrawerMenu from './drawermenu';
 import { useState, useRef, useEffect } from 'react'
 import { useRouter } from "next/router";
 import Image from 'next/image';
 import Link from "next/link";
-import { getAuth, signOut } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 import Style from '../styles/SubHeader.module.css';
 
 export default function SubHeader() {

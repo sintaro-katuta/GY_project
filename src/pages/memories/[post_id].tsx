@@ -1,7 +1,7 @@
 //* firebase関連
 import { db } from '../../lib/firebase.config';
 import { getAuth } from "firebase/auth";
-import { collection, doc, getDoc, updateDoc, arrayUnion, query, orderBy } from "firebase/firestore";
+import { collection, doc, getDoc, updateDoc, arrayUnion } from "firebase/firestore";
 //* React Next関連
 import Image from 'next/image';
 import { useRouter } from 'next/router';

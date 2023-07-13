@@ -1,8 +1,6 @@
 import Link from "next/link";
 import styles from '../styles/Footer.module.css'
-import { useState } from 'react'
 import { useRouter } from "next/router";
-import { getAuth, signOut } from "firebase/auth";
 
 export default function Footer() {
     const router = useRouter();

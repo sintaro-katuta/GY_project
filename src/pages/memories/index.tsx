@@ -205,7 +205,7 @@ export default function Memories() {
                 <div className={styles.rightContent}>
                     <p className={styles.themeText2}>IRでの思い出やクチコミを残してみよう！</p>
                     <div className={styles.reloadIcon}>
-                        <Image src={"/image/reset_undo_arrow_icon.svg"} width={20} height={20} onClick={() => reset()} />
+                        <Image src={"/image/reset_undo_arrow_icon.svg"} width={20} height={20} alt="リロードアイコン" onClick={() => reset()} />
                     </div>
                     {postsData.map((post: any, i: number) => {
                         const created_at = dayjs(post.created_at.toDate())

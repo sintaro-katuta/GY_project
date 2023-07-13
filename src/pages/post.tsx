@@ -38,7 +38,7 @@ export default function Post() {
             }
             unsubscribe()
         })
-    }, [auth])
+    }, [auth, router])
 
     useEffect(() => {
         const newPostData = {

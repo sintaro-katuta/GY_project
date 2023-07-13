@@ -129,7 +129,7 @@ export default function Memories() {
         newPostData.forEach((element: any, i: number) => {
             element.liked.forEach((e: any) => {
                 if (e == currentUser.uid) {
-                    // console.log("いいね済み")
+                    //* いいね済み
                     newLikeList[i] = true
                 }
             });
@@ -156,7 +156,7 @@ export default function Memories() {
         newPostData.forEach((element: any, i: number) => {
             element.liked.forEach((e: any) => {
                 if (e == currentUser.uid) {
-                    // console.log("いいね済み")
+                    //* いいね済み
                     newLikeList[i] = true
                 }
             });

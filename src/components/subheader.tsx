@@ -23,7 +23,6 @@ export default function SubHeader() {
         let account: any = document.getElementById("account");
 
         if (paths[0] == "connect") {
-            console.log(connect);
             connect.style.listStyle = "disc";
         } else if (paths[0] == "event") {
             event.style.listStyle = "disc";

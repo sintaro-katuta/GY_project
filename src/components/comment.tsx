@@ -28,7 +28,7 @@ export default function Comment({ handleVisible, handleComment }: any) {
             <div className={styles.bodyDiv}>
                 <p className={styles.themeTextComment}>次に投稿する文章を入力しましょう！※１文字～１００文字</p>
                 <p className={styles.error}>{ErrorMessage}</p>
-                <textarea cols={30} rows={10} placeholder="コメント" onChange={(e) => setComment(e.target.value)} className={styles.textarea} />
+                <textarea cols={30} rows={10} placeholder="コメント" onChange={(e) => setComment(e.target.value)} className={styles.textarea} autoFocus />
                 <div className={styles.nextButtonDiv}>
                     <button className={styles.backButton} onClick={() => backButton()}><span className={styles.allow}>◀</span><span className={styles.nextButtonText}>１つ戻る</span></button>
                     <button className={styles.nextButton} onClick={() => nextButton()}><span className={styles.nextButtonText}>次の項目へ</span><span className={styles.allow}>▶</span></button>

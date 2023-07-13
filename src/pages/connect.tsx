@@ -2,7 +2,7 @@ import { db } from '../lib/firebase.config';
 import SubHeader from "../components/subheader";
 import styles from "../styles/Connect.module.css"
 import { useState, useEffect } from "react"
-import { collection, getDocs, getDoc, doc, updateDoc, arrayUnion, } from "firebase/firestore";
+import { collection, getDocs, getDoc, doc, updateDoc, arrayUnion, query, where } from "firebase/firestore";
 import { getAuth } from "firebase/auth"
 import { useRouter } from "next/router";
 import Image from 'next/image';
@@ -12,6 +12,7 @@ export default function Connect() {
     const [postData, setPostdata]: any = useState([])
     const [clear, setClear]: any = useState([])
     const [clearFlag, setClearFlag]: any = useState(false)
+    const [currentUserPost, setCurrentUserPost]: any = useState([])
     const [errorMessage, setErrorMessage]: any = useState("")
     const [hover, setHover]: any = useState(false)
     const [currentUser, setCurrentUser]: any = useState([])
@@ -53,15 +54,26 @@ export default function Connect() {
             const connectDoc: any = await doc(connect, "aoc3SSKRohVxhyg2HSpo")
             const connectSnapShot: any = await getDoc(connectDoc)
             const point: any = connectSnapShot.data().point
+
+            const q = await query(posts, where("user", "==", `${currentUser.displayName}`))
+            const postsSnapShot2 = await getDocs(q)
+            const newPostData = await postsSnapShot2.docs.map((doc: any) => {
+                if (doc.exists()) {
+                    return doc.data()
+                }
+            })
+
             const totalPost: any = newPostList
+            const totalCurrentPost: any = newPostData.length
+
             if (point - totalPost < 0) {
                 setClearFlag(true)
             } else {
-                // falus
-                setClearFlag(true)
+                setClearFlag(false)
             }
             setPostdata(totalPost)
             setClear(point)
+            setCurrentUserPost(totalCurrentPost)
         })()
     }, [currentUser.uid])
 
@@ -70,24 +82,26 @@ export default function Connect() {
             const user = collection(db, "users")
             const userDoc = await doc(user, currentUser.uid)
             const userGetDoc = await getDoc(userDoc)
-            const userData = await userGetDoc.data()
-            if (!userData.treasure) {
-                const newCouponImages = couponImages
-                for (let i = newCouponImages.length - 1; i >= 0; i--) {
-                    let rand = Math.floor(Math.random() * (i + 1))
-                    // 配列の要素の順番を入れ替える
-                    let tmpStorage = newCouponImages[i]
-                    newCouponImages[i] = newCouponImages[rand]
-                    newCouponImages[rand] = tmpStorage
+            if (userGetDoc.exists()) {
+                const userData = await userGetDoc.data()
+                if (userData.treasure !== undefined) {
+                    const newCouponImages = couponImages
+                    for (let i = newCouponImages.length - 1; i >= 0; i--) {
+                        let rand = Math.floor(Math.random() * (i + 1))
+                        // 配列の要素の順番を入れ替える
+                        let tmpStorage = newCouponImages[i]
+                        newCouponImages[i] = newCouponImages[rand]
+                        newCouponImages[rand] = tmpStorage
+                    }
+                    setCouponImages(newCouponImages)
+                    setClicked(!clicked)
+                    await updateDoc(userDoc, {
+                        treasure: arrayUnion(newCouponImages[i])
+                    })
+                    e.target.className = styles.changed
+                } else {
+                    setErrorMessage("既に獲得しています")
                 }
-                setCouponImages(newCouponImages)
-                setClicked(!clicked)
-                await updateDoc(userDoc, {
-                    treasure: arrayUnion(newCouponImages[i])
-                })
-                e.target.className = styles.changed
-            } else {
-                setErrorMessage("既に獲得しています")
             }
         }
     }
@@ -118,9 +132,11 @@ export default function Connect() {
         const user = collection(db, "users")
         const userDoc = await doc(user, currentUser.uid)
         const userGetDoc = await getDoc(userDoc)
-        const userData = await userGetDoc.data()
-        if (userData.treasure) {
-            setImageDetail(`${userData.treasure}`)
+        if (userGetDoc.exists()) {
+            const userData = await userGetDoc.data()
+            if (userData.treasure) {
+                setImageDetail(`${userData.treasure}`)
+            }
         }
     }
     return (
@@ -131,8 +147,9 @@ export default function Connect() {
                 <p className={styles.p_co}>みんなの投稿でIRで使えるスペシャルなお宝をGETしましょう！</p>
                 <p className={styles.error}>{errorMessage}</p>
                 <div className={styles.p_to}>
-                    <p className={styles.p1}>全体の投稿数</p>
-                    <p className={styles.p}>{postData.length}</p>
+                    <p className={styles.p1}>あなたの投稿数</p>
+                    <p className={styles.p}>{currentUserPost}</p>
+                    <p className={styles.p}>あなたのお宝</p>
                     {hover
                         ?
                         <Image className={styles.takara} src={"/image/Group 253.svg"} width={30} height={30} alt='bottomright' onMouseOver={() => setHover(false)} onMouseLeave={() => setHover(false)} onClick={() => treasure()} />
@@ -143,18 +160,18 @@ export default function Connect() {
                 {imageDetail &&
                     <div className={styles.selectImageDiv}>
                         <div className={styles.leftContent}>
-                            {imageDetail.includes("Coupon.svg") && <p className={styles.selectImageText}>ケーキ無料券<br />IRにあるカフェでケーキと交換しよう！</p>}
-                            {imageDetail.includes("Coupon2.svg") && <p className={styles.selectImageText}>アイスクリーム無料券<br /><br />IRにあるカフェでアイスクリームと交換しよう！</p>}
-                            {imageDetail.includes("Coupon3.svg") && <p className={styles.selectImageText}>コーヒー無料券<br /><br />IRにあるカフェでコーヒーと交換しよう！</p>}
-                            {imageDetail.includes("Coupon4.svg") && <p className={styles.selectImageText}>フライドポテト無料券<br /><br />IRにあるファストフード店でフライドポテトと交換しよう！</p>}
-                            {imageDetail.includes("Coupon5.svg") && <p className={styles.selectImageText}>お好きなジュース無料券<br /><br />IRにあるファストフード店でジュースと交換しよう！</p>}
-                            {imageDetail.includes("Coupon6.svg") && <p className={styles.selectImageText}>うどん無料券<br /><br />IRにあるファミリーレストランでうどんと交換しよう！</p>}
-                            {imageDetail.includes("Coupon7.svg") && <p className={styles.selectImageText}>国内旅行プレゼント<br /><br />IRのインフォメーションにて交換しよう！</p>}
-                            {imageDetail.includes("Coupon8.svg") && <p className={styles.selectImageText}>お土産5%OFFクーポン<br /><br />IRにあるお土産屋で全品5%オフ！</p>}
+                            {imageDetail.includes("Coupon.svg") && <p className={styles.selectImageText}><span className={styles.treasureTitle}>ケーキ無料券</span><br />IRにあるカフェでケーキと交換しよう！</p>}
+                            {imageDetail.includes("Coupon2.svg") && <p className={styles.selectImageText}><span className={styles.treasureTitle}>アイスクリーム無料券</span><br /><br />IRにあるカフェでアイスクリームと交換しよう！</p>}
+                            {imageDetail.includes("Coupon3.svg") && <p className={styles.selectImageText}><span className={styles.treasureTitle}>コーヒー無料券</span><br /><br />IRにあるカフェでコーヒーと交換しよう！</p>}
+                            {imageDetail.includes("Coupon4.svg") && <p className={styles.selectImageText}><span className={styles.treasureTitle}>フライドポテト無料券</span><br /><br />IRにあるファストフード店でフライドポテトと交換しよう！</p>}
+                            {imageDetail.includes("Coupon5.svg") && <p className={styles.selectImageText}><span className={styles.treasureTitle}>お好きなジュース無料券</span><br /><br />IRにあるファストフード店でジュースと交換しよう！</p>}
+                            {imageDetail.includes("Coupon6.svg") && <p className={styles.selectImageText}><span className={styles.treasureTitle}>うどん無料券</span><br /><br />IRにあるファミリーレストランでうどんと交換しよう！</p>}
+                            {imageDetail.includes("Coupon7.svg") && <p className={styles.selectImageText}><span className={styles.treasureTitle}>国内旅行プレゼント</span><br /><br />IRのインフォメーションにて交換しよう！</p>}
+                            {imageDetail.includes("Coupon8.svg") && <p className={styles.selectImageText}><span className={styles.treasureTitle}>お土産5%OFFクーポン</span><br /><br />IRにあるお土産屋で全品5%オフ！</p>}
                             <p className={styles.selectImageText}>※スクリーンショットや写真を取り、店舗で提示してください。</p>
                         </div>
                         <div className={styles.rightContent}>
-                            <Image src={imageDetail} width={276} height={418} className={styles.selectImage}></Image>
+                            <Image src={imageDetail} width={276} height={418} alt="お宝詳細画像" className={styles.selectImage}></Image>
                         </div>
                         <div className={styles.close} onClick={() => closeDetail()}></div>
                     </div>
@@ -163,7 +180,7 @@ export default function Connect() {
                     ?
                     <>
                         <div className={styles.card}>
-                            {images.map((fruit, i) => <Image className={styles.images} key={i} src={fruit} width={115} height={200} alt='images' onClick={(e: any) => imagesClick(e, i)} />)}
+                            {images.map((fruit: any, i: any) => <Image className={styles.images} key={i} src={fruit} width={115} height={200} alt='images' onClick={(e: any) => imagesClick(e, i)} />)}
                         </div>
                         {couponImages &&
                             <div className={styles.card}>

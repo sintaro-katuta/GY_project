@@ -48,7 +48,6 @@ export default function Hashtag({ handleVisible, handleHashtag, handleOriginalHa
                 newHashtag.pop()
             }
         }
-        console.log(newHashtag)
         setHashtag(newHashtag)
     }
 
@@ -100,7 +99,7 @@ export default function Hashtag({ handleVisible, handleHashtag, handleOriginalHa
                 <form className={styles.checkboxForm}>
                     <label className={styles.checkboxLabel}>
                         <input type="checkbox" value={originalHashtag} onChange={(e) => selectHashtag(e)} className={styles.checkbox} id="originalHashtagCheckbox" />
-                        <input type="text" defaultValue={"#"} onChange={(e) => addOriginalHashtag(e.target.value)} className={styles.originalHashtag} id="originalHashtag" />
+                        <input type="text" defaultValue={"#"} onChange={(e) => addOriginalHashtag(e.target.value)} className={styles.originalHashtag} id="originalHashtag" autoFocus />
                     </label>
                     {DBHashtag.map((element: any) => {
                         return (

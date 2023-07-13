@@ -83,7 +83,6 @@ export default function Album() {
 
     return (
         <>
-            {console.log("list", list)}
             <Header />
             <p className={Style.atitle}>みんなの投稿した写真が見れます。　IRの雰囲気をみんなに伝えてみよう！</p>
             <div className={Style.abution}>

@@ -49,7 +49,7 @@ export default function Post() {
             const newPostData = await postsSnapShot.data()
             setPost(newPostData)
         })()
-    }, [router.query])
+    }, [router.query, post_id])
 
     const addComment = async (e: any) => {
         e.preventDefault()
@@ -91,7 +91,7 @@ export default function Post() {
             <div className={styles.headerTitle}><div>{post.user}</div><div>/</div><div>{post.created_at && dayjs(post.created_at.toDate()).format('YYYY.MM.DD HH:mm')}</div><div>/</div>{post.category && post.category.map((category: any, i: number) => { return (<div className={styles.categoryText} key={i}><div>{category}</div><div>/</div></div>) })}</div>
             <div className={styles.comment}>
                 <form onSubmit={(e) => addComment(e)} className={styles.form}>
-                    <input type="text" id="comment" placeholder="コメント" value={comment} className={styles.commentField} onChange={(e) => setComment(e.target.value)} autofocus />
+                    <input type="text" id="comment" placeholder="コメント" value={comment} className={styles.commentField} onChange={(e) => setComment(e.target.value)} autoFocus />
                     <Image src={"/image/send_icon.svg"} width={20} height={20} alt="送信アイコン" onClick={(e: any) => addComment(e)} className={styles.icon} />
                 </form>
                 <div className={styles.commentParent}>

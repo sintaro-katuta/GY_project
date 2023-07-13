@@ -1,42 +1,46 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&display=swap');
-.black{
+
+.black {
     padding-left: 20%;
     background: rgba(0, 0, 0, 0.5);
     width: 100vw;
     height: 100vh;
-    position:fixed;
+    position: fixed;
     opacity: 0.8;
 }
 
-.data{
+.data {
     color: #FFFF;
     font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
     position: absolute;
     top: 45%;
-    right: 53%;
+    right: 45%;
 }
-.meter{
+
+.meter {
     position: absolute;
-   
     font-size: 5rem;
     background-color: linear-gradient(135deg, rgba(47, 191, 211, 1), rgba(32, 129, 150, 1));
     border: 1px solid rgba(47, 191, 211, 1);
     top: 50%;
-    right: 42%;
+    left: 35%;
 }
-.div{
+
+.div {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
 }
-.key{
+
+.key {
     position: absolute;
     top: 48.5%;
-    right: 51.5%;
+    right: 43%;
 }
-.qu{
+
+.qu {
     position: absolute;
     top: 28%;
-    right: 35%;
+    right: 25%;
 }

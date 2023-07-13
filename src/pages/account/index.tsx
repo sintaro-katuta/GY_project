@@ -88,7 +88,6 @@ export default function Account() {
                 }
             })
             .catch((error) => {
-                console.log(error.code);
                 if (error.code === 'auth/weak-password') {
                     alert("パスワードは6 文字以上の文字列を指定する必要があります")
                 } else if (error.code === 'auth/email-already-in-use') {

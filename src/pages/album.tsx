@@ -105,7 +105,7 @@ export default function Album() {
                                 </div>
                                 :
                                 <div key={i}>
-                                    <video className={Style.play} controls src={item} width={275} height={275} />
+                                    <video className={Style.albumImage} controls src={item} width={275} height={275} />
                                 </div>
                             }
                         </>

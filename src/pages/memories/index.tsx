@@ -85,6 +85,7 @@ export default function Memories() {
     }, [selectCategory])
 
     const hashtagFilter = async (hashtag: string) => {
+        window.scroll({ top: 600, behavior: 'smooth' });
         const posts = collection(db, "posts")
         const q = await query(posts, where("hashtag", "array-contains-any", [hashtag]), orderBy("created_at", "desc"))
         const postsSnapShot = await getDocs(q)
@@ -97,6 +98,7 @@ export default function Memories() {
     }
 
     const reset = async () => {
+        window.scroll({ top: 600, behavior: 'smooth' });
         const posts = collection(db, "posts")
         const q = query(posts, orderBy("created_at", "desc"));
         const postsDocs = await getDocs(q)
@@ -186,35 +188,35 @@ export default function Memories() {
                         </div>
                         <div className={styles.category} onClick={() => setSelectCategory("ショップ")}>
                             <p className={styles.categoryText}>ショップ</p>
-                            {allHashtags["ショップ"] && <div>(全{allHashtags["ショップ"].length}件)</div>}
+                            <p className={styles.categoryText}>{allHashtags["ショップ"] && <div>(全{allHashtags["ショップ"].length}件)</div>}</p>
                         </div>
                         <div className={styles.category} onClick={() => setSelectCategory("グルメ")}>
                             <p className={styles.categoryText}>グルメ</p>
-                            {allHashtags["グルメ"] && <div>(全{allHashtags["グルメ"].length}件)</div>}
+                            <p className={styles.categoryText}>{allHashtags["グルメ"] && <div>(全{allHashtags["グルメ"].length}件)</div>}</p>
                         </div>
                         <div className={styles.category} onClick={() => setSelectCategory("カジノ")}>
                             <p className={styles.categoryText}>カジノ</p>
-                            {allHashtags["カジノ"] && <div>(全{allHashtags["カジノ"].length}件)</div>}
+                            <p className={styles.categoryText}>{allHashtags["カジノ"] && <div>(全{allHashtags["カジノ"].length}件)</div>}</p>
                         </div>
                         <div className={styles.category} onClick={() => setSelectCategory("宿泊")}>
                             <p className={styles.categoryText}>宿泊</p>
-                            {allHashtags["宿泊"] && <div>(全{allHashtags["宿泊"].length}件)</div>}
+                            <p className={styles.categoryText}>{allHashtags["宿泊"] && <div>(全{allHashtags["宿泊"].length}件)</div>}</p>
                         </div>
                     </div>
                 </div>
                 <div className={styles.rightContent}>
-                    <p className={styles.themeText2}>IRでの思い出やクチコミを残してみよう！</p>
                     <div className={styles.reloadIcon}>
-                        <Image src={"/image/reset_undo_arrow_icon.svg"} width={20} height={20} alt="リロードアイコン" onClick={() => reset()} />
+                        <Image src={"/image/reset_undo_arrow_icon.svg"} width={20} height={20} alt="リロードアイコン" onClick={() => reset()} className={styles.Icon} />
                     </div>
+                    <p className={styles.themeText2}>IRでの思い出やクチコミを残してみよう！</p>
                     {postsData.map((post: any, i: number) => {
                         const created_at = dayjs(post.created_at.toDate())
                         return (
                             <div className={styles.flame} key={i}>
                                 <div className={styles.contents}>
                                     <div className={styles.header}>
-                                        <p className={styles.headerContent}>{post.user}</p>
-                                        <p className={styles.headerContent}>
+                                        <h4 className={styles.headerContent}>{post.user}</h4>
+                                        <small className={styles.headerContent}>
                                             {created_at.format('YYYY.MM.DD HH:mm')}/
                                             {post.category.map((category: any) => {
                                                 return (
@@ -223,17 +225,27 @@ export default function Memories() {
                                                     </>
                                                 )
                                             })}
-                                        </p>
+                                        </small>
                                     </div>
                                     <div>
-                                        <p className={styles.hashtag} onClick={(e: any) => hashtagFilter(e.target.innerHTML)}>{post.hashtag}</p>
+                                        <div className={styles.hashtag2}>
+                                            {post.hashtag.map((hashtag: any) => {
+                                                return (
+                                                    <>
+                                                        <small onClick={(e: any) => hashtagFilter(e.target.innerHTML)}>{hashtag}</small><div>/</div>
+                                                    </>
+                                                )
+                                            })}
+                                        </div>
                                         <p className={styles.comment}>{post.comment}</p>
                                     </div>
                                     <div className={styles.footer}>
                                         {likeList[i]
                                             ?
+                                            // <div className={styles.removeLikeIcon} onClick={() => removeLiked(post.id)}></div>
                                             <Image src={"/image/Group 76.svg"} width={20} height={20} alt="いいね済みアイコン" className={styles.Icon} onClick={() => removeLiked(post.id)} />
                                             :
+                                            // <div className={styles.addLikeIcon} onClick={() => removeLiked(post.id)}></div>
                                             <Image src={"/image/Group 75.svg"} width={20} height={20} alt="いいねアイコン" className={styles.Icon} onClick={() => addLiked(post.id)} />
                                         }
                                         <div>{Object.keys(post.liked).length}</div>

@@ -1,3 +1,7 @@
+.container {
+    z-index: 9999;
+}
+
 .ul_memories {
     position: absolute;
     color: #FAFAFA;

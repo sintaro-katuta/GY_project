@@ -7,7 +7,7 @@ import Link from "next/link";
 import { getAuth, signOut } from "firebase/auth";
 import Style from '../styles/SubHeader.module.css';
 
-export default function Header() {
+export default function SubHeader() {
     const router = useRouter();
     const ref = useRef(null)
     const paths = decodeURI(router.asPath).substring(1).split("/");

@@ -16,7 +16,8 @@ import ja from 'dayjs/locale/ja';
 
 export default function Post() {
     const router = useRouter();
-    const auth = getAuth()
+    const auth = getAuth();
+    const { post_id }: any = router.query;
     // *dayjsの詳細設定
     dayjs.locale(ja);
     dayjs.extend(utc);
@@ -42,7 +43,6 @@ export default function Post() {
 
     useEffect(() => {
         (async () => {
-            const { post_id }: any = router.query;
             const posts: any = collection(db, "posts")
             const postsDoc: any = await doc(posts, `${post_id}`)
             const postsSnapShot: any = await getDoc(postsDoc)
@@ -54,7 +54,6 @@ export default function Post() {
     const addComment = async (e: any) => {
         e.preventDefault()
         if (comment) {
-            const { post_id }: any = router.query;
             const posts = collection(db, 'posts')
             const postsDoc = doc(posts, `${post_id}`)
             const postCommentsData = {
@@ -92,7 +91,7 @@ export default function Post() {
             <div className={styles.headerTitle}><div>{post.user}</div><div>/</div><div>{post.created_at && dayjs(post.created_at.toDate()).format('YYYY.MM.DD HH:mm')}</div><div>/</div>{post.category && post.category.map((category: any, i: number) => { return (<div className={styles.categoryText} key={i}><div>{category}</div><div>/</div></div>) })}</div>
             <div className={styles.comment}>
                 <form onSubmit={(e) => addComment(e)} className={styles.form}>
-                    <input type="text" id="comment" placeholder="コメント" value={comment} className={styles.commentField} onChange={(e) => setComment(e.target.value)} />
+                    <input type="text" id="comment" placeholder="コメント" value={comment} className={styles.commentField} onChange={(e) => setComment(e.target.value)} autofocus />
                     <Image src={"/image/send_icon.svg"} width={20} height={20} alt="送信アイコン" onClick={(e: any) => addComment(e)} className={styles.icon} />
                 </form>
                 <div className={styles.commentParent}>

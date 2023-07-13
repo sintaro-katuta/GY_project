@@ -16,10 +16,14 @@
 
 .header {
     display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
 }
 
 .headerContent {
     margin-left: 15px;
+    letter-spacing: 0.1em
 }
 
 .headerComponet {
@@ -46,7 +50,6 @@
     position: sticky;
     top: 10px;
     z-index: 1;
-    margin-top: 0px;
 }
 
 .leftContent {
@@ -61,11 +64,26 @@
     color: #0A41D0;
     cursor: pointer;
     margin-right: 16px;
-    padding-left: 15px;
+    margin-left: 16px;
+    margin-bottom: 8px;
+    letter-spacing: 0.1em
+}
+
+.hashtag2 {
+    color: #0A41D0;
+    cursor: pointer;
+    margin-left: 16px;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    gap: 3px;
+    letter-spacing: 0.1em
 }
 
 .comment {
     padding-left: 15px;
+    letter-spacing: 0.1em
 }
 
 .categoryHashtag {
@@ -88,6 +106,7 @@
 
 .categoryText {
     margin: 0;
+    letter-spacing: 0.1em
 }
 
 .selectCategoryText {
@@ -129,7 +148,7 @@
 
 .themeText2 {
     font-size: 12px;
-    margin-top: 50px;
+    margin-top: 20px;
     margin-left: 100px;
 }
 
@@ -145,7 +164,8 @@
 }
 
 .reloadIcon {
-    cursor: pointer;
+    position: sticky;
     text-align: center;
-    /* margin-left: 400px; */
+    top: 0;
+    padding-top: 20px;
 }

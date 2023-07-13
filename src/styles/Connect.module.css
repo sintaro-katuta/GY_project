@@ -1,3 +1,160 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&display=swap');
+
 .container {
+    padding-left: 20%;
+    top: 0;
+    background-image: url('/image/Haikei.svg');
+    width: 995px;
+    height: 570px;
+    position: fixed;
+}
+
+.p {
+    color: #FFFF;
+    font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+}
+
+.p_co {
+    color: #FFFF;
+    font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    font-size: 8px;
+}
+
+.toPostDiv {
+    position: absolute;
+    top: 90%;
+    left: 85%;
+    display: flex;
+    color: #FAFAFA;
+    font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    cursor: pointer;
+}
+
+.toPostContent {
+    /* height: 80px; */
+}
+
+.p_to {
+    position: absolute;
+    text-align: center;
+    top: 5%;
+    right: 5%;
+
+}
+
+.p1 {
+    color: #FFFF;
+    font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    font-size: 8px;
+}
+
+.card {
+    text-align: center;
+    position: absolute;
+    margin-top: 2%;
+    display: flex;
+    justify-content: left;
+    flex-wrap: wrap;
+    margin-left: 5%;
+    margin-right: 20%;
+}
+
+.changed2 {
+    transform: rotateY(0);
+    z-index: 1;
+}
+
+.changed {
+    transform: rotateY(180deg);
+    z-index: 1;
+    backface-visibility: visible;
+}
+
+.images,
+.back {
+    transition: all 0.6s;
+    margin-right: 20px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    backface-visibility: hidden;
+}
+
+.back {
+    z-index: 1;
+}
+
+.images {
+    z-index: 5;
+    cursor: pointer;
+}
+
+.changed,
+.changed2 {
+    transition: all 0.6s;
+    padding-right: 20px;
+    padding-left: 20px;
+    cursor: pointer;
+    backface-visibility: hidden;
+    z-index: 500;
+}
+
+.selectImageDiv {
+    position: relative;
+    display: flex;
+    width: 780px;
+    height: 540px;
+    margin: 0;
+    padding: 0;
+    z-index: 999;
+}
+
+.selectImageText {
+    color: #FAFAFA;
+    font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+}
+
+.selectImage {
+    opacity: 1;
+    z-index: 999;
+    color: #FAFAFA;
+}
+
+.leftContent {
+    width: 50%;
+    text-align: center;
+}
+
+.rightContent {
+    width: 50%;
+}
+
+.close {
+    display: inline-block;
+    padding: 25px 0;
+    cursor: pointer;
+}
+
+.close::before,
+.close::after {
+    display: block;
+    content: "";
+    width: 50px;
+    height: 1px;
+    background: #FAFAFA;
+}
+
+.close::before {
+    transform: rotate(-45deg);
+}
+
+.close::after {
+    transform: rotate(45deg);
+}
+
+.error {
+    color: #FF0000;
+    margin: 0;
+    height: 23px;
     padding-left: 30%;
+    font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
 }

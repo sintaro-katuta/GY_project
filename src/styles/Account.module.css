@@ -1,17 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&display=swap');
 
 .form {
-    height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 12px;
 }
 
 .flame {
     font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
-    position: absolute;
+    position: fixed;
     width: 100%;
     height: 100%;
     left: 0px;
     top: 0px;
     background: #DEEBEE;
+}
+
+.label {
+    margin-top: 24px;
+    margin-bottom: 16px;
 }
 
 .topleft {
@@ -65,18 +73,39 @@
 
 .logaka {
     display: flex;
-    margin-left: 545px;
+    flex-direction: row;
+    justify-content: right;
+    align-items: center;
+    gap: 40px;
     margin-top: 10px;
+    margin-right: 240px;
+}
+
+.button {
+    font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    color: #208196;
+    background-color: white;
+    border: 1px solid #2FBFD3;
+    font-size: 20px;
+    line-height: 35px;
+    width: 240px;
+    height: 80px;
+    border-radius: 50px;
+    letter-spacing: 0.1cm;
+    margin-left: 80px;
+    margin-bottom: 12px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background: linear-gradient(105.42deg, #2FBFD3 14.19%, #208196 78.21%);
+    color: white;
 }
 
 .line {
     width: 30px;
     height: 0px;
-    margin-top: 27px;
-    margin-left: 30px;
-
     /* SNS_サブ1 */
-
     border: 1.5px solid #2FBFD3;
     transform: rotate(90deg);
 }
@@ -94,7 +123,6 @@
 .sinki {
     cursor: pointer;
     font-size: 20px;
-    margin-left: 40px;
     color: #A5A5A5;
 }
 
@@ -105,21 +133,14 @@
 }
 
 .email {
-    position: absolute;
     border: none;
+    border-bottom: 1px solid #222222;
     outline: none;
     background-color: transparent;
     width: 100%;
-    margin-top: 16px;
-}
-
-.email1 {
-    position: absolute;
-    border: none;
-    outline: none;
-    background-color: transparent;
-    width: 100%;
-    margin-top: 12px;
+    height: 32px;
+    font-size: 17px;
+    margin: 0;
 }
 
 
@@ -139,7 +160,6 @@
     margin-bottom: 15px;
 }
 
-
 .pass {
     color: #222222;
     position: absolute;
@@ -148,37 +168,28 @@
     font-size: 16px;
     line-height: 23px;
     letter-spacing: 0.1cm;
-
     /* SNS_メイン */
-
     color: #222222;
 }
 
 .password {
-    position: absolute;
     background-color: transparent;
     border: none;
+    border-bottom: 1px solid #222222;
     outline: none;
     width: 100%;
-    margin-top: 16px;
-}
-
-.password1 {
-    position: absolute;
-    background-color: transparent;
-    border: none;
-    outline: none;
-    width: 100%;
-    margin-top: 12px;
+    height: 32px;
+    font-size: 17px;
 }
 
 .namae {
-    position: absolute;
     background-color: transparent;
     border: none;
+    border-bottom: 1px solid #222222;
     outline: none;
     width: 100%;
-    margin-top: 12px;
+    height: 32px;
+    font-size: 17px;
 }
 
 .name {
@@ -186,55 +197,13 @@
     letter-spacing: 0.05cm;
 }
 
-.buttonlog {
-    font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
-    color: #208196;
-    background-color: white;
-    border: 1px solid #2FBFD3;
-    font-size: 20px;
-    line-height: 35px;
-    width: 240px;
-    height: 80px;
-    border-radius: 50px;
-    letter-spacing: 0.1cm;
-    margin-bottom: 24px;
+.provider {
+    text-align: center;
     cursor: pointer;
-}
-
-.buttonlog:hover {
-    background: linear-gradient(105.42deg, #2FBFD3 14.19%, #208196 78.21%);
-    color: white;
-}
-
-.buttonlog1 {
-    font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
-    color: #208196;
-    background-color: white;
-    border: 1px solid #2FBFD3;
-    font-size: 20px;
-    line-height: 35px;
-    width: 240px;
-    height: 80px;
-    border-radius: 50px;
-    letter-spacing: 0.1cm;
-    margin-bottom: 12px;
-    cursor: pointer;
-}
-
-.buttonlog1:hover {
-    background: linear-gradient(105.42deg, #2FBFD3 14.19%, #208196 78.21%);
-    color: white;
-}
-
-.google {
     color: #2FBFD3;
     letter-spacing: 0.05cm;
-    display: block;
-}
-
-.facebook {
-    color: #2FBFD3;
-    letter-spacing: 0.05cm;
+    margin: 0;
+    margin-bottom: 18px;
 }
 
 .flame1 {
@@ -317,4 +286,19 @@
     cursor: pointer;
     margin: 0;
     margin-bottom: 5%;
+}
+
+.changeName {
+    color: #0A41D0;
+    margin-left: 100px;
+    cursor: pointer;
+}
+
+.changeNameInput {
+    font-size: 18px;
+    font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    outline: none;
+    border: none;
+    margin-left: 30vh;
+    text-align: center;
 }

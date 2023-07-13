@@ -5,9 +5,9 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router'
 import Link from "next/link";
 import { collection, doc, setDoc, addDoc, serverTimestamp, getDocs, updateDoc } from "firebase/firestore";
-import styles from '/styles/Account.module.css'
+import styles from '../../styles/Account.module.css'
 import Image from 'next/image';
-import React, { useRef } from 'react';
+import React from 'react';
 
 export default function Account() {
     // useStateでユーザーが入力したメールアドレスとパスワードをemailとpasswordに格納する
@@ -218,40 +218,46 @@ export default function Account() {
                 </div>
                 {tab ?
                     <div id="login" className={styles.log}>
-                        <form className={styles.form}>
-                            <label htmlFor="login-email" className={styles.mail}>メール</label><br></br>
-                            <input type="text" id="login-email" className={styles.email} autoComplete="on" onChange={(e) => setEmail(e.target.value)} /><br></br>
-                            <div className={styles.text_underline}></div>
-
-                            <label htmlFor="login-password" className={styles.pass}>パスワード</label><br></br>
-                            <input type="password" id="login-password" autoComplete="on" onChange={(e) => setPassword(e.target.value)} className={styles.password} /><br></br>
-                            <div className={styles.text_underline}></div>
-                            <button onClick={(e) => doLogin(e)} className={styles.buttonlog}>ログインする</button>
-                            <br />
-                            <Link href={"/post"} onClick={(e) => doGoogleLogin(e)} className={styles.google}>Googleでログインする</Link>< br />
-                            <Link href={"/post"} onClick={(e) => doFacebookLogin(e)} className={styles.facebook}>Facebookでログインする</Link>
+                        <form>
+                            <div className={styles.form}>
+                                <div>
+                                    <label htmlFor="#login-email" className={styles.label}>メール</label>
+                                    <input type="text" id="login-email" className={styles.email} autoComplete="on" onChange={(e) => setEmail(e.target.value)} autoFocus />
+                                </div>
+                                <div>
+                                    <label htmlFor="#login-password" className={styles.label}>パスワード</label>
+                                    <input type="password" id="login-password" autoComplete="on" onChange={(e) => setPassword(e.target.value)} className={styles.password} />
+                                </div>
+                                <div>
+                                    <button onClick={(e) => doLogin(e)} className={styles.button}>ログインする</button>
+                                </div>
+                            </div>
+                            <p onClick={(e: any) => doGoogleLogin(e)} className={styles.provider}>Googleでログインする</p>
+                            <p onClick={(e: any) => doFacebookLogin(e)} className={styles.provider}>Facebookでログインする</p>
                         </form>
                     </div>
                     :
                     <div id="register" className={styles.log1}>
                         <form>
-                            <label htmlFor="register-email" className={styles.mail}>メール</label><br></br>
-                            <input type="text" id="register-email" autoComplete="on" onChange={(e) => setEmail(e.target.value)} className={styles.email1} /><br></br>
-                            <div className={styles.text_underline1}></div>
-
-                            <label htmlFor="register-password" className={styles.pass}>パスワード</label><br></br>
-                            <input type="password" id="register-password" autoComplete="on" onChange={(e) => setPassword(e.target.value)} className={styles.password1} /><br></br>
-                            <div className={styles.text_underline1}></div>
-
-                            <label htmlFor="name" className={styles.name}>名前</label><br></br>
-                            <input type="text" id="name" autoComplete="on" onChange={(e) => setName(e.target.value)} className={styles.namae} />
-                            <div className={styles.text_underline1}></div>
-
-                            <button onClick={(e: any) => doRegister(e)} className={styles.buttonlog1}>
-                                新規会員登録
-                            </button>
-                            <Link href={""} onClick={(e: any) => doGoogleLogin(e)} className={styles.google}>Googleでログインする</Link>
-                            <Link href={""} onClick={(e: any) => doFacebookLogin(e)} className={styles.facebook}>Facebookでログインする</Link>
+                            <div className={styles.form}>
+                                <div>
+                                    <label htmlFor="register-email" className={styles.label}>メール</label>
+                                    <input type="text" id="register-email" autoComplete="on" onChange={(e) => setEmail(e.target.value)} className={styles.email} />
+                                </div>
+                                <div>
+                                    <label htmlFor="register-password" className={styles.label}>パスワード</label>
+                                    <input type="password" id="register-password" autoComplete="on" onChange={(e) => setPassword(e.target.value)} className={styles.password} />
+                                </div>
+                                <div>
+                                    <label htmlFor="name" className={styles.label}>名前</label>
+                                    <input type="text" id="name" autoComplete="on" onChange={(e) => setName(e.target.value)} className={styles.namae} />
+                                </div>
+                                <div>
+                                    <button onClick={(e: any) => doRegister(e)} className={styles.button}>新規会員登録</button>
+                                </div>
+                            </div>
+                            <p onClick={(e: any) => doGoogleLogin(e)} className={styles.provider}>Googleでログインする</p>
+                            <p onClick={(e: any) => doFacebookLogin(e)} className={styles.provider}>Facebookでログインする</p>
                         </form>
                     </div>
                 }

@@ -1,16 +1,19 @@
 import { db } from '../../lib/firebase.config';
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router';
-import styles from '/styles/Account.module.css'
+import styles from '../../styles/Account.module.css'
 import SubHeader from "../../components/subheader";
 import { getAuth, signOut } from "firebase/auth"
 import { collection, getDocs, query, where } from "firebase/firestore";
+import { updateProfile } from "firebase/auth"
 
 export default function Info() {
     // ユーザー情報
     const [currentUser, setCurrentUser]: any = useState([])
     const [postNum, setPostNum]: any = useState(0)
     const [postLikeNum, setPostLikeNum]: any = useState(0)
+    const [changeCheck, setChangeCheck]: any = useState(false)
+    const [changeName, setChangeName]: any = useState("")
     const [errorMessage, setErrorMessage]: any = useState("")
     const auth = getAuth()
     const router = useRouter()
@@ -48,6 +51,15 @@ export default function Info() {
         })()
     }, [currentUser])
 
+    const changeNameFunc = () => {
+        setChangeCheck(!changeCheck)
+        if (changeCheck) {//* trueの時
+            updateProfile(currentUser, {
+                displayName: changeName,
+            })
+        }
+    }
+
     const logOut = () => {
         signOut(auth)
             .then(() => {
@@ -65,7 +77,10 @@ export default function Info() {
                 <p className={styles.error}>{errorMessage}</p>
                 <h2>あなたの情報</h2>
                 <div className={styles.infoDiv}>
-                    <h3 className={styles.infoName}>名前<span className={styles.infoValue}>{currentUser.displayName}</span></h3>
+                    {changeCheck ?
+                        <h3 className={styles.infoName}>名前<input type="text" defaultValue={currentUser.displayName} className={styles.changeNameInput} onChange={(e: any) => setChangeName(e.target.value)} /><small className={styles.changeName} onClick={() => changeNameFunc()}>変更</small></h3> :
+                        <h3 className={styles.infoName}>名前<span className={styles.infoValue}>{currentUser.displayName}</span><small className={styles.changeName} onClick={() => changeNameFunc()}>名前の変更</small></h3>
+                    }
                 </div>
                 <div className={styles.infoDiv}>
                     <h3 className={styles.infoName}>投稿　<span className={styles.infoValue}>{postNum}</span></h3>

@@ -63,7 +63,7 @@ export default function Connect() {
                 }
             })
 
-            const totalPost: any = newPostList
+            const totalPost: any = newPostList.length
             const totalCurrentPost: any = newPostData.length
 
             if (point - totalPost < 0) {
@@ -84,8 +84,9 @@ export default function Connect() {
             const userGetDoc = await getDoc(userDoc)
             if (userGetDoc.exists()) {
                 const userData = await userGetDoc.data()
-                if (userData.treasure !== undefined) {
-                    const newCouponImages = couponImages
+                if (userData.treasure === undefined) {
+                    e.target.className = styles.changed
+                    const newCouponImages = [...couponImages]
                     for (let i = newCouponImages.length - 1; i >= 0; i--) {
                         let rand = Math.floor(Math.random() * (i + 1))
                         // 配列の要素の順番を入れ替える
@@ -98,7 +99,6 @@ export default function Connect() {
                     await updateDoc(userDoc, {
                         treasure: arrayUnion(newCouponImages[i])
                     })
-                    e.target.className = styles.changed
                 } else {
                     setErrorMessage("既に獲得しています")
                 }

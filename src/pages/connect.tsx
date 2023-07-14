@@ -77,13 +77,13 @@ export default function Connect() {
         })()
     }, [currentUser.uid])
 
-    const imagesClick = async (e: any, i: any) => {
+    const imagesClick = (e: any, i: any) => {
         if (clicked == false) {
-            const user = collection(db, "users")
-            const userDoc = doc(user, currentUser.uid)
-            const userGetDoc = getDoc(userDoc)
+            const user: any = collection(db, "users")
+            const userDoc: any = doc(user, currentUser.uid)
+            const userGetDoc: any = getDoc(userDoc)
             if (userGetDoc.exists()) {
-                const userData = await userGetDoc.data()
+                const userData = userGetDoc.data()
                 if (userData.treasure === undefined) {
                     e.target.className = styles.changed
                     const newCouponImages = [...couponImages]

@@ -80,8 +80,8 @@ export default function Connect() {
     const imagesClick = async (e: any, i: any) => {
         if (clicked == false) {
             const user = collection(db, "users")
-            const userDoc = await doc(user, currentUser.uid)
-            const userGetDoc = await getDoc(userDoc)
+            const userDoc = doc(user, currentUser.uid)
+            const userGetDoc = getDoc(userDoc)
             if (userGetDoc.exists()) {
                 const userData = await userGetDoc.data()
                 if (userData.treasure === undefined) {
@@ -96,7 +96,7 @@ export default function Connect() {
                     }
                     setCouponImages(newCouponImages)
                     setClicked(!clicked)
-                    await updateDoc(userDoc, {
+                    updateDoc(userDoc, {
                         treasure: arrayUnion(newCouponImages[i])
                     })
                 } else {

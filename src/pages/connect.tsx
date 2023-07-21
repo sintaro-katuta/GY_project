@@ -83,28 +83,26 @@ export default function Connect() {
             const userDoc: any = await doc(user, currentUser.uid)
             const userGetDoc: any = await getDoc(userDoc)
             console.log(userGetDoc.exists())
-            if (userGetDoc.exists()) {
-                const userData = userGetDoc.data()
-                if (userData.treasure === undefined) {
-                    console.log("未獲得")
-                    e.target.className = styles.changed
-                    const newCouponImages = [...couponImages]
-                    for (let i = newCouponImages.length - 1; i >= 0; i--) {
-                        let rand = Math.floor(Math.random() * (i + 1))
-                        // 配列の要素の順番を入れ替える
-                        let tmpStorage = newCouponImages[i]
-                        newCouponImages[i] = newCouponImages[rand]
-                        newCouponImages[rand] = tmpStorage
-                    }
-                    setCouponImages(newCouponImages)
-                    setClicked(!clicked)
-                    updateDoc(userDoc, {
-                        treasure: arrayUnion(newCouponImages[i])
-                    })
-                } else {
-                    console.log("獲得済み")
-                    setErrorMessage("既に獲得しています")
+            const userData = userGetDoc.data()
+            if (userData.treasure === undefined) {
+                console.log("未獲得")
+                e.target.className = styles.changed
+                const newCouponImages = [...couponImages]
+                for (let i = newCouponImages.length - 1; i >= 0; i--) {
+                    let rand = Math.floor(Math.random() * (i + 1))
+                    // 配列の要素の順番を入れ替える
+                    let tmpStorage = newCouponImages[i]
+                    newCouponImages[i] = newCouponImages[rand]
+                    newCouponImages[rand] = tmpStorage
                 }
+                setCouponImages(newCouponImages)
+                setClicked(!clicked)
+                updateDoc(userDoc, {
+                    treasure: arrayUnion(newCouponImages[i])
+                })
+            } else {
+                console.log("獲得済み")
+                setErrorMessage("既に獲得しています")
             }
         }
     }
@@ -136,11 +134,9 @@ export default function Connect() {
         const user = collection(db, "users")
         const userDoc = await doc(user, currentUser.uid)
         const userGetDoc = await getDoc(userDoc)
-        if (userGetDoc.exists()) {
-            const userData = await userGetDoc.data()
-            if (userData.treasure !== undefined) {
-                setImageDetail(`${userData.treasure}`)
-            }
+        const userData: any = await userGetDoc.data()
+        if (userData.treasure !== undefined) {
+            setImageDetail(`${userData.treasure}`)
         }
     }
     return (

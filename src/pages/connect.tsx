@@ -101,6 +101,7 @@ export default function Connect() {
                         treasure: arrayUnion(newCouponImages[i])
                     })
                 } else {
+                    console.log("獲得済み")
                     setErrorMessage("既に獲得しています")
                 }
             }
@@ -129,6 +130,7 @@ export default function Connect() {
     }
 
     const treasure = async () => {
+        console.log("詳細")
         setErrorMessage("")
         const user = collection(db, "users")
         const userDoc = await doc(user, currentUser.uid)
@@ -155,7 +157,7 @@ export default function Connect() {
                         ?
                         <Image className={styles.takara} src={"/image/Group 253.svg"} width={30} height={30} alt='bottomright' onMouseOver={() => setHover(false)} onMouseLeave={() => setHover(false)} onClick={() => treasure()} />
                         :
-                        <Image className={styles.takara} src={"/image/Takara.svg"} width={30} height={30} alt='bottomright' onMouseOver={() => setHover(true)} onMouseLeave={() => setHover(true)} />
+                        <Image className={styles.takara} src={"/image/Takara.svg"} width={30} height={30} alt='bottomright' onMouseOver={() => setHover(true)} onMouseLeave={() => setHover(true)} onClick={() => treasure()} />
                     }
                 </div>
                 {imageDetail &&

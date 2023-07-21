@@ -85,6 +85,7 @@ export default function Connect() {
             if (userGetDoc.exists()) {
                 const userData = userGetDoc.data()
                 if (userData.treasure === undefined) {
+                    console.log("未獲得")
                     e.target.className = styles.changed
                     const newCouponImages = [...couponImages]
                     for (let i = newCouponImages.length - 1; i >= 0; i--) {

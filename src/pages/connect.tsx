@@ -82,6 +82,7 @@ export default function Connect() {
             const user: any = await collection(db, "users")
             const userDoc: any = await doc(user, currentUser.uid)
             const userGetDoc: any = await getDoc(userDoc)
+            console.log(userGetDoc.exists())
             if (userGetDoc.exists()) {
                 const userData = userGetDoc.data()
                 if (userData.treasure === undefined) {

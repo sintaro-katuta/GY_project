@@ -137,7 +137,7 @@ export default function Connect() {
         const userGetDoc = await getDoc(userDoc)
         if (userGetDoc.exists()) {
             const userData = await userGetDoc.data()
-            if (userData.treasure) {
+            if (userData.treasure !== undefined) {
                 setImageDetail(`${userData.treasure}`)
             }
         }

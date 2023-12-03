@@ -1,14 +1,20 @@
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import { useRouter } from "next/router";
 import Image from 'next/image';
 import Link from "next/link";
 import Style from '../styles/Header.module.css';
+
+import { getAuth} from "firebase/auth"
 
 export default function Header() {
     const router = useRouter();
     const ref = useRef(null)
     const paths = decodeURI(router.asPath).substring(1).split("/");
     const roots = [""];
+    const [login , setLogin] = useState(false)
+
+    const auth = getAuth();
+
     for (let i = 0; i < paths.length; i++) roots.push(roots[i] + "/" + paths[i]);
     useEffect(() => {
         let memory: any = document.getElementById("memories");
@@ -21,7 +27,22 @@ export default function Header() {
         }
     }, [paths])
 
+    useEffect(() => {
+        // ログイン状態をウォッチ
+        let unsubscribe = auth.onAuthStateChanged((user: any) => {
+            if (user) {
+                // ユーザ情報を格納する
+                setLogin(true)
+            }
+            unsubscribe()
+        })
+    }, [auth, router])
+
     const toPost = () => {
+        if (!login) {
+            router.push("/account")
+            return
+        }
         router.push("/post")
     }
 

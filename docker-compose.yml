@@ -17,18 +17,6 @@ services:
     # ネットワーク
     networks:
       - default
-  web:
-    image: nginx:alpine
-    ports:
-      - 8888:80
-    privileged: true
-    volumes:
-      - "./site:/usr/share/nginx/html"
-    # ネットワーク
-    networks:
-      - default
-    # If you want to run `yarn dev` at docker compose startup
-    # command: sh -c "yarn dev"
 volumes:
   node_modules: # ネットワーク
 networks:

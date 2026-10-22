@@ -1,4 +1,4 @@
-import { storage } from "../../lib/firebase.config";
+import { storage } from "./firebase.config";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 //single image file upload

@@ -2,19 +2,21 @@
   "name": "iot",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "sass --style=expanded --source-map sass/index.scss:.build/css/index.css && postcss .build/css/index.css --use autoprefixer --replace --map",
+    "watch": "sass --watch --style=expanded --source-map sass/index.scss:.build/css/index.css",
+    "test": "node --test ../tests/*.test.cjs",
+    "audit": "node ../scripts/audit.cjs ."
   },
   "author": "ryo fujie",
   "license": "ISC",
   "devDependencies": {
-    "gulp": "^4.0.2",
-    "gulp-autoprefixer": "^8.0.0",
-    "gulp-notify": "^4.0.0",
-    "gulp-plumber": "^1.2.1",
-    "gulp-sass": "^5.1.0",
-    "gulp-sourcemaps": "^3.0.0",
-    "sass": "^1.62.1"
+    "autoprefixer": "10.6.1",
+    "postcss": "^8.5.0",
+    "postcss-cli": "12.0.0",
+    "sass": "1.106.1"
+  },
+  "engines": {
+    "node": ">=24 <25"
   }
 }

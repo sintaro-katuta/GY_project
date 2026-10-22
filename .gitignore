@@ -366,3 +366,11 @@ unittest/sql/explain_filename-t
 unittest/sql/my_apc-t
 unittest/sql/sniper_modules-t
 unittest/strings/strings-t
+# Local environment and compiler state
+.env
+.env.*
+!.env.example
+*.tsbuildinfo
+
+# Preview CSS output; deploy checked-in CSS only after reviewing generated changes
+public/.build/

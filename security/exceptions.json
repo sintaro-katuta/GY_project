@@ -1,0 +1,11 @@
+[
+  {
+    "package": "braces",
+    "ghsa": "GHSA-vfj7-8cjw-p6xm",
+    "version": "3.0.3",
+    "devOnly": true,
+    "expires": "2026-11-22",
+    "issue": "https://github.com/sintaro-katuta/GY_project/issues/2",
+    "reason": "No patched upstream release; only ESLint tooling. Remove after upstream fix."
+  }
+]

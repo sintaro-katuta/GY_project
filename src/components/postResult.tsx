@@ -4,9 +4,11 @@ import Image from 'next/image'
 import styles from '../styles/Post.module.css'
 import { db } from '../lib/firebase.config'
 import { collection, addDoc, updateDoc, doc, arrayUnion } from 'firebase/firestore'
-import { postImage } from '../pages/api/upload'
+import { postImage } from '../lib/upload'
 import { gsap } from "gsap";
-import { Player } from '@lottiefiles/react-lottie-player';
+import dynamic from 'next/dynamic';
+
+const Player = dynamic(() => import('@lottiefiles/react-lottie-player').then(module => module.Player), { ssr: false });
 import animationData from '../public/image/crucker.json'
 
 

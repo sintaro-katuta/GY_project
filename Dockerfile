@@ -1,10 +1,10 @@
-FROM node:lts-bullseye-slim
+FROM node:24-bookworm-slim
 WORKDIR /app
 
 ENV TZ=Asia/Tokyo
 
-COPY ./src/package.json ./src/yarn.lock ./
-RUN yarn install --frozen-lockfile
+COPY ./src/package.json ./src/package-lock.json ./
+RUN npm ci
 
-EXPOSE 3200
-CMD ["yarn", "dev"]
+EXPOSE 3000
+CMD ["npm", "run", "dev"]

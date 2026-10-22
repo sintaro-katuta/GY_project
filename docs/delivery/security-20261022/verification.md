@@ -15,4 +15,6 @@ Node 24で両プロジェクトのnpm ci --no-auditが成功（src 458 packages 
 
 未実施: 実Firebaseへのログイン・投稿や権限のE2E、デプロイ済みRulesの検査、Dockerイメージのビルド、コンテナOSのCVEスキャン。本番サービスへの変更はしていない。
 
-Vercelの自動Previewは失敗。CLIトークン無効・ブラウザ未ログインでログを取得できず、原因未確定。[Issue #5](https://github.com/sintaro-katuta/GY_project/issues/5)で追跡しPRはdraftのままとする。所有者のログイン後にログ調査とPreview検証が必要。
+ユーザーの方針によりデプロイは今回の対象外。Vercelの自動Preview失敗の原因は未確定だが、Preview検証はマージ条件から除外し、[Issue #5](https://github.com/sintaro-katuta/GY_project/issues/5)は対応不要として終了する。Vercel連携の解除状況を推測で断定せず、デプロイや連携設定の変更は行わない。
+
+資料更新コミット331121dでも[GitHub Actions run 39730519867](https://github.com/sintaro-katuta/GY_project/actions/runs/39730519867)が全ステップ成功。依存監査・テスト・ビルドの検証結果は有効。

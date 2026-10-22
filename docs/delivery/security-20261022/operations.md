@@ -4,7 +4,7 @@
 2. .env.exampleから設定を作り自分のFirebaseプロジェクトを設定。NEXT_PUBLIC_*は公開されるため管理用秘密鍵を置かない。
 3. READMEの検証コマンドを実行し、PRのCIを確認する。
 4. Next本番起動はnpm run start --prefix src。ビルド後にnpm prune --omit=dev --prefix srcで開発依存を除去する。Dockerfileは開発用なのでそのまま本番公開しない。
-5. 静的サイトのCSSを変更する場合だけ生成CSSを確認して反映。今回の公開アセットは変更しない。既存firebase.jsonは静的Hostingのみを対象とし、PR作成時にNextアプリのVercel連携を確認した。Preview失敗の確認はIssue #5で追跡する。
+5. 静的サイトのCSSを変更する場合だけ生成CSSを確認して反映。今回の公開アセットは変更しない。既存firebase.jsonは静的Hostingのみを対象とし、ユーザーの方針により今回の作業にデプロイは含めない。Vercel Previewの確認はマージ条件としない。
 
 Docker開発はdocker compose up --build -d。既存ボリュームはdocker compose exec frontend npm ci後にrestartする。
 
@@ -20,4 +20,4 @@ bracesは[Issue #2](https://github.com/sintaro-katuta/GY_project/issues/2)で追
 
 データ形式変更やmigrationはない。このPRをrevertし、lockfile込みの旧成果物を再ビルド・再配布する。旧版には既知の脆弱性があるため必要なら公開を制限して復旧する。実.envは再コミットせず、運用環境から供給する。
 
-Vercel Previewの失敗は[Issue #5](https://github.com/sintaro-katuta/GY_project/issues/5)を参照。所有者がログインし、ビルドログに基づく確認が済むまでマージ・本番反映は行わない。
+Vercel Previewの失敗に関する[Issue #5](https://github.com/sintaro-katuta/GY_project/issues/5)は、デプロイ不要の方針により対応不要として終了する。将来デプロイを再開する場合に、その時点の環境設定と表示・ログイン・権限を確認する。

@@ -4,7 +4,7 @@
 
 開始時は305アラート、125種類のGHSA、40パッケージ。Critical 20 / High 153 / Medium 112 / Low 20（manifest別重複を含む）。全検出範囲を秘密情報なしの `security/baseline-advisories.json` に保存した。
 
-CVE-2026-111759はsrcの両lockfileのmarkdown-it@12.3.2を対象とする。未使用の@types/firebaseを含む旧Firebase依存グラフのprotobufjs-cli → jsdoc → markdown-itという経路だった。ソースにMarkdown処理やtypographer設定は見つからず、旧推移依存の除去でパッケージ自体を削除する。
+CVE-2026-111759はsrcの両lockfileのmarkdown-it@12.3.2を対象とする。正確な経路は未使用のfirebase-admin → @google-cloud/firestore（optional）→ google-gax → protobufjs-cli → jsdoc → markdown-itだった。@types/firebaseも未使用の別依存として除去した。ソースにMarkdown処理やtypographer設定は見つからず、旧推移依存の除去でパッケージ自体を削除する。
 
 [一次情報](https://github.com/markdown-it/markdown-it/security/advisories/GHSA-r7fv-28h4-cvq7): typographer: trueが攻撃条件。14.3.2未満、または15.0.0以上15.0.2未満が影響範囲。
 

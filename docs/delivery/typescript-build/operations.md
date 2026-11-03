@@ -1,3 +1,3 @@
 # Operations
 
-Merge the fix and deploy using the existing Vercel workflow with Node 24 and the project's Firebase environment variables. Check that the build completes and the deployed pages load. If a regression appears, revert the target change; doing so with TypeScript 7 restores the original build failure, so a compatible TypeScript version would also be needed. No data migration is required.
+Configure the project's real Firebase environment variables in Vercel for Preview and Production, then deploy using the existing workflow with Node 24. Check that the build completes and the deployed pages load. If a regression appears, revert this change; the previous TypeScript 7 configuration fails the build and tests. No data migration is required.
